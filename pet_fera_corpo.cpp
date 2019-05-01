@@ -61,6 +61,94 @@ ANFIBIO::~ANFIBIO(){
 
 }
 
+//Mamífero
+
+void MAMIFERO::setCor_pelo(string c){
+	cor_pelo = c;
+}
+
+string MAMIFERO::getCor_pelo(){
+	return cor_pelo
+}
+
+MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor){
+	id = i;
+	classe = c;
+	nome_cientifico = n;
+	sexo = s;
+	tamanho = tam;
+	dieta = die;
+	veterinario = vet;
+	tratador = trat;
+	nome_batismo = nome;
+	cor_pelo = cor;
+}
+
+MAMIFERO::~MAMIFERO(){}
+
+//Réptil
+
+void REPTIL::setVenenoso(bool v){
+	venenoso = v;
+}
+void REPTIL::setTipo_veneno(string t){
+	tipo_veneno = t;
+}
+
+bool REPTIL::getVenenoso(){
+	return true;
+}
+string REPTIL::getTipo_veneno(){
+	return tipo_veneno;
+}
+
+REPTIL::REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t){
+	id = i;
+	classe = c;
+	nome_cientifico = n;
+	sexo = s;
+	tamanho = tam;
+	dieta = die;
+	veterinario = vet;
+	tratador = trat;
+	nome_batismo = nome;
+	venenoso = v;
+	tipo_veneno = t;
+}
+
+REPTIL::~REPTIL(){}
+
+// Ave
+
+void setTamanho_bico(double t){
+	tamanho_bico = t;
+}
+void setEnvergadura(double e){
+	envergadura = e;
+}
+double getTamanho_bico(){
+	return tamanho_bico;
+}
+double getEnvergadura(){
+	return envergadura;
+}
+
+AVE::AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e){
+	id = i;
+	classe = c;
+	nome_cientifico = n;
+	sexo = s;
+	tamanho = tam;
+	dieta = die;
+	veterinario = vet;
+	tratador = trat;
+	nome_batismo = nome;
+	tamanho_bico = t;
+	envergadura = e;
+}
+
+AVE::~AVE(){}
+
 //Funcionário
 void FUNCIONARIO::setId(int i){
 	this->id = i;

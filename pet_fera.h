@@ -57,6 +57,55 @@ class ANFIBIO: public ANIMAL{
 		~ANFIBIO();
 };
 
+class MAMIFERO: public ANIMAL{
+	private:
+		string cor_pelo;
+	public:
+		//setters
+		void setCor_pelo(string c);
+		//getters
+		string getCor_pelo();
+		//construtor
+		MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor);
+		//destrutor
+		~MAMIFERO();
+}
+
+class REPTIL: public ANIMAL{
+	private:
+		bool venenoso;
+		string tipo_veneno;
+	public:
+		//setters
+		void setVenenoso(bool v);
+		void setTipo_veneno(string t);
+		//getters
+		bool getVenenoso();
+		string getTipo_veneno();
+		//construtor
+		REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t);
+		//destrutor
+		~REPTIL();
+}
+
+class AVE: public ANIMAL{
+	private:
+		double tamanho_bico;
+		double envergadura;
+	public:
+		//setters
+		void setTamanho_bico(double t);
+		void setEnvergadura(double e);
+		//getters
+		double getTamanho_bico();
+		double getEnvergadura();
+		//construtor
+		AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e);
+		//destrutor
+		~AVE();
+
+}
+
 class FUNCIONARIO{
 	protected:
 		int id;
