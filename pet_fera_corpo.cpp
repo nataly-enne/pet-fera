@@ -28,6 +28,64 @@ string ANIMAL::getTratador(){
 string ANIMAL::getNome_batismo(){
 	return nome_batismo;
 }
+ANIMAL::ANIMAL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome){
+	this->id = i;
+	this->classe = c;
+	this->nome_cientifico = n;
+	this->sexo = s;
+	this->tamanho = tam;
+	this->dieta = die;
+	this->veterinario = vet;
+	this->tratador = trat;
+	this->nome_batismo = nome;
+}
+//destrutor
+ANIMAL::~ANIMAL(){}
+
+
+//Animal Silvestre
+string ANIMAL_SILVESTRE::getAutorizacao_IBAMA(){
+	return autorizacao_IBAMA;
+}
+
+ANIMAL_SILVESTRE::ANIMAL_SILVESTRE(string aut){
+	this->autorizacao_IBAMA = aut;
+}
+
+ANIMAL_SILVESTRE::~ANIMAL_SILVESTRE(){}
+
+
+
+//Animal Nativo
+string ANIMAL_NATIVO::getUf_origem(){
+	return uf_origem;
+}
+string ANIMAL_NATIVO::getAutorizacao(){
+	return autorizacao;
+}
+		
+ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome):ANIMAL_SILVESTRE(aut){
+	this->uf_origem = u;
+	this->autorizacao = a;
+}
+
+ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
+
+//Animal Exotico
+string ANIMAL_EXOTICO::getPais_origem(){
+	return pais_origem;
+}
+string ANIMAL_EXOTICO::getAutorizacao(){
+	return autorizacao;
+}
+		
+ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome):ANIMAL_SILVESTRE(aut){
+	this->pais_origem = p;
+	this->autorizacao = a;
+}
+
+ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
+
 
 //Anfibio
 void ANFIBIO::setUltima_muda(int *vetor){
@@ -43,16 +101,7 @@ int* ANFIBIO::getUltima_muda(){
 	return ultima_muda;
 }
 
-ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data){
-	id = i;
-	classe = c;
-	nome_cientifico = n;
-	sexo = s;
-	tamanho = tam;
-	dieta = die;
-	veterinario = vet;
-	tratador = trat;
-	nome_batismo = nome;
+ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	total_mudas = mudas;
 	setUltima_muda(data);
 }
@@ -68,26 +117,16 @@ void MAMIFERO::setCor_pelo(string c){
 }
 
 string MAMIFERO::getCor_pelo(){
-	return cor_pelo
+	return cor_pelo;
 }
 
-MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor){
-	id = i;
-	classe = c;
-	nome_cientifico = n;
-	sexo = s;
-	tamanho = tam;
-	dieta = die;
-	veterinario = vet;
-	tratador = trat;
-	nome_batismo = nome;
+MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	cor_pelo = cor;
 }
 
 MAMIFERO::~MAMIFERO(){}
 
 //Réptil
-
 void REPTIL::setVenenoso(bool v){
 	venenoso = v;
 }
@@ -102,16 +141,7 @@ string REPTIL::getTipo_veneno(){
 	return tipo_veneno;
 }
 
-REPTIL::REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t){
-	id = i;
-	classe = c;
-	nome_cientifico = n;
-	sexo = s;
-	tamanho = tam;
-	dieta = die;
-	veterinario = vet;
-	tratador = trat;
-	nome_batismo = nome;
+REPTIL::REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	venenoso = v;
 	tipo_veneno = t;
 }
@@ -120,29 +150,20 @@ REPTIL::~REPTIL(){}
 
 // Ave
 
-void setTamanho_bico(double t){
+void AVE::setTamanho_bico(double t){
 	tamanho_bico = t;
 }
-void setEnvergadura(double e){
+void AVE::setEnvergadura(double e){
 	envergadura = e;
 }
-double getTamanho_bico(){
+double AVE::getTamanho_bico(){
 	return tamanho_bico;
 }
-double getEnvergadura(){
+double AVE::getEnvergadura(){
 	return envergadura;
 }
 
-AVE::AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e){
-	id = i;
-	classe = c;
-	nome_cientifico = n;
-	sexo = s;
-	tamanho = tam;
-	dieta = die;
-	veterinario = vet;
-	tratador = trat;
-	nome_batismo = nome;
+AVE::AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	tamanho_bico = t;
 	envergadura = e;
 }

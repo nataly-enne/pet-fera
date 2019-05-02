@@ -18,17 +18,6 @@ class ANIMAL{
 		string tratador;
 		string nome_batismo;
 	public:
-		//setters
-		void setId(int i);
-		void setClasse(string c);
-		void setNome_cientifico(string n);
-		void setSexo(char s);
-		void setTamanho(double t);
-		void setDieta(string d);
-		void setVeterinario(string v);
-		void setTratador(string t);
-		void setNome_batismo(string nome);
-		//getters
 		int getId();
 		string getClasse();
 		string getNome_cientifico();
@@ -38,10 +27,51 @@ class ANIMAL{
 		string getVeterinario();
 		string getTratador();
 		string getNome_batismo();
-
+		//construtor
+		ANIMAL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome);
+		//destrutor
+		~ANIMAL();
 };
+class ANIMAL_SILVESTRE{
+	protected:
+		string autorizacao_IBAMA;
+	public:
+		//Getter
+		string getAutorizacao_IBAMA();
+		//construtor
+		ANIMAL_SILVESTRE(string aut);
+		~ANIMAL_SILVESTRE();
+};
+
+class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
+	protected:
+		string uf_origem;
+		string autorizacao;
+	public:
+		//getters
+		string getUf_origem();
+		string getAutorizacao();
+		//construtor
+		ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
+		//destrutor
+		~ANIMAL_NATIVO();
+};
+class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
+	protected:
+		string pais_origem;
+		string autorizacao;
+	public:
+		//getters
+		string getPais_origem();
+		string getAutorizacao();
+		//construtor
+		ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
+		//destrutor
+		~ANIMAL_EXOTICO();
+};
+
 class ANFIBIO: public ANIMAL{
-	private:
+	protected:
 		int total_mudas;
 		int ultima_muda[3];
 	public:
@@ -58,7 +88,7 @@ class ANFIBIO: public ANIMAL{
 };
 
 class MAMIFERO: public ANIMAL{
-	private:
+	protected:
 		string cor_pelo;
 	public:
 		//setters
@@ -69,10 +99,10 @@ class MAMIFERO: public ANIMAL{
 		MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor);
 		//destrutor
 		~MAMIFERO();
-}
+};
 
 class REPTIL: public ANIMAL{
-	private:
+	protected:
 		bool venenoso;
 		string tipo_veneno;
 	public:
@@ -86,7 +116,7 @@ class REPTIL: public ANIMAL{
 		REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t);
 		//destrutor
 		~REPTIL();
-}
+};
 
 class AVE: public ANIMAL{
 	private:
@@ -104,7 +134,7 @@ class AVE: public ANIMAL{
 		//destrutor
 		~AVE();
 
-}
+};
 
 class FUNCIONARIO{
 	protected:
