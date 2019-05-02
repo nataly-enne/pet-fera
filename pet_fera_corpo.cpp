@@ -64,7 +64,7 @@ string ANIMAL_NATIVO::getAutorizacao(){
 	return autorizacao;
 }
 		
-ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome):ANIMAL_SILVESTRE(aut){
+ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
 	this->uf_origem = u;
 	this->autorizacao = a;
 }
@@ -79,7 +79,7 @@ string ANIMAL_EXOTICO::getAutorizacao(){
 	return autorizacao;
 }
 		
-ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome):ANIMAL_SILVESTRE(aut){
+ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
 	this->pais_origem = p;
 	this->autorizacao = a;
 }

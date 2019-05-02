@@ -32,6 +32,7 @@ class ANIMAL{
 		//destrutor
 		~ANIMAL();
 };
+
 class ANIMAL_SILVESTRE{
 	protected:
 		string autorizacao_IBAMA;
@@ -66,7 +67,6 @@ class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 		string getAutorizacao();
 		//construtor
 		ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
-		//destrutor
 		~ANIMAL_EXOTICO();
 };
 
