@@ -7,7 +7,8 @@ int main(){
 	// data[2] = 4;
 	// ANIMAL *A1 = new ANFIBIO(1,"anfibio","adsf",'f',2.9,"der","ver","der","Nataly",2,data);
 	// cout << A1->getId() << endl;
-	//teste 
+	// 	int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data);
+
 	int op;
 	int id, idade, nivel;
 	long int cpf;
