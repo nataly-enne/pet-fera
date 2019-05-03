@@ -52,6 +52,7 @@ class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 		//getters
 		string getUf_origem();
 		string getAutorizacao();
+		int getId();
 		//construtor
 		ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
 		//destrutor
@@ -65,6 +66,7 @@ class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 		//getters
 		string getPais_origem();
 		string getAutorizacao();
+		int getId();
 		//construtor
 		ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
 		~ANIMAL_EXOTICO();
@@ -96,6 +98,7 @@ class MAMIFERO: public ANIMAL{
 		void setCor_pelo(string c);
 		//getters
 		string getCor_pelo();
+		int getId();
 		//construtor
 		MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor);
 		//destrutor
@@ -113,6 +116,7 @@ class REPTIL: public ANIMAL{
 		//getters
 		bool getVenenoso();
 		string getTipo_veneno();
+		int getId();
 		//construtor
 		REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t);
 		//destrutor
@@ -130,6 +134,7 @@ class AVE: public ANIMAL{
 		//getters
 		double getTamanho_bico();
 		double getEnvergadura();
+		int getId();
 		//construtor
 		AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e);
 		//destrutor

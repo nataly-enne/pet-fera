@@ -66,6 +66,10 @@ ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, stri
 	this->autorizacao = a;
 }
 
+int ANIMAL_NATIVO::getId(){
+	return this->id;
+}
+
 ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
 
 //Animal Exotico
@@ -81,12 +85,16 @@ ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, st
 	this->autorizacao = a;
 }
 
+int ANIMAL_EXOTICO::getId(){
+	return this->id;
+}
+
 ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
 
 
 //Anfibio
 void ANFIBIO::setUltima_muda(int *vetor){
-	for(int i=0; i<3; i++){
+	for(int i = 0; i < 3; i++){
 		ultima_muda[i] = vetor[i];
 	}
 }
@@ -124,6 +132,10 @@ MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, st
 	cor_pelo = cor;
 }
 
+int MAMIFERO::getId(){
+	return this->id;
+}
+
 MAMIFERO::~MAMIFERO(){}
 
 //Réptil
@@ -146,6 +158,10 @@ REPTIL::REPTIL(int i, string c, string n, char s, double tam, string die, string
 	tipo_veneno = t;
 }
 
+int REPTIL::getId(){
+	return this->id;
+}
+
 REPTIL::~REPTIL(){}
 
 // Ave
@@ -166,6 +182,10 @@ double AVE::getEnvergadura(){
 AVE::AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	tamanho_bico = t;
 	envergadura = e;
+}
+
+int AVE::getId(){
+	return this->id;
 }
 
 AVE::~AVE(){}
