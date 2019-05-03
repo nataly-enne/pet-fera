@@ -16,3 +16,15 @@ animais silvestres denominada "Pet Fera".
   <li>Consulta de animais sob a responsabilidade de um determinado Veterinário ou Tratador;</li>
   <li>Todas as atividades relacionadas ao cadastro de Veterinários e Tratadores.</li>
 </ul>
+
+#### Para compilar é necessário estar no diretório do projeto.
+#### Em seguida, no terminal, basta digitar:
+ 
+ <pre><code> make</code></pre>
+
+#### Para executar o programa, escreva a seguinte linha de código:
+
+<pre><code>./exe</code></pre>
+
+#### Para apagar os arquivos executáveis e objetos, basta executar o seguinte comando:
+<pre><code>make clear</code></pre>
