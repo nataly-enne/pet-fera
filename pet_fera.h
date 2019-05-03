@@ -18,7 +18,7 @@ class ANIMAL{
 		string tratador;
 		string nome_batismo;
 	public:
-		int getId();
+		virtual int getId() = 0;
 		string getClasse();
 		string getNome_cientifico();
 		char getSexo();
@@ -81,6 +81,7 @@ class ANFIBIO: public ANIMAL{
 		//gettters
 		int getTotal_mudas();
 		int* getUltima_muda();
+		int getId();
 		//construtor
 		ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data);
 		//destrutor

@@ -1,9 +1,6 @@
 #include "pet_fera.h"
 
 //Animal
-int ANIMAL::getId(){
-	return id;
-}
 string ANIMAL::getClasse(){
 	return classe;
 }
@@ -106,8 +103,11 @@ ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, stri
 	setUltima_muda(data);
 }
 
-ANFIBIO::~ANFIBIO(){
+int ANFIBIO::getId(){
+	return this->id;
+}
 
+ANFIBIO::~ANFIBIO(){
 }
 
 //Mamífero
