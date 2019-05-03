@@ -1,4 +1,4 @@
-# ProjetoLP1
+# PetFera
 
 É um projeto implementado para a unidade II e III da disciplina Linguagem de Programação I, ministradas pelo Professor Renan Cipriano Moioli no Instituto Metrópole Digital, na Universidade Federal do Rio Grande do Norte.
 
