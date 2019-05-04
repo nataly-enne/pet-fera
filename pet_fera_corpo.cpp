@@ -2,10 +2,10 @@
 
 //Animal
 string ANIMAL::getClasse(){
-	return classe;
+	return *classe;
 }
 string ANIMAL::getNome_cientifico(){
-	return nome_cientifico;
+	return *nome_cientifico;
 }
 char ANIMAL::getSexo(){
 	return sexo;
@@ -14,82 +14,97 @@ double ANIMAL::getTamanho(){
 	return tamanho;
 }
 string ANIMAL::getDieta(){
-	return dieta;
+	return *dieta;
 }
 string ANIMAL::getVeterinario(){
-	return veterinario;
+	return *veterinario;
 }
 string ANIMAL::getTratador(){
-	return tratador;
+	return *tratador;
 }
 string ANIMAL::getNome_batismo(){
-	return nome_batismo;
+	return *nome_batismo;
 }
 ANIMAL::ANIMAL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome){
 	this->id = i;
-	this->classe = c;
-	this->nome_cientifico = n;
+	this->classe = new string(c);
+	this->nome_cientifico = new string(n);
 	this->sexo = s;
 	this->tamanho = tam;
-	this->dieta = die;
-	this->veterinario = vet;
-	this->tratador = trat;
-	this->nome_batismo = nome;
+	this->dieta = new string(die);
+	this->veterinario = new string(vet);
+	this->tratador = new string(trat);
+	this->nome_batismo = new string(nome);
 }
 //destrutor
-ANIMAL::~ANIMAL(){}
+ANIMAL::~ANIMAL(){
+	delete classe;
+	delete nome_cientifico;
+	delete dieta;
+	delete veterinario;
+	delete tratador;
+	delete nome_batismo;
+}
 
 
 //Animal Silvestre
 string ANIMAL_SILVESTRE::getAutorizacao_IBAMA(){
-	return autorizacao_IBAMA;
+	return *autorizacao_IBAMA;
 }
 
 ANIMAL_SILVESTRE::ANIMAL_SILVESTRE(string aut){
-	this->autorizacao_IBAMA = aut;
+	this->autorizacao_IBAMA = new string(aut);
 }
 
-ANIMAL_SILVESTRE::~ANIMAL_SILVESTRE(){}
+ANIMAL_SILVESTRE::~ANIMAL_SILVESTRE(){
+	delete autorizacao_IBAMA;
+}
 
 
 
 //Animal Nativo
 string ANIMAL_NATIVO::getUf_origem(){
-	return uf_origem;
+	return *uf_origem;
 }
 string ANIMAL_NATIVO::getAutorizacao(){
-	return autorizacao;
+	return *autorizacao;
 }
 		
 ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
-	this->uf_origem = u;
-	this->autorizacao = a;
+	this->uf_origem = new string(u);
+	this->autorizacao = new string(a);
 }
 
 int ANIMAL_NATIVO::getId(){
 	return this->id;
 }
 
-ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
+ANIMAL_NATIVO::~ANIMAL_NATIVO(){
+	delete uf_origem;
+	delete autorizacao;
+}
 
 //Animal Exotico
 string ANIMAL_EXOTICO::getPais_origem(){
-	return pais_origem;
+	return *pais_origem;
 }
 string ANIMAL_EXOTICO::getAutorizacao(){
-	return autorizacao;
+	return *autorizacao;
 }
 		
 ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
-	this->pais_origem = p;
-	this->autorizacao = a;
+	this->pais_origem = new string(p);
+	this->autorizacao = new string(a);
 }
 
 int ANIMAL_EXOTICO::getId(){
 	return this->id;
 }
 
-ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
+ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){
+	delete pais_origem;
+	delete autorizacao;
+}
 
 
 //Anfibio
@@ -121,48 +136,52 @@ ANFIBIO::~ANFIBIO(){
 //Mamífero
 
 void MAMIFERO::setCor_pelo(string c){
-	cor_pelo = c;
+	*cor_pelo = c;
 }
 
 string MAMIFERO::getCor_pelo(){
-	return cor_pelo;
+	return *cor_pelo;
 }
 
 MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
-	cor_pelo = cor;
+	cor_pelo = new string(cor);
 }
 
 int MAMIFERO::getId(){
 	return this->id;
 }
 
-MAMIFERO::~MAMIFERO(){}
+MAMIFERO::~MAMIFERO(){
+	delete cor_pelo;
+}
 
 //Réptil
 void REPTIL::setVenenoso(bool v){
 	venenoso = v;
 }
 void REPTIL::setTipo_veneno(string t){
-	tipo_veneno = t;
+	*tipo_veneno = t;
 }
 
 bool REPTIL::getVenenoso(){
 	return true;
 }
 string REPTIL::getTipo_veneno(){
-	return tipo_veneno;
+	return *tipo_veneno;
 }
 
 REPTIL::REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	venenoso = v;
-	tipo_veneno = t;
+	tipo_veneno = new string(t);
 }
 
 int REPTIL::getId(){
 	return this->id;
 }
 
-REPTIL::~REPTIL(){}
+REPTIL::~REPTIL(){
+	delete tipo_veneno;
+}
 
 // Ave
 
@@ -195,7 +214,7 @@ void FUNCIONARIO::setId(int i){
 	this->id = i;
 }
 void FUNCIONARIO::setNome(string n){
-	this->nome = n;
+	*nome = n;
 }
 void FUNCIONARIO::setCpf(long int c){
 	this->cpf = c;
@@ -210,14 +229,10 @@ void FUNCIONARIO::setFator_rh(char f){
 	this->fator_rh = f;
 }
 void FUNCIONARIO::setEspecialidade(string e){
-	this->especialidade = e;
-}
-		
-int FUNCIONARIO::getId(){
-	return id;
+	*especialidade = e;
 }
 string FUNCIONARIO::getNome(){
-	return nome;
+	return *nome;
 }
 long int FUNCIONARIO::getCpf(){
 	return cpf;
@@ -232,26 +247,30 @@ char FUNCIONARIO::getFator_rh(){
 	return fator_rh;
 }
 string FUNCIONARIO::getEspecialidade(){
-	return especialidade;
+	return *especialidade;
 }
 
 //Veterinário
 void VETERINARIO::setCrmv(string c){
-	this->crmv = c;
+	*crmv = c;
 }
 string VETERINARIO::getCrmv(){
-	return crmv;
+	return *crmv;
+}
+
+int VETERINARIO::getId(){
+	return this->id;
 }
 
 VETERINARIO::VETERINARIO(int i, string n, long int c, int ida, char t, char f, string e, string cr){
 	id = i;
-	nome = n;
+	nome = new string(n);
 	cpf = c;
 	idade = ida;
 	tipo_sanguineo = t;
 	fator_rh = f;
-	especialidade = e;
-	crmv = cr;
+	especialidade = new string(e);
+	crmv = new string(cr);
 }
 ostream& operator << (ostream &out, VETERINARIO &v){
 	cout << endl;
@@ -269,6 +288,11 @@ ostream& operator << (ostream &out, VETERINARIO &v){
 	return out;
 }
 
+VETERINARIO::~VETERINARIO(){
+	delete nome;
+	delete especialidade;
+}
+
 //Tratador
 int TRATADOR::getNivel_seguranca(){
 	return nivel_seguranca;
@@ -276,16 +300,21 @@ int TRATADOR::getNivel_seguranca(){
 
 TRATADOR::TRATADOR(int i, string n, long int c, int ida, char t, char f, string e, int nivel){
 	id = i;
-	nome = n;
+	nome = new string(n);
 	cpf = c;
 	idade = ida;
 	tipo_sanguineo = t;
 	fator_rh = f;
-	especialidade = e;
+	especialidade = new string(e);
 	nivel_seguranca = nivel;
 }
 TRATADOR::~TRATADOR(){
+	delete nome;
+	delete especialidade;
+}
 
+int TRATADOR::getId(){
+	return this->id;
 }
 ostream& operator << (ostream &out, TRATADOR &v){
 	cout << endl;

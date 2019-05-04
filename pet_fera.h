@@ -9,14 +9,14 @@ using namespace std;
 class ANIMAL{
 	protected:
 		int id;
-		string classe;
-		string nome_cientifico;
+		string *classe;
+		string *nome_cientifico;
 		char sexo;
 		double tamanho;
-		string dieta;
-		string veterinario;
-		string tratador;
-		string nome_batismo;
+		string *dieta;
+		string *veterinario;
+		string *tratador;
+		string *nome_batismo;
 	public:
 		virtual int getId() = 0;
 		string getClasse();
@@ -35,10 +35,11 @@ class ANIMAL{
 
 class ANIMAL_SILVESTRE{
 	protected:
-		string autorizacao_IBAMA;
+		string *autorizacao_IBAMA;
 	public:
 		//Getter
 		string getAutorizacao_IBAMA();
+		int getId();
 		//construtor
 		ANIMAL_SILVESTRE(string aut);
 		~ANIMAL_SILVESTRE();
@@ -46,8 +47,8 @@ class ANIMAL_SILVESTRE{
 
 class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 	protected:
-		string uf_origem;
-		string autorizacao;
+		string *uf_origem;
+		string *autorizacao;
 	public:
 		//getters
 		string getUf_origem();
@@ -60,8 +61,8 @@ class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 };
 class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 	protected:
-		string pais_origem;
-		string autorizacao;
+		string *pais_origem;
+		string *autorizacao;
 	public:
 		//getters
 		string getPais_origem();
@@ -92,7 +93,7 @@ class ANFIBIO: public ANIMAL{
 
 class MAMIFERO: public ANIMAL{
 	protected:
-		string cor_pelo;
+		string *cor_pelo;
 	public:
 		//setters
 		void setCor_pelo(string c);
@@ -108,7 +109,7 @@ class MAMIFERO: public ANIMAL{
 class REPTIL: public ANIMAL{
 	protected:
 		bool venenoso;
-		string tipo_veneno;
+		string *tipo_veneno;
 	public:
 		//setters
 		void setVenenoso(bool v);
@@ -145,12 +146,12 @@ class AVE: public ANIMAL{
 class FUNCIONARIO{
 	protected:
 		int id;
-		string nome;
+		string *nome;
 		long int cpf;
 		int idade;
 		char tipo_sanguineo;
 		char fator_rh;
-		string especialidade;
+		string *especialidade;
 	public:
 		//setters
 		void setId(int i);
@@ -161,7 +162,7 @@ class FUNCIONARIO{
 		void setFator_rh(char f);
 		void setEspecialidade(string e);
 		//getters
-		int getId();
+		virtual int getId() = 0;
 		string getNome();
 		long int getCpf();
 		int getIdade();
@@ -173,15 +174,18 @@ class FUNCIONARIO{
 
 class VETERINARIO: public FUNCIONARIO{
 	protected:
-		string crmv;
+		string *crmv;
 	public:
 		//Construtor
 		VETERINARIO(int i, string n, long int c, int ida, char t, char f, string e, string cr);
+		//Destrutor
+		~VETERINARIO();
 		//setters
 		void setCrmv(string c);
 		//getters
 		string getCrmv();
-
+		int getId();
+		//Sobrecarga
 		friend ostream& operator << (ostream &out, VETERINARIO &v);
 
 };
@@ -196,6 +200,7 @@ class TRATADOR: public FUNCIONARIO{
 		void setNivel_seguranca(int nivel);
 		//getters
 		int getNivel_seguranca();
+		int getId();
 
 		friend ostream& operator << (ostream &out, TRATADOR &t);
 
