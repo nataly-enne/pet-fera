@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -148,7 +149,7 @@ class FUNCIONARIO{
 		string nome;
 		long int cpf;
 		int idade;
-		char tipo_sanguineo;
+		string tipo_sanguineo;
 		char fator_rh;
 		string especialidade;
 	public:
@@ -157,15 +158,15 @@ class FUNCIONARIO{
 		void setNome(string n);
 		void setCpf(long int c);
 		void setIdade(int i);
-		void setTipo_sanguineo(char t);
+		void setTipo_sanguineo(string t);
 		void setFator_rh(char f);
 		void setEspecialidade(string e);
 		//getters
-		int getId();
+		virtual int getId() = 0;
 		string getNome();
 		long int getCpf();
 		int getIdade();
-		char getTipo_sanguineo();
+		string getTipo_sanguineo();
 		char getFator_rh();
 		string getEspecialidade();
 
@@ -176,11 +177,12 @@ class VETERINARIO: public FUNCIONARIO{
 		string crmv;
 	public:
 		//Construtor
-		VETERINARIO(int i, string n, long int c, int ida, char t, char f, string e, string cr);
+		VETERINARIO(int i, string n, long int c, int ida, string t, char f, string e, string cr);
 		//setters
 		void setCrmv(string c);
 		//getters
 		string getCrmv();
+		int getId();
 
 		friend ostream& operator << (ostream &out, VETERINARIO &v);
 
@@ -190,16 +192,21 @@ class TRATADOR: public FUNCIONARIO{
 		int nivel_seguranca;
 	public:
 		//Construtor
-		TRATADOR(int i, string n, long int c, int ida, char t, char f, string e, int nivel);
+		TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel);
 		~TRATADOR();
 		//setters
 		void setNivel_seguranca(int nivel);
 		//getters
 		int getNivel_seguranca();
+		int getId();
 
 		friend ostream& operator << (ostream &out, TRATADOR &t);
 
 };
 
+//funções
 
+void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores);
+void cadastrar_vet(vector <VETERINARIO> &vets);
+void cadastrar_trat(vector <TRATADOR> &tratadores);
 #endif

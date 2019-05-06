@@ -203,7 +203,7 @@ void FUNCIONARIO::setCpf(long int c){
 void FUNCIONARIO::setIdade(int i){
 	this->idade = i;
 }
-void FUNCIONARIO::setTipo_sanguineo(char t){
+void FUNCIONARIO::setTipo_sanguineo(string t){
 	this->tipo_sanguineo = t;
 }
 void FUNCIONARIO::setFator_rh(char f){
@@ -212,10 +212,7 @@ void FUNCIONARIO::setFator_rh(char f){
 void FUNCIONARIO::setEspecialidade(string e){
 	this->especialidade = e;
 }
-		
-int FUNCIONARIO::getId(){
-	return id;
-}
+
 string FUNCIONARIO::getNome(){
 	return nome;
 }
@@ -225,7 +222,7 @@ long int FUNCIONARIO::getCpf(){
 int FUNCIONARIO::getIdade(){
 	return idade;
 }
-char FUNCIONARIO::getTipo_sanguineo(){
+string FUNCIONARIO::getTipo_sanguineo(){
 	return tipo_sanguineo;
 }
 char FUNCIONARIO::getFator_rh(){
@@ -243,7 +240,11 @@ string VETERINARIO::getCrmv(){
 	return crmv;
 }
 
-VETERINARIO::VETERINARIO(int i, string n, long int c, int ida, char t, char f, string e, string cr){
+int VETERINARIO::getId(){
+	return id;
+}
+
+VETERINARIO::VETERINARIO(int i, string n, long int c, int ida, string t, char f, string e, string cr){
 	id = i;
 	nome = n;
 	cpf = c;
@@ -274,7 +275,11 @@ int TRATADOR::getNivel_seguranca(){
 	return nivel_seguranca;
 }
 
-TRATADOR::TRATADOR(int i, string n, long int c, int ida, char t, char f, string e, int nivel){
+int TRATADOR::getId(){
+	return id;
+}
+
+TRATADOR::TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel){
 	id = i;
 	nome = n;
 	cpf = c;
