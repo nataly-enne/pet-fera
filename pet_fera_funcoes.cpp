@@ -55,7 +55,7 @@ void cadastrar_vet(vector <VETERINARIO> &vets){
 	}
 	else{
 		cout << "Cadastro efetuado com sucesso!!" << endl;
-		cout << v << endl;
+		//cout << v << endl;
 	}
 }
 
@@ -124,7 +124,7 @@ void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, 
 }
 
 void cadastrar_anfibio(vector <ANFIBIO> &anfibios){
-	int id, total_mudas, ultima_muda[3];
+	int id, idade, total_mudas, ultima_muda[3];
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo;
 	char sexo;
 	double tamanho;
@@ -152,10 +152,12 @@ void cadastrar_anfibio(vector <ANFIBIO> &anfibios){
 	cin >> tamanho;
 	cout << "Insira o total de mudas:" << endl;
 	cin >> total_mudas;
-	// cout << "Insira a data da última muda" << endl;
-	// cin >> ultima_muda;
+	cout << "Insira a data da última muda(D/M/A)" << endl;
+	cin >> ultima_muda[0] >> ultima_muda[1] >> ultima_muda[2];
 
-	ANFIBIO a(id, classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, sexo, tamanho, total_mudas, *ultima_muda);
+
+	ANFIBIO a(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda);
+
 	anfibios.push_back(a);
 
 	if (anfibios.size() == old_size){
@@ -163,7 +165,7 @@ void cadastrar_anfibio(vector <ANFIBIO> &anfibios){
 	}
 	else{
 		cout << "Cadastro efetuado com sucesso!!" << endl;
-		cout << a << endl;
+		//cout << a << endl;
 	}
 
 }
@@ -182,8 +184,6 @@ void cadastrar_mamifero(vector <MAMIFERO> &mamiferos){
 	cin >> classe;
 	cout << "Digite o nome científico: " << endl;
 	cin >> nome_cientifico;
-	cout << "Digite a dieta: " << endl;
-	cin >> idade;
 	cout << "Digite o nome do veterinario: " << endl;
 	cin >> veterinario;
 	cout << "Digite o nome do tratador: " << endl;
@@ -197,15 +197,16 @@ void cadastrar_mamifero(vector <MAMIFERO> &mamiferos){
 	cout << "Digite a cor do pelo do animal:" << endl;
 	cin >> cor_pelo;
 
-	MAMIFERO m(id, classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, sexo, tamanho, cor_pelo);
-	mamiferos.push_back(a);
+	MAMIFERO m(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor_pelo);
+
+	mamiferos.push_back(m);
 
 	if (mamiferos.size() == old_size){
 		cout << "Falha no cadastro do animal!" << endl;
 	}
 	else{
 		cout << "Cadastro efetuado com sucesso!!" << endl;
-		cout << m << endl;
+		//cout << m << endl;
 	}
 }
 void cadastrar_reptil(vector <REPTIL> &repteis){
@@ -223,8 +224,6 @@ void cadastrar_reptil(vector <REPTIL> &repteis){
 	cin >> classe;
 	cout << "Digite o nome científico: " << endl;
 	cin >> nome_cientifico;
-	cout << "Digite a dieta: " << endl;
-	cin >> idade;
 	cout << "Digite o nome do veterinario: " << endl;
 	cin >> veterinario;
 	cout << "Digite o nome do tratador: " << endl;
@@ -237,17 +236,19 @@ void cadastrar_reptil(vector <REPTIL> &repteis){
 	cin >> tamanho;
 	cout << "Digite o tipo de veneno do animal:" << endl;
 	cin >> tipo_veneno;
-	cout << "Digite '1' para animal venenoso ou '0' para não-venenoso:"
+	cout << "Digite '1' para animal venenoso ou '0' para não-venenoso:";
+	cin >> venenoso;
 
-	REPTIL r(id, classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, sexo, tamanho, venenoso, tipo_veneno);
-	repteis.push_back(a);
+	REPTIL r(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno);
+
+	repteis.push_back(r);
 
 	if (repteis.size() == old_size){
 		cout << "Falha no cadastro do animal!" << endl;
 	}
 	else{
 		cout << "Cadastro efetuado com sucesso!!" << endl;
-		cout << r << endl;
+		//cout << r << endl;
 	}
 }
 void cadastrar_ave(vector <AVE> &aves){
@@ -264,8 +265,6 @@ void cadastrar_ave(vector <AVE> &aves){
 	cin >> classe;
 	cout << "Digite o nome científico: " << endl;
 	cin >> nome_cientifico;
-	cout << "Digite a dieta: " << endl;
-	cin >> idade;
 	cout << "Digite o nome do veterinario: " << endl;
 	cin >> veterinario;
 	cout << "Digite o nome do tratador: " << endl;
@@ -278,17 +277,19 @@ void cadastrar_ave(vector <AVE> &aves){
 	cin >> tamanho;
 	cout << "Digite o tamanho do bico:" << endl;
 	cin >> tamanho_bico;
-	cout << "Digite a envergadura:"
+	cout << "Digite a envergadura:";
+	cin >> envergadura;	
 
-	AVE e(id, classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, sexo, tamanho, tamanho_bico, envergadura);
-	repteis.push_back(a);
+	AVE e(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tamanho_bico, envergadura);
 
-	if (repteis.size() == old_size){
+	aves.push_back(e);
+
+	if (aves.size() == old_size){
 		cout << "Falha no cadastro do animal!" << endl;
 	}
 	else{
 		cout << "Cadastro efetuado com sucesso!!" << endl;
-		cout << e << endl;
+		//cout << e << endl;
 	}
 }
 

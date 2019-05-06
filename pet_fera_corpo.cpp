@@ -93,11 +93,11 @@ ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
 
 
 //Anfibio
-void ANFIBIO::setUltima_muda(int *vetor){
+/*(void ANFIBIO::setUltima_muda(int *vetor){
 	for(int i = 0; i < 3; i++){
 		ultima_muda[i] = vetor[i];
 	}
-}
+}*/
 
 int ANFIBIO::getTotal_mudas(){
 	return total_mudas;
@@ -106,9 +106,12 @@ int* ANFIBIO::getUltima_muda(){
 	return ultima_muda;
 }
 
-ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
+ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3]):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	total_mudas = mudas;
-	setUltima_muda(data);
+	ultima_muda[0] = data[0];
+	ultima_muda[1] = data[1];
+	ultima_muda[2] = data[2];
+	//setUltima_muda(data);
 }
 
 int ANFIBIO::getId(){

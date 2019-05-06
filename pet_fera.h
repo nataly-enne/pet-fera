@@ -80,13 +80,13 @@ class ANFIBIO: public ANIMAL{
 	public:
 		//setters
 		//void setTotal_mudas(int m);
-		void setUltima_muda(int *vetor);
+		//void setUltima_muda(int *vetor);
 		//gettters
 		int getTotal_mudas();
 		int* getUltima_muda();
 		int getId();
 		//construtor
-		ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data);
+		ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3]);
 		//destrutor
 		~ANFIBIO();
 };
@@ -209,4 +209,10 @@ class TRATADOR: public FUNCIONARIO{
 void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores);
 void cadastrar_vet(vector <VETERINARIO> &vets);
 void cadastrar_trat(vector <TRATADOR> &tratadores);
+void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, vector <REPTIL> &repteis, vector <AVE> &aves);
+void cadastrar_anfibio(vector <ANFIBIO> &anfibios);
+void cadastrar_mamifero(vector <MAMIFERO> &mamiferos);
+void cadastrar_reptil(vector <REPTIL> &repteis);
+void cadastrar_ave(vector <AVE> &aves);
+
 #endif
