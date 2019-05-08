@@ -1,5 +1,8 @@
 #include "pet_fera.h"
-//cadastro de funcionarios
+
+//***Falta implementar***
+// 1- Cadastrar animais exoticos e nativos
+// 2- Inserir no arquivo
 
 void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){
 	char tipo_func;
@@ -82,11 +85,13 @@ void cadastrar_trat(vector <TRATADOR> &tratadores){
 	cout << "Insira o fator RH: " << endl;
 	cin >> fator_rh;
 	cout << "Digite a especialidade: " << endl;
-	cin >> especialidade;
+	cin.ignore();
+	getline(cin, especialidade);
 	cout << "Digite o nivel de seguranca: "<< endl;
 	cin >> nivel_seg;
 	
 	TRATADOR t(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg);
+
 	tratadores.push_back(t);
 	
 	if (tratadores.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
@@ -100,6 +105,7 @@ void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, 
 
 	char tipo_func;
 	char continuar = 'n';
+
 	do{
 		cout << "Qual animal a ser cadastrado? \n a - anfíbio\n m - mamífero \n r - repteis \n e - aves" << endl;
 		cin >> tipo_func;
@@ -137,16 +143,19 @@ void cadastrar_anfibio(vector <ANFIBIO> &anfibios){
 	cout << "Digite o id: " << endl;
 	cin >> id;
 	cout << "Digite a classe: " << endl;
-	cin >> classe;
+	cin.ignore();
+	getline(cin, classe);
 	cout << "Digite o nome científico: " << endl;
 	cin.ignore();
 	getline(cin, nome_cientifico);
 	cout << "Digite a dieta: " << endl;
 	cin >> idade;
 	cout << "Digite o nome do veterinario: " << endl;
-	cin >> veterinario;
+	cin.ignore();
+	getline(cin, veterinario);
 	cout << "Digite o nome do tratador: " << endl;
-	cin >> tratador;
+	cin.ignore();
+	getline(cin, tratador);
 	cout << "Digite o nome de batismo: " << endl;
 	cin.ignore();
 	getline(cin, nome_batismo);
@@ -158,7 +167,6 @@ void cadastrar_anfibio(vector <ANFIBIO> &anfibios){
 	cin >> total_mudas;
 	cout << "Insira a data da última muda(D/M/A)" << endl;
 	cin >> ultima_muda[0] >> ultima_muda[1] >> ultima_muda[2];
-
 
 	ANFIBIO a(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda);
 
@@ -185,21 +193,27 @@ void cadastrar_mamifero(vector <MAMIFERO> &mamiferos){
 	cout << "Digite o id: " << endl;
 	cin >> id;
 	cout << "Digite a classe: " << endl;
-	cin >> classe;
+	cin.ignore();
+	getline(cin, classe);
 	cout << "Digite o nome científico: " << endl;
-	cin >> nome_cientifico;
+	cin.ignore();
+	getline(cin, nome_cientifico);
 	cout << "Digite o nome do veterinario: " << endl;
-	cin >> veterinario;
+	cin.ignore();
+	getline(cin, veterinario);
 	cout << "Digite o nome do tratador: " << endl;
-	cin >> tratador;
+	cin.ignore();
+	getline(cin, tratador);
 	cout << "Digite o nome de batismo: " << endl;
-	cin >> nome_batismo;
+	cin.ignore();
+	getline(cin, nome_batismo);
 	cout << "Digite o sexo do animal: " << endl;
 	cin >> sexo;
 	cout << "Digite o tamanho do animal: " << endl;
 	cin >> tamanho;
 	cout << "Digite a cor do pelo do animal:" << endl;
-	cin >> cor_pelo;
+	cin.ignore();
+	getline(cin, cor_pelo);
 
 	MAMIFERO m(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor_pelo);
 
@@ -225,15 +239,20 @@ void cadastrar_reptil(vector <REPTIL> &repteis){
 	cout << "Digite o id: " << endl;
 	cin >> id;
 	cout << "Digite a classe: " << endl;
-	cin >> classe;
+	cin.ignore();
+	getline(cin, classe);
 	cout << "Digite o nome científico: " << endl;
-	cin >> nome_cientifico;
+	cin.ignore();
+	getline(cin, nome_cientifico);
 	cout << "Digite o nome do veterinario: " << endl;
-	cin >> veterinario;
+	cin.ignore();
+	getline(cin, veterinario);
 	cout << "Digite o nome do tratador: " << endl;
-	cin >> tratador;
+	cin.ignore();
+	getline(cin, tratador);
 	cout << "Digite o nome de batismo: " << endl;
-	cin >> nome_batismo;
+	cin.ignore();
+	getline(cin, nome_batismo);
 	cout << "Digite o sexo do animal: " << endl;
 	cin >> sexo;
 	cout << "Digite o tamanho do animal: " << endl;
@@ -266,15 +285,20 @@ void cadastrar_ave(vector <AVE> &aves){
 	cout << "Digite o id: " << endl;
 	cin >> id;
 	cout << "Digite a classe: " << endl;
-	cin >> classe;
+	cin.ignore();
+	getline(cin, classe);
 	cout << "Digite o nome científico: " << endl;
-	cin >> nome_cientifico;
+	cin.ignore();
+	getline(cin, nome_cientifico);
 	cout << "Digite o nome do veterinario: " << endl;
-	cin >> veterinario;
+	cin.ignore();
+	getline(cin, veterinario);
 	cout << "Digite o nome do tratador: " << endl;
-	cin >> tratador;
+	cin.ignore();
+	getline(cin, tratador);
 	cout << "Digite o nome de batismo: " << endl;
-	cin >> nome_batismo;
+	cin.ignore();
+	getline(cin, nome_batismo);
 	cout << "Digite o sexo do animal: " << endl;
 	cin >> sexo;
 	cout << "Digite o tamanho do animal: " << endl;

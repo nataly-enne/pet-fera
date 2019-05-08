@@ -57,7 +57,7 @@ int main(){
 				cadastrar_func(vets, tratadores);
 				break;
 			case 2:
-				cadastrar_func(anfibios, mamiferos, repteis, aves);
+				//cadastrar_func(anfibios, mamiferos, repteis, aves);
 				break;
 
 		}
