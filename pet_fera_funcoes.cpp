@@ -23,7 +23,7 @@ void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){
 				cadastrar_trat(tratadores);
 			}
 		}
-	}while (continuar == 's');
+	} while (continuar == 's');
 	
 }
 
@@ -101,6 +101,10 @@ void cadastrar_trat(vector <TRATADOR> &tratadores){
 		cout << t << endl;
 	}
 }
+
+
+//void remover funcionario();
+
 void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, vector <REPTIL> &repteis, vector <AVE> &aves){
 
 	char tipo_func;
@@ -127,7 +131,7 @@ void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, 
 				cadastrar_ave(aves);
 			}
 		}
-	}while (continuar == 's');
+	} while (continuar == 's');
 	
 }
 
@@ -326,6 +330,76 @@ void cadastrar_ave(vector <AVE> &aves){
 
 
 //void remover_animal()
+
+//menu listar animal
+void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v){
+
+	char tipo_func;
+	char continuar = 'n';
+
+	do{
+		cout << "Qual tipo de animal você quer listar? \n a - anfíbio\n m - mamífero \n r - repteis \n e - aves" << endl;
+		cin >> tipo_func;
+		if(tipo_func != 'a' && tipo_func != 'm' && tipo_func != 'r' && tipo_func != 'v'){
+			cout << "Tipo de animal incorreto!! Tente novamente!\n" << endl;
+			continuar = 's';
+			continue;
+		}else{
+			if(tipo_func == 'a'){
+				listar_anfibio(list_a);
+			}
+			else if(tipo_func == 'm'){
+				listar_mamifero(list_m);
+			}
+			else if(tipo_func == 'r'){
+				listar_reptil(list_r);
+			}		
+			else{
+				listar_ave(list_v);
+			}
+		}
+	} while (continuar == 's');
+	
+}
+
+
+void listar_anfibio(vector <ANFIBIO> &lista_a){
+	
+	int i;
+	for(i = 0; i < (int)list_a.size(); i++){
+		cout << list_a[i];
+	}
+}
+
+void listar_mamifero(vector <MAMIFERO> &lista_m){
+	
+	int i;
+	for(i = 0; i < (int)list_m.size(); i++){
+		cout << list_m[i];
+	}
+}
+
+void listar_reptil(vector <REPTIL> &lista_r){
+	
+	int i;
+	for(i = 0; i < (int)list_r.size(); i++){
+		cout << list_r[i];
+	}
+}
+
+void listar_ave(vector <AVE> &lista_v){
+	
+	int i;
+	for(i = 0; i < (int)list_v.size(); i++){
+		cout << list_v[i];
+	}
+}
+
+
+
+
+
+
 
 
 

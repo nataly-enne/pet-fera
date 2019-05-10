@@ -113,13 +113,28 @@ ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, stri
 	ultima_muda[2] = data[2];
 	//setUltima_muda(data);
 }
+ostream& operator << (ostream &out, ANFIBIO &a){
+	cout << endl;
+	cout << "**ANFIBIO**" << endl << endl;
+	out << "Id: " << a.getId() << endl;
+	out << "Clase: " << a.getClasse() << endl;
+	out << "Nome Científico: " << a.getNome_cientifico() << endl;
+	out << "Sexo: " << a.getSexo() << endl;
+	out << "Tamanho: " << a.getTamanho() << endl;
+	out << "Dieta: " << a.getDieta() << endl;
+	out << "Veterinário: " << a.getVeterinario() << endl;
+	out << "Nome de batismo: " << a.getTratador() << endl;
+	out << "Total de mudas: " <<a.getTotal_mudas() << endl;
+	out << "Última muda: " <<a.getUltima_muda() << endl;
+	cout << endl;
+
+}
 
 int ANFIBIO::getId(){
 	return this->id;
 }
 
-ANFIBIO::~ANFIBIO(){
-}
+ANFIBIO::~ANFIBIO(){}
 
 //Mamífero
 
@@ -133,6 +148,22 @@ string MAMIFERO::getCor_pelo(){
 
 MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	cor_pelo = cor;
+}
+
+ostream& operator << (ostream &out, MAMIFERO &m){
+	cout << endl;
+	cout << "**MAMIFERO**" << endl << endl;
+	out << "Id: " << m.getId() << endl;
+	out << "Clase: " << m.getClasse() << endl;
+	out << "Nome Científico: " << m.getNome_cientifico() << endl;
+	out << "Sexo: " << m.getSexo() << endl;
+	out << "Tamanho: " << m.getTamanho() << endl;
+	out << "Dieta: " << m.getDieta() << endl;
+	out << "Veterinário: " << m.getVeterinario() << endl;
+	out << "Nome de batismo: " << m.getTratador() << endl;
+	out << "Cor do pelo: " <<m.getCor_pelo() << endl;
+	cout << endl;
+
 }
 
 int MAMIFERO::getId(){
@@ -161,6 +192,23 @@ REPTIL::REPTIL(int i, string c, string n, char s, double tam, string die, string
 	tipo_veneno = t;
 }
 
+ostream& operator << (ostream &out, REPTIL &r){
+	cout << endl;
+	cout << "**REPTIL**" << endl << endl;
+	out << "Id: " << r.getId() << endl;
+	out << "Clase: " << r.getClasse() << endl;
+	out << "Nome Científico: " << r.getNome_cientifico() << endl;
+	out << "Sexo: " << r.getSexo() << endl;
+	out << "Tamanho: " << r.getTamanho() << endl;
+	out << "Dieta: " << r.getDieta() << endl;
+	out << "Veterinário: " << r.getVeterinario() << endl;
+	out << "Nome de batismo: " << r.getTratador() << endl;
+	out << "Venenoso: " <<r.getVenenoso() << endl;
+	out << "Tipo de veneno: " <<r.getTipo_veneno() << endl;
+	cout << endl;
+
+}
+
 int REPTIL::getId(){
 	return this->id;
 }
@@ -168,7 +216,6 @@ int REPTIL::getId(){
 REPTIL::~REPTIL(){}
 
 // Ave
-
 void AVE::setTamanho_bico(double t){
 	tamanho_bico = t;
 }
@@ -185,6 +232,23 @@ double AVE::getEnvergadura(){
 AVE::AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
 	tamanho_bico = t;
 	envergadura = e;
+}
+
+ostream& operator << (ostream &out, AVE &av){
+	cout << endl;
+	cout << "**AVE**" << endl << endl;
+	out << "Id: " << av.getId() << endl;
+	out << "Clase: " << av.getClasse() << endl;
+	out << "Nome Científico: " << av.getNome_cientifico() << endl;
+	out << "Sexo: " << av.getSexo() << endl;
+	out << "Tamanho: " << av.getTamanho() << endl;
+	out << "Dieta: " << av.getDieta() << endl;
+	out << "Veterinário: " << av.getVeterinario() << endl;
+	out << "Nome de batismo: " << av.getTratador() << endl;
+	out << "Tamanho do bico: " <<av.getTamanho_bico() << endl;
+	out << "Envergadura: " <<av.getEnvergadura() << endl;
+	cout << endl;
+
 }
 
 int AVE::getId(){

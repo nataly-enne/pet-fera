@@ -89,6 +89,9 @@ class ANFIBIO: public ANIMAL{
 		ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3]);
 		//destrutor
 		~ANFIBIO();
+
+		friend ostream& operator << (ostream &out, ANFIBIO &a);
+
 };
 
 class MAMIFERO: public ANIMAL{
@@ -104,6 +107,8 @@ class MAMIFERO: public ANIMAL{
 		MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor);
 		//destrutor
 		~MAMIFERO();
+
+		friend ostream& operator << (ostream &out, MAMIFERO &m);
 };
 
 class REPTIL: public ANIMAL{
@@ -122,6 +127,8 @@ class REPTIL: public ANIMAL{
 		REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t);
 		//destrutor
 		~REPTIL();
+
+		friend ostream& operator << (ostream &out, REPTIL &r);
 };
 
 class AVE: public ANIMAL{
@@ -140,6 +147,8 @@ class AVE: public ANIMAL{
 		AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e);
 		//destrutor
 		~AVE();
+
+		friend ostream& operator << (ostream &out, AVE &av);
 
 };
 
@@ -204,7 +213,7 @@ class TRATADOR: public FUNCIONARIO{
 
 };
 
-//funções
+//funções de cadastrar objetos
 
 void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores);
 void cadastrar_vet(vector <VETERINARIO> &vets);
@@ -214,5 +223,13 @@ void cadastrar_anfibio(vector <ANFIBIO> &anfibios);
 void cadastrar_mamifero(vector <MAMIFERO> &mamiferos);
 void cadastrar_reptil(vector <REPTIL> &repteis);
 void cadastrar_ave(vector <AVE> &aves);
+
+//funções de  consulta de objetos
+void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v);
+void listar_anfibio(vector <ANFIBIO> &lista_a);
+void listar_mamifero(vector <MAMIFERO> &lista_m);
+void listar_reptil(vector <REPTIL> &lista_r);
+void listar_ave(vector <AVE> &lista_v);
+
 
 #endif
