@@ -36,7 +36,6 @@ ANIMAL::ANIMAL(int i, string c, string n, char s, double tam, string die, string
 	this->tratador = trat;
 	this->nome_batismo = nome;
 }
-//destrutor
 ANIMAL::~ANIMAL(){}
 
 
@@ -69,8 +68,28 @@ ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, stri
 int ANIMAL_NATIVO::getId(){
 	return this->id;
 }
-
+string ANIMAL_NATIVO::getAutorizacao_IBAMA(){
+	return this->autorizacao_IBAMA;
+}
 ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
+
+//Anfibio Nativo
+ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
+ANFIBIO_NATIVO::~ANFIBIO_NATIVO(){}
+
+//Anfibio Exotico
+ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
+ANFIBIO_EXOTICO::~ANFIBIO_EXOTICO(){}
+
+//MAmifero Nativo
+MAMIFERO_NATIVO::MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), MAMIFERO(cor){}
+MAMIFERO_NATIVO::~MAMIFERO_NATIVO(){}
+
+//Mamifero Exotico
+MAMIFERO_EXOTICO::MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), MAMIFERO(cor){}
+MAMIFERO_EXOTICO::~MAMIFERO_EXOTICO(){}
+
+
 
 //Animal Exotico
 string ANIMAL_EXOTICO::getPais_origem(){
@@ -88,17 +107,14 @@ ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, st
 int ANIMAL_EXOTICO::getId(){
 	return this->id;
 }
+string ANIMAL_EXOTICO::getAutorizacao_IBAMA(){
+	return this->autorizacao_IBAMA;
+}
 
 ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
 
 
 //Anfibio
-/*(void ANFIBIO::setUltima_muda(int *vetor){
-	for(int i = 0; i < 3; i++){
-		ultima_muda[i] = vetor[i];
-	}
-}*/
-
 int ANFIBIO::getTotal_mudas(){
 	return total_mudas;
 }
@@ -106,14 +122,13 @@ int* ANFIBIO::getUltima_muda(){
 	return ultima_muda;
 }
 
-ANFIBIO::ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3]):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
+ANFIBIO::ANFIBIO(int mudas, int data[3]){
 	total_mudas = mudas;
 	ultima_muda[0] = data[0];
 	ultima_muda[1] = data[1];
 	ultima_muda[2] = data[2];
-	//setUltima_muda(data);
 }
-ostream& operator << (ostream &out, ANFIBIO &a){
+ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	cout << endl;
 	cout << "**ANFIBIO**" << endl << endl;
 	out << "Id: " << a.getId() << endl;
@@ -124,33 +139,31 @@ ostream& operator << (ostream &out, ANFIBIO &a){
 	out << "Dieta: " << a.getDieta() << endl;
 	out << "Veterinário: " << a.getVeterinario() << endl;
 	out << "Nome de batismo: " << a.getTratador() << endl;
-	out << "Total de mudas: " <<a.getTotal_mudas() << endl;
-	out << "Última muda: " <<a.getUltima_muda() << endl;
+	out << "Total de mudas: " << a.getTotal_mudas() << endl;
+	out << "Última muda: " << a.getUltima_muda()[0] << "-" << a.getUltima_muda()[1] << "-" << a.getUltima_muda()[2] << endl;
+	out << "Autorização IBAMA: " << a.getAutorizacao_IBAMA() << endl;
+	out << "UF de origem: " << a.getUf_origem() << endl;
+	out << "Autorização geral: " << a.getAutorizacao() << endl;
 	cout << endl;
-
-}
-
-int ANFIBIO::getId(){
-	return this->id;
-}
+	return out;	
+} 
 
 ANFIBIO::~ANFIBIO(){}
 
-//Mamífero
 
+
+//Mamífero
 void MAMIFERO::setCor_pelo(string c){
 	cor_pelo = c;
 }
-
 string MAMIFERO::getCor_pelo(){
 	return cor_pelo;
 }
-
-MAMIFERO::MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor):ANIMAL(i, c, n, s, tam, die, vet, trat, nome){
+MAMIFERO::MAMIFERO(string cor){
 	cor_pelo = cor;
 }
 
-ostream& operator << (ostream &out, MAMIFERO &m){
+ostream& operator << (ostream &out, MAMIFERO_NATIVO &m){
 	cout << endl;
 	cout << "**MAMIFERO**" << endl << endl;
 	out << "Id: " << m.getId() << endl;
@@ -160,17 +173,39 @@ ostream& operator << (ostream &out, MAMIFERO &m){
 	out << "Tamanho: " << m.getTamanho() << endl;
 	out << "Dieta: " << m.getDieta() << endl;
 	out << "Veterinário: " << m.getVeterinario() << endl;
-	out << "Nome de batismo: " << m.getTratador() << endl;
-	out << "Cor do pelo: " <<m.getCor_pelo() << endl;
+	out << "Tratador: " << m.getTratador() << endl;
+	out << "Nome de batismo: " << m.getNome_batismo() << endl;
+	out << "Cor do pelo: " << m.getCor_pelo() << endl;
+	out << "Autorização IBAMA: " <<m.getAutorizacao_IBAMA() << endl;
+	out << "UF de origem: " << m.getUf_origem() << endl;
+	out << "Autorização geral: " << m.getAutorizacao() << endl;
 	cout << endl;
-
+	return out;
 }
 
-int MAMIFERO::getId(){
-	return this->id;
+ostream& operator << (ostream &out, MAMIFERO_EXOTICO &m){
+	cout << endl;
+	cout << "**MAMIFERO**" << endl << endl;
+	out << "Id: " << m.getId() << endl;
+	out << "Classe: " << m.getClasse() << endl;
+	out << "Nome Científico: " << m.getNome_cientifico() << endl;
+	out << "Sexo: " << m.getSexo() << endl;
+	out << "Tamanho: " << m.getTamanho() << endl;
+	out << "Dieta: " << m.getDieta() << endl;
+	out << "Veterinário: " << m.getVeterinario() << endl;
+	out << "Tratador: " << m.getTratador() << endl;
+	out << "Nome de batismo: " << m.getTratador() << endl;
+	out << "Cor do pelo: " << m.getCor_pelo() << endl;
+	out << "Autorização IBAMA: " <<m.getAutorizacao_IBAMA() << endl;
+	out << "País de origem: " << m.getPais_origem() << endl;
+	out << "Autorização geral: " << m.getAutorizacao() << endl;
+	cout << endl;
+	return out;
 }
 
 MAMIFERO::~MAMIFERO(){}
+
+
 
 //Réptil
 void REPTIL::setVenenoso(bool v){
@@ -206,6 +241,7 @@ ostream& operator << (ostream &out, REPTIL &r){
 	out << "Venenoso: " <<r.getVenenoso() << endl;
 	out << "Tipo de veneno: " <<r.getTipo_veneno() << endl;
 	cout << endl;
+	return out;
 
 }
 
@@ -248,6 +284,7 @@ ostream& operator << (ostream &out, AVE &av){
 	out << "Tamanho do bico: " <<av.getTamanho_bico() << endl;
 	out << "Envergadura: " <<av.getEnvergadura() << endl;
 	cout << endl;
+	return out;
 
 }
 

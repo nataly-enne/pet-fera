@@ -105,13 +105,13 @@ void cadastrar_trat(vector <TRATADOR> &tratadores){
 
 //void remover funcionario();
 
-void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, vector <REPTIL> &repteis, vector <AVE> &aves){
+void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex, vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex){ //, vector <MAMIFERO> &mamiferos, vector <REPTIL> &repteis, vector <AVE> &aves
 
 	char tipo_func;
 	char continuar = 'n';
 
 	do{
-		cout << "Qual animal a ser cadastrado? \n a - anfíbio\n m - mamífero \n r - repteis \n e - aves" << endl;
+		cout << "Qual animal a ser cadastrado? \n a - anfíbio\n m - mamífero \n r - repteis \n v - aves" << endl;
 		cin >> tipo_func;
 		if(tipo_func != 'a' && tipo_func != 'm' && tipo_func != 'r' && tipo_func != 'v'){
 			cout << "Tipo de animal incorreto!! Tente novamente!\n" << endl;
@@ -119,73 +119,196 @@ void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, 
 			continue;
 		}else{
 			if(tipo_func == 'a'){
-				cadastrar_anfibio(anfibios);
+				cadastrar_anfibio(anfibios_nat, anfibios_ex);
 			}
 			else if(tipo_func == 'm'){
-				cadastrar_mamifero(mamiferos);
+				cadastrar_mamifero(mamiferos_nat, mamiferos_ex);
 			}
 			else if(tipo_func == 'r'){
-				cadastrar_reptil(repteis);
+				//cadastrar_reptil(repteis);
 			}		
 			else{
-				cadastrar_ave(aves);
+				//cadastrar_ave(aves);
 			}
 		}
 	} while (continuar == 's');
 	
 }
 
-void cadastrar_anfibio(vector <ANFIBIO> &anfibios){
-	int id, idade, total_mudas, ultima_muda[3];
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo;
-	char sexo;
+void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex){
+	int id, total_mudas, ultima_muda[3];
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
+	char sexo, tipo_func, continuar = 's';
 	double tamanho;
 	unsigned int old_size;
+
+	do{
+		cout << "Deseja cadastrar um ANFIBIO NATIVO ou ANNFIBIO EXOTICO? \n n - NATIVO\n e - EXOTICO" << endl;
+		cin >> tipo_func;
+		if(tipo_func != 'n' && tipo_func != 'e'){
+			//continuar = 's';
+			continue;
+		}
+		else{
+			continuar = 'n';
+			cout << "Digite o id: " << endl;
+			cin >> id;
+			cout << "Digite a classe: " << endl;
+			cin.ignore();
+			getline(cin, classe);
+			cout << "Digite o nome científico: " << endl;
+			getline(cin, nome_cientifico);
+			cout << "Digite a dieta: " << endl;
+			getline(cin, dieta);
+			cout << "Digite o nome do veterinario: " << endl;
+			getline(cin, veterinario);
+			cout << "Digite o nome do tratador: " << endl;
+			getline(cin, tratador);
+			cout << "Digite o nome de batismo: " << endl;
+			getline(cin, nome_batismo);
+			cout << "Digite o sexo do animal: " << endl;
+			cin >> sexo;
+			cout << "Digite o tamanho do animal: " << endl;
+			cin >> tamanho;
+			cout << "Insira o total de mudas:" << endl;
+			cin >> total_mudas;
+			cout << "Insira a data da última muda(D/M/A)" << endl;
+			cin >> ultima_muda[0] >> ultima_muda[1] >> ultima_muda[2];
+			cout << "Insira a autorizacao do IBAMA: " << endl;
+			cin.ignore();
+			getline(cin, autorizacao_IBAMA);
+			
+
+			if(tipo_func == 'n'){
+				old_size = anfibios_nat.size();
+
+				cout << "Digite a UF de origem: " << endl;
+				getline(cin, origem);
+				cout << "Insira a autorizacao do animal: " << endl;
+				getline(cin, autorizacao);
+
+				ANFIBIO_NATIVO a(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+
+				anfibios_nat.push_back(a);
+
+				if (anfibios_nat.size() == old_size){
+					cout << "Falha no cadastro do animal!" << endl;
+				}
+				else{
+					cout << "Cadastro efetuado com sucesso!!" << endl;
+				}
+			}
+			else if(tipo_func == 'e'){
+				old_size = anfibios_ex.size();
+				cout << "Digite o País de origem: " << endl;
+				getline(cin, origem);
+				cout << "Insira a autorizacao do animal: " << endl;
+				getline(cin, autorizacao);
+
+				ANFIBIO_EXOTICO a(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+
+				anfibios_ex.push_back(a);
+
+				if (anfibios_nat.size() == old_size){
+					cout << "Falha no cadastro do animal!" << endl;
+				}
+				else{
+					cout << "Cadastro efetuado com sucesso!!" << endl;
+				}
+			}
+		}
 	
-	old_size = anfibios.size();
 
-	cout << "Digite o id: " << endl;
-	cin >> id;
-	cout << "Digite a classe: " << endl;
-	cin.ignore();
-	getline(cin, classe);
-	cout << "Digite o nome científico: " << endl;
-	cin.ignore();
-	getline(cin, nome_cientifico);
-	cout << "Digite a dieta: " << endl;
-	cin >> idade;
-	cout << "Digite o nome do veterinario: " << endl;
-	cin.ignore();
-	getline(cin, veterinario);
-	cout << "Digite o nome do tratador: " << endl;
-	cin.ignore();
-	getline(cin, tratador);
-	cout << "Digite o nome de batismo: " << endl;
-	cin.ignore();
-	getline(cin, nome_batismo);
-	cout << "Digite o sexo do animal: " << endl;
-	cin >> sexo;
-	cout << "Digite o tamanho do animal: " << endl;
-	cin >> tamanho;
-	cout << "Insira o total de mudas:" << endl;
-	cin >> total_mudas;
-	cout << "Insira a data da última muda(D/M/A)" << endl;
-	cin >> ultima_muda[0] >> ultima_muda[1] >> ultima_muda[2];
-
-	ANFIBIO a(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda);
-
-	anfibios.push_back(a);
-
-	if (anfibios.size() == old_size){
-		cout << "Falha no cadastro do animal!" << endl;
-	}
-	else{
-		cout << "Cadastro efetuado com sucesso!!" << endl;
-		//cout << a << endl;
-	}
-
+	}while(continuar == 's');
+	
 }
 
+void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex){
+	int id;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
+	char sexo, tipo_func, continuar = 's';
+	double tamanho;
+	unsigned int old_size;
+
+	do{
+		cout << "Deseja cadastrar um MAMIFERO NATIVO ou MAMIFERO EXOTICO? \n n - NATIVO\n e - EXOTICO" << endl;
+		cin >> tipo_func;
+		if(tipo_func != 'n' && tipo_func != 'e'){
+			continue;
+		}
+		else{
+			continuar = 'n';
+			cout << "Digite o id: " << endl;
+			cin >> id;
+			cout << "Digite a classe: " << endl;
+			cin.ignore();
+			getline(cin, classe);
+			cout << "Digite o nome científico: " << endl;
+			getline(cin, nome_cientifico);
+			cout << "Digite a dieta: " << endl;
+			getline(cin, dieta);
+			cout << "Digite o nome do veterinario: " << endl;
+			getline(cin, veterinario);
+			cout << "Digite o nome do tratador: " << endl;
+			getline(cin, tratador);
+			cout << "Digite o nome de batismo: " << endl;
+			getline(cin, nome_batismo);
+			cout << "Digite o sexo do animal: " << endl;
+			cin >> sexo;
+			cout << "Digite o tamanho do animal: " << endl;
+			cin >> tamanho;
+			cout << "Digite a cor do pelo: " << endl;
+			cin.ignore();
+			getline(cin, cor);
+			cout << "Insira a autorizacao do IBAMA: " << endl;
+			getline(cin, autorizacao_IBAMA);
+			
+
+			if(tipo_func == 'n'){
+				old_size = mamiferos_nat.size();
+
+				cout << "Digite a UF de origem: " << endl;
+				getline(cin, origem);
+				cout << "Insira a autorizacao do animal: " << endl;
+				getline(cin, autorizacao);
+
+				MAMIFERO_NATIVO m(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+
+				mamiferos_nat.push_back(m);
+
+				if (mamiferos_nat.size() == old_size){
+					cout << "Falha no cadastro do animal!" << endl;
+				}
+				else{
+					cout << "Cadastro efetuado com sucesso!!" << endl;
+				}
+			}
+			else if(tipo_func == 'e'){
+				old_size = mamiferos_ex.size();
+				cout << "Digite o País de origem: " << endl;
+				getline(cin, origem);
+				cout << "Insira a autorizacao do animal: " << endl;
+				getline(cin, autorizacao);
+
+				MAMIFERO_EXOTICO m(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+
+				mamiferos_ex.push_back(m);
+
+				if (mamiferos_ex.size() == old_size){
+					cout << "Falha no cadastro do animal!" << endl;
+				}
+				else{
+					cout << "Cadastro efetuado com sucesso!!" << endl;
+				}
+			}
+		}
+	
+
+	}while(continuar == 's');
+	
+}
+
+/*
 void cadastrar_mamifero(vector <MAMIFERO> &mamiferos){
 	int id;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, cor_pelo;
@@ -331,7 +454,8 @@ void cadastrar_ave(vector <AVE> &aves){
 
 //void remover_animal()
 
-//menu listar animal
+//menu listar animal */
+/*
 void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v){
 
 	char tipo_func;
@@ -394,7 +518,7 @@ void listar_ave(vector <AVE> &lista_v){
 		cout << list_v[i];
 	}
 }
-
+ */
 
 
 

@@ -15,13 +15,18 @@ int main(){
 	// string nome;
 	// char tipo, fator;
 	string especialidade, crmv;
-	vector <ANFIBIO> anfibios;
-	vector <MAMIFERO> mamiferos;
+
+	vector <ANFIBIO_NATIVO> anfibios_nat;
+	vector <ANFIBIO_EXOTICO> anfibios_ex;
+
+	vector <MAMIFERO_NATIVO> mamiferos_nat;
+	vector <MAMIFERO_EXOTICO> mamiferos_ex;
+
 	vector <REPTIL> repteis;
 	vector <AVE> aves;
-	vector <ANIMAL_NATIVO> nativos;
-	vector <ANIMAL_EXOTICO> exoticos;
-	vector <ANIMAL_SILVESTRE> silvestres;
+	//vector <ANIMAL_NATIVO> nativos;
+	//vector <ANIMAL_EXOTICO> exoticos;
+	//vector <ANIMAL_SILVESTRE> silvestres;
 	vector <VETERINARIO> vets;
 	vector <TRATADOR> tratadores;
 
@@ -53,17 +58,27 @@ int main(){
 		cin >> op;
 
 		switch (op){
-			case 1: //TESTE
+			case 1: 
 				cadastrar_func(vets, tratadores);
 				break;
 			case 2:
-				//cadastrar_func(anfibios, mamiferos, repteis, aves);
+				cadastrar_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex);
+
+				//TESTE
+				
+				/*for(int i=0; i< (int)mamiferos_nat.size(); i++){
+					cout << mamiferos_nat[i] << " ";
+				}
+				for(int i=0; i< (int)anfibios_nat.size(); i++){
+					cout << anfibios_nat[i] << " ";
+				} */
 				break;
 
 		}
 
 
 	}while(op != 0);
+
 	// delete [] data;
 
 	return 0;
