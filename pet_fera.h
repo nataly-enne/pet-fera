@@ -3,20 +3,22 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <fstream>
 
 using namespace std;
 
 class ANIMAL{
 	protected:
 		int id;
-		string *classe;
-		string *nome_cientifico;
+		string classe;
+		string nome_cientifico;
 		char sexo;
 		double tamanho;
-		string *dieta;
-		string *veterinario;
-		string *tratador;
-		string *nome_batismo;
+		string dieta;
+		string veterinario;
+		string tratador;
+		string nome_batismo;
 	public:
 		virtual int getId() = 0;
 		string getClasse();
@@ -35,11 +37,10 @@ class ANIMAL{
 
 class ANIMAL_SILVESTRE{
 	protected:
-		string *autorizacao_IBAMA;
+		string autorizacao_IBAMA;
 	public:
 		//Getter
 		string getAutorizacao_IBAMA();
-		int getId();
 		//construtor
 		ANIMAL_SILVESTRE(string aut);
 		~ANIMAL_SILVESTRE();
@@ -47,8 +48,8 @@ class ANIMAL_SILVESTRE{
 
 class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 	protected:
-		string *uf_origem;
-		string *autorizacao;
+		string uf_origem;
+		string autorizacao;
 	public:
 		//getters
 		string getUf_origem();
@@ -61,8 +62,8 @@ class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 };
 class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 	protected:
-		string *pais_origem;
-		string *autorizacao;
+		string pais_origem;
+		string autorizacao;
 	public:
 		//getters
 		string getPais_origem();
@@ -80,20 +81,23 @@ class ANFIBIO: public ANIMAL{
 	public:
 		//setters
 		//void setTotal_mudas(int m);
-		void setUltima_muda(int *vetor);
+		//void setUltima_muda(int *vetor);
 		//gettters
 		int getTotal_mudas();
 		int* getUltima_muda();
 		int getId();
 		//construtor
-		ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data);
+		ANFIBIO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3]);
 		//destrutor
 		~ANFIBIO();
+
+		friend ostream& operator << (ostream &out, ANFIBIO &a);
+
 };
 
 class MAMIFERO: public ANIMAL{
 	protected:
-		string *cor_pelo;
+		string cor_pelo;
 	public:
 		//setters
 		void setCor_pelo(string c);
@@ -104,12 +108,14 @@ class MAMIFERO: public ANIMAL{
 		MAMIFERO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor);
 		//destrutor
 		~MAMIFERO();
+
+		friend ostream& operator << (ostream &out, MAMIFERO &m);
 };
 
 class REPTIL: public ANIMAL{
 	protected:
 		bool venenoso;
-		string *tipo_veneno;
+		string tipo_veneno;
 	public:
 		//setters
 		void setVenenoso(bool v);
@@ -122,6 +128,8 @@ class REPTIL: public ANIMAL{
 		REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t);
 		//destrutor
 		~REPTIL();
+
+		friend ostream& operator << (ostream &out, REPTIL &r);
 };
 
 class AVE: public ANIMAL{
@@ -141,24 +149,26 @@ class AVE: public ANIMAL{
 		//destrutor
 		~AVE();
 
+		friend ostream& operator << (ostream &out, AVE &av);
+
 };
 
 class FUNCIONARIO{
 	protected:
 		int id;
-		string *nome;
+		string nome;
 		long int cpf;
 		int idade;
-		char tipo_sanguineo;
+		string tipo_sanguineo;
 		char fator_rh;
-		string *especialidade;
+		string especialidade;
 	public:
 		//setters
 		void setId(int i);
 		void setNome(string n);
 		void setCpf(long int c);
 		void setIdade(int i);
-		void setTipo_sanguineo(char t);
+		void setTipo_sanguineo(string t);
 		void setFator_rh(char f);
 		void setEspecialidade(string e);
 		//getters
@@ -166,7 +176,7 @@ class FUNCIONARIO{
 		string getNome();
 		long int getCpf();
 		int getIdade();
-		char getTipo_sanguineo();
+		string getTipo_sanguineo();
 		char getFator_rh();
 		string getEspecialidade();
 
@@ -174,18 +184,16 @@ class FUNCIONARIO{
 
 class VETERINARIO: public FUNCIONARIO{
 	protected:
-		string *crmv;
+		string crmv;
 	public:
 		//Construtor
-		VETERINARIO(int i, string n, long int c, int ida, char t, char f, string e, string cr);
-		//Destrutor
-		~VETERINARIO();
+		VETERINARIO(int i, string n, long int c, int ida, string t, char f, string e, string cr);
 		//setters
 		void setCrmv(string c);
 		//getters
 		string getCrmv();
 		int getId();
-		//Sobrecarga
+
 		friend ostream& operator << (ostream &out, VETERINARIO &v);
 
 };
@@ -194,7 +202,7 @@ class TRATADOR: public FUNCIONARIO{
 		int nivel_seguranca;
 	public:
 		//Construtor
-		TRATADOR(int i, string n, long int c, int ida, char t, char f, string e, int nivel);
+		TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel);
 		~TRATADOR();
 		//setters
 		void setNivel_seguranca(int nivel);
@@ -205,6 +213,24 @@ class TRATADOR: public FUNCIONARIO{
 		friend ostream& operator << (ostream &out, TRATADOR &t);
 
 };
+
+//funções de cadastrar objetos
+
+void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores);
+void cadastrar_vet(vector <VETERINARIO> &vets);
+void cadastrar_trat(vector <TRATADOR> &tratadores);
+void cadastrar_animal(vector <ANFIBIO> &anfibios, vector <MAMIFERO> &mamiferos, vector <REPTIL> &repteis, vector <AVE> &aves);
+void cadastrar_anfibio(vector <ANFIBIO> &anfibios);
+void cadastrar_mamifero(vector <MAMIFERO> &mamiferos);
+void cadastrar_reptil(vector <REPTIL> &repteis);
+void cadastrar_ave(vector <AVE> &aves);
+
+//funções de  consulta de objetos
+void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v);
+void listar_anfibio(vector <ANFIBIO> &lista_a);
+void listar_mamifero(vector <MAMIFERO> &lista_m);
+void listar_reptil(vector <REPTIL> &lista_r);
+void listar_ave(vector <AVE> &lista_v);
 
 
 #endif
