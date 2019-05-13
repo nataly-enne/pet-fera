@@ -579,6 +579,118 @@ void cadastrar_ave(vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex)
 	
 }
 
+void alterar_dados(){
+	char tipo_animal, opcao;
+	char continuar = 'n', resp;
+
+	do{
+		cout << "Alterar dados de um animal? \n s/n" << endl;
+		cin >> opcao;
+		if(opcao != 's'){
+			cout << "Opção inválida!! Tente novamente!\n" << endl;
+			cout << endl;
+			cout << "Deseja sair? s/n" << endl;
+			cin >> resp;
+			if(resp == 's'){
+				continuar = 'n';;
+				break;
+			}
+			continuar = 's';
+			continue;
+		}
+		else{
+			cout << "Qual animal a ser editado? \n a - anfíbio\n m - mamífero \n r - reptil \n v - ave" << endl;
+			cin >> tipo_animal;
+			if(tipo_animal != 'a' && tipo_animal != 'm' && tipo_animal != 'r' && tipo_animal != 'v' ){
+				cout << "Opção inválida!! Tente novamente!\n" << endl;
+				cout << endl;
+				cout << "Deseja sair? s/n" << endl;
+				cin >> resp;
+				if(resp == 's'){
+					continuar = 'n';;
+					break;
+				}
+			}
+				else{
+					cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
+					cin >> opcao;
+					if(opcao != 'n' && opcao != 'e'){
+						cout << "Opção inválida!! Tente novamente!\n" << endl;
+						cout << endl;
+						cout << "Deseja sair? s/n" << endl;
+						cin >> resp;
+						if(resp == 's'){
+							continuar = 'n';
+							break;
+						}	
+					}
+					else{
+						if(tipo_animal == 'a' && opcao == 'n'){
+							fstream appFile("anfibios_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							string str;
+							char delim = ';';
+
+							map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
+	
+
+//AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+							while(appFile){
+								if(!appFile.eof()){
+									for(int i=0; i<14; i++){
+										if()
+										getline(appFile, str, delim);
+										cout << "string: " << str << endl;
+
+									}
+									
+								}else{
+									appFile.close();
+									break;
+								}
+								
+							
+							}
+						}
+						else if(tipo_animal == 'a' && opcao == 'e'){
+							fstream appFile("anfibios_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+						else if(tipo_animal == 'm' && opcao == 'n'){
+							fstream appFile("mamiferos_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+						else if(tipo_animal == 'm' && opcao == 'e'){
+							fstream appFile("mamiferos_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+						else if(tipo_animal == 'r' && opcao == 'n'){
+							fstream appFile("repteis_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+						else if(tipo_animal == 'r' && opcao == 'e'){
+							fstream appFile("repteis_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+						else if(tipo_animal == 'v' && opcao == 'n'){
+							fstream appFile("aves_nativas.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+						else if(tipo_animal == 'v' && opcao == 'e'){
+							fstream appFile("aves_exoticas.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+
+						}
+
+						//cout << "ok" << endl;
+					}
+			}
+		}
+
+
+
+	}while(continuar == 's');
+
+}
+
 
 
 /*

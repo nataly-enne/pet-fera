@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <fstream> //Arquivo
 
 using namespace std;
@@ -287,6 +288,7 @@ void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFER
 void cadastrar_reptil(vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex);
 void cadastrar_ave(vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex);
 
+void alterar_dados();
 //funções de  consulta de objetos
 /*
 void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v);
