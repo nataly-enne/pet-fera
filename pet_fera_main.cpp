@@ -48,6 +48,12 @@ int main(){
 				*/
 				break;
 
+
+
+			case 4:
+				alterar_dados();
+				break;
+
 		}
 
 
