@@ -626,20 +626,35 @@ void alterar_dados(){
 					}
 					else{
 						if(tipo_animal == 'a' && opcao == 'n'){
-							fstream appFile("anfibios_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							fstream appFile("anfibios_nativos.txt", ios::in | ios::out); //Abrir para leitura e escrita ao mesmo tempo
 							string str;
+							int id_buscado, id;
 							char delim = ';';
 
-							map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
+							//map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
 	
+							cout << "Insira o ID buscado: " << endl;
+							cin >> id_buscado;
 
-//AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 							while(appFile){
 								if(!appFile.eof()){
-									for(int i=0; i<14; i++){
-										if()
-										getline(appFile, str, delim);
-										cout << "string: " << str << endl;
+
+									getline(appFile, str);
+									for(int i=0; i<(int)str.size(); i++){
+
+										if(str[i] == delim){
+											int tmp = i;
+											for(int j=0; j<tmp; j++){
+												istringstream(str) >> id;
+												if(id_buscado == id){
+													cout << "Id encontrado" << endl;
+													break;
+												}
+											}
+											cout << endl;
+											break;
+										}
+
 
 									}
 									
@@ -647,9 +662,10 @@ void alterar_dados(){
 									appFile.close();
 									break;
 								}
-								
-							
+
 							}
+						
+
 						}
 						else if(tipo_animal == 'a' && opcao == 'e'){
 							fstream appFile("anfibios_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo

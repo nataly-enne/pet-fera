@@ -4,6 +4,20 @@ int main(){
 
 	int op;
 	string especialidade, crmv;
+	// int i = 123;
+	// string c = "sjss", n = "seila";
+	// char s= 'M';
+	// double tam=1.23;
+	// string die= "carne", vet = "igor",trat = "igor", nome = "fred",aut = "dkdkd",u = "natal", a = "flago321";
+	// int mudas = 2, data[3];
+	// data[0] = 12;
+	// data[1] = 02;
+	// data[2] = 2019;
+
+	// ANFIBIO_NATIVO X(i,c,n, s, tam,die,vet, trat, nome, mudas,data, aut,u, a);
+
+	// map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
+	// mp_anfibio_nat.insert(0, X);
 
 	vector <ANFIBIO_NATIVO> anfibios_nat;
 	vector <ANFIBIO_EXOTICO> anfibios_ex;
@@ -19,6 +33,7 @@ int main(){
 
 	vector <VETERINARIO> vets;
 	vector <TRATADOR> tratadores;
+
 
 	do{
 		cout << "***MENU INICIAL***" << endl << endl;

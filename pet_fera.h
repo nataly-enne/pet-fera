@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <cstring>
+#include <sstream> //Converter cadeias de caracters em int
 #include <fstream> //Arquivo
 
 using namespace std;
@@ -246,7 +248,7 @@ class FUNCIONARIO{
 };
 
 class VETERINARIO: public FUNCIONARIO{
-	protected:
+	private:
 		string crmv;
 	public:
 		//Construtor
@@ -261,7 +263,7 @@ class VETERINARIO: public FUNCIONARIO{
 
 };
 class TRATADOR: public FUNCIONARIO{
-	protected:
+	private:
 		int nivel_seguranca;
 	public:
 		//Construtor
