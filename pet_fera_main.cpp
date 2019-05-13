@@ -1,19 +1,8 @@
 #include "pet_fera.h"
 
 int main(){
-	// int *data = new int[3];
-	// data[0] = 2;
-	// data[1] = 3;
-	// data[2] = 4;
-	// ANIMAL *A1 = new ANFIBIO(1,"anfibio","adsf",'f',2.9,"der","ver","der","Nataly",2,data);
-	// cout << A1->getId() << endl;
-	// 	int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int* data);
 
 	int op;
-	// int id, idade, nivel;
-	// long int cpf;
-	// string nome;
-	// char tipo, fator;
 	string especialidade, crmv;
 
 	vector <ANFIBIO_NATIVO> anfibios_nat;
@@ -22,29 +11,15 @@ int main(){
 	vector <MAMIFERO_NATIVO> mamiferos_nat;
 	vector <MAMIFERO_EXOTICO> mamiferos_ex;
 
-	vector <REPTIL> repteis;
-	vector <AVE> aves;
-	//vector <ANIMAL_NATIVO> nativos;
-	//vector <ANIMAL_EXOTICO> exoticos;
-	//vector <ANIMAL_SILVESTRE> silvestres;
+	vector <REPTIL_NATIVO> repteis_nat;
+	vector <REPTIL_EXOTICO> repteis_ex;
+
+	vector <AVE_NATIVO> aves_nat;
+	vector <AVE_EXOTICO> aves_ex;
+
 	vector <VETERINARIO> vets;
 	vector <TRATADOR> tratadores;
 
-	// int *data = new int[3];
-	// data[0] = 12;
-	// data[1] = 05;
-	// data[2] = 2019;
-	//teste
-	// ANFIBIO *a1 = new ANFIBIO(1,"anfibio","adsf",'f',2.9,"der","ver","der","Nataly",2,data);
-	// anfibios.push_back(*a1);
-	// cout << "anfibios elementos: " << anfibios.size() << endl;
-	// cout << "anfibios[0] id: " << anfibios[0].getNome_cientifico() << endl;;
-	// vector <ANFIBIO>::iterator it;
-	// it = anfibios.begin();
-	// anfibios.erase(it);
-	// delete a1;
-	// cout << "anfibios elementos: " << anfibios.size() << endl;
-	//fim teste
 	do{
 		cout << "***MENU INICIAL***" << endl << endl;
 		cout << "0- Sair" << endl;
@@ -62,16 +37,15 @@ int main(){
 				cadastrar_func(vets, tratadores);
 				break;
 			case 2:
-				cadastrar_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex);
-
-				//TESTE
-				
-				/*for(int i=0; i< (int)mamiferos_nat.size(); i++){
-					cout << mamiferos_nat[i] << " ";
-				}
-				for(int i=0; i< (int)anfibios_nat.size(); i++){
-					cout << anfibios_nat[i] << " ";
-				} */
+				cadastrar_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
+				/*
+				for(int i=0; i< (int)repteis_nat.size(); i++){
+					cout << repteis_nat[i] << " ";
+				} 
+				for(int i=0; i< (int)aves_nat.size(); i++){
+					cout << aves_nat[i] << " ";
+				} 
+				*/
 				break;
 
 		}

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream> //Arquivo
 
 using namespace std;
 
@@ -103,6 +104,7 @@ class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 		ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string pais, string a);
 		//destrutor
 		~ANFIBIO_EXOTICO();
+		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
 
 };
 
@@ -111,8 +113,6 @@ class MAMIFERO{
 	protected:
 		string cor_pelo;
 	public:
-		//setters
-		void setCor_pelo(string c);
 		//getters
 		string getCor_pelo();
 		//construtor
@@ -144,44 +144,76 @@ class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 
 
 
-class REPTIL: public ANIMAL{
+class REPTIL{
 	protected:
 		bool venenoso;
 		string tipo_veneno;
 	public:
-		//setters
-		void setVenenoso(bool v);
-		void setTipo_veneno(string t);
 		//getters
 		bool getVenenoso();
 		string getTipo_veneno();
 		//construtor
-		REPTIL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t);
+		REPTIL(bool v, string t);
 		//destrutor
 		~REPTIL();
 
 		friend ostream& operator << (ostream &out, REPTIL &r);
 };
+class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
+	public:
+		//construtor
+		REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
+		//destrutor
+		~REPTIL_NATIVO();
 
-class AVE: public ANIMAL{
+		friend ostream& operator << (ostream &out, REPTIL_NATIVO &r);
+};
+class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
+	public:
+		//construtor
+		REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
+		//destrutor
+		~REPTIL_EXOTICO();
+
+		friend ostream& operator << (ostream &out, REPTIL_EXOTICO &r);
+};
+
+
+class AVE{
 	private:
 		double tamanho_bico;
 		double envergadura;
 	public:
-		//setters
-		void setTamanho_bico(double t);
-		void setEnvergadura(double e);
 		//getters
 		double getTamanho_bico();
 		double getEnvergadura();
 		//construtor
-		AVE(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e);
+		AVE(double t, double e);
 		//destrutor
 		~AVE();
 
-		friend ostream& operator << (ostream &out, AVE &av);
-
 };
+
+class AVE_NATIVO: public ANIMAL_NATIVO, AVE{
+	public:
+		//construtor
+		AVE_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a);
+		//destrutor
+		~AVE_NATIVO();
+
+		friend ostream& operator << (ostream &out, AVE_NATIVO &a);
+};
+class AVE_EXOTICO: public ANIMAL_EXOTICO, AVE{
+	public:
+		//construtor
+		AVE_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a);
+		//destrutor
+		~AVE_EXOTICO();
+
+		friend ostream& operator << (ostream &out, AVE_EXOTICO &a);
+};
+
+
 
 class FUNCIONARIO{
 	protected:
@@ -249,18 +281,19 @@ class TRATADOR: public FUNCIONARIO{
 void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores);
 void cadastrar_vet(vector <VETERINARIO> &vets);
 void cadastrar_trat(vector <TRATADOR> &tratadores);
-void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex, vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex); //vector <MAMIFERO> &mamiferos, vector <REPTIL> &repteis, vector <AVE> &aves
+void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex, vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex, vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex, vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex); 
 void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex);
 void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex);
-void cadastrar_reptil(vector <REPTIL> &repteis);
-void cadastrar_ave(vector <AVE> &aves);
+void cadastrar_reptil(vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex);
+void cadastrar_ave(vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex);
 
 //funções de  consulta de objetos
+/*
 void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v);
 void listar_anfibio(vector <ANFIBIO> &lista_a);
 void listar_mamifero(vector <MAMIFERO> &lista_m);
 void listar_reptil(vector <REPTIL> &lista_r);
 void listar_ave(vector <AVE> &lista_v);
-
+*/
 
 #endif
