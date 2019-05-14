@@ -5,7 +5,7 @@
 // 1- Remoção dos animais
 // 2- Utilizar o vector melhor
 
-void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){
+void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){ //_func
 	char tipo_func;
 	char continuar = 'n';
 	do{
@@ -18,17 +18,17 @@ void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){
 		}
 		else{
 			if(tipo_func == 'v'){
-				cadastrar_vet(vets);
+				cadastrar(vets);
 			}
 			else{
-				cadastrar_trat(tratadores);
+				cadastrar(tratadores);
 			}
 		}
 	} while (continuar == 's');
 	
 }
 
-void cadastrar_vet(vector <VETERINARIO> &vets){
+void cadastrar(vector <VETERINARIO> &vets){ //_vet
 	int id, idade;
 	unsigned int old_size;
 	long int cpf;
@@ -64,7 +64,7 @@ void cadastrar_vet(vector <VETERINARIO> &vets){
 	}
 }
 
-void cadastrar_trat(vector <TRATADOR> &tratadores){
+	void cadastrar(vector <TRATADOR> &tratadores){ //_trat
 	int id, idade,nivel_seg;
 	unsigned int old_size;
 	long int cpf;
@@ -107,7 +107,7 @@ void cadastrar_trat(vector <TRATADOR> &tratadores){
 //void remover funcionario();
 
 void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex, vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex, vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex, vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex){
-	char tipo_func;
+	char tipo_func; //_animal
 	char continuar = 'n', resp;
 
 	do{

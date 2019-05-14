@@ -282,8 +282,8 @@ class TRATADOR: public FUNCIONARIO{
 //funções de cadastrar objetos
 
 void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores);
-void cadastrar_vet(vector <VETERINARIO> &vets);
-void cadastrar_trat(vector <TRATADOR> &tratadores);
+void cadastrar(vector <VETERINARIO> &vets); //_vet(
+void cadastrar(vector <TRATADOR> &tratadores); //_trat
 void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex, vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex, vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex, vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex); 
 void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex);
 void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex);
