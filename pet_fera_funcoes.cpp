@@ -5,7 +5,71 @@
 // 1- Remoção dos animais
 // 2- Utilizar o vector melhor
 
-void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){ //_func
+void carregar_arquivos(){
+	string nome, matricula;
+	int id, total_mudas;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, ultima_muda, autorizacao_IBAMA, origem, autorizacao;
+	char sexo;
+	double tamanho;
+	string vetor_anfibios[13];
+
+
+
+
+	ifstream appFile("anfibios_nat.txt");
+	if(!appFile.is_open()){
+		cout << "ERROR: arquivo não existe!" << endl;
+	}
+
+
+	while(appFile.good()){
+		getline(appFile, vetor_anfibios[0], ';');
+		/*getline(id, vetor_anfibios[1], ';');
+		getline(id, vetor_anfibios[2], ';');
+		getline(id, vetor_anfibios[3], ';');
+		getline(id, vetor_anfibios[4], ';');
+		getline(id, vetor_anfibios[5], ';');
+		getline(id, vetor_anfibios[6], ';');
+		getline(id, vetor_anfibios[7], ';');
+		getline(id, vetor_anfibios[8], ';');
+		getline(id, vetor_anfibios[9], ';');
+		getline(id, vetor_anfibios[10], ';');
+		getline(id, vetor_anfibios[11], ';'); 
+		getline(id, vetor_anfibios[12], '\n');*/
+	}
+	classe = vetor_anfibios[0];
+	/*nome_cientifico = vetor_anfibios[1];
+	sexo = (char) vetor_anfibios[2];
+	tamanho = (double)vetor_anfibios[3];
+	dieta = vetor_anfibios[4];
+	veterinario = vetor_anfibios[5];
+	tratador = vetor_anfibios[6];
+	nome_batismo = vetor_anfibios[7];
+	total_mudas = vetor_anfibios[8];
+	ultima_muda = vetor_anfibios[9];
+	autorizacao_IBAMA = vetor_anfibios[10];
+	origem = vetor_anfibios[11];
+	autorizacao = vetor_anfibios[12];*/
+
+	cout << "classe: " << classe << endl;
+
+
+	//anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id,ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+
+/*
+	appFile.open("anfibios_nativos.txt", ios::app);
+	if(!appFile){
+		cout << "Arquivo nao encontrado :( " << endl;
+		exit(0);	
+	}
+	appFile << id << ';' << classe << ';' << nome_cientifico << ';' << sexo << ';' << tamanho << ';' << dieta << ';' << veterinario << ';' <<  tratador << ';' <<  nome_batismo << ';' << total_mudas << ';' << ultima_muda[0] << '/' << ultima_muda[1] << '/' << ultima_muda[2]  << ';' << autorizacao_IBAMA << ';' << origem << ';' << autorizacao << ';' << '\n';
+	appFile.close()
+*/
+
+
+}
+
+void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){ //_func
 	char tipo_func;
 	char continuar = 'n';
 	do{
@@ -28,7 +92,7 @@ void cadastrar_func(vector <VETERINARIO> &vets, vector <TRATADOR> &tratadores){ 
 	
 }
 
-void cadastrar(vector <VETERINARIO> &vets){ //_vet
+void cadastrar(map <int, VETERINARIO> &vets){ //_vet
 	int id, idade;
 	unsigned int old_size;
 	long int cpf;
@@ -53,8 +117,9 @@ void cadastrar(vector <VETERINARIO> &vets){ //_vet
 	cin >> especialidade;
 	cout << "Digite o crmv: "<< endl;
 	cin >> crmv;
-	VETERINARIO v(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv);
-	vets.push_back(v);
+	vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
+	//vets[id] = VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv);
+	//vets.push_back(v);
 	if (vets.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
 		cout << "Falha no cadastro do funcionario!" << endl;
 	}
@@ -64,7 +129,7 @@ void cadastrar(vector <VETERINARIO> &vets){ //_vet
 	}
 }
 
-	void cadastrar(vector <TRATADOR> &tratadores){ //_trat
+	void cadastrar(map <int, TRATADOR>  &tratadores){ //_trat
 	int id, idade,nivel_seg;
 	unsigned int old_size;
 	long int cpf;
@@ -91,22 +156,22 @@ void cadastrar(vector <VETERINARIO> &vets){ //_vet
 	cout << "Digite o nivel de seguranca: "<< endl;
 	cin >> nivel_seg;
 	
-	TRATADOR t(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg);
+	tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
+	//tratadores[id] = TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg);
 
-	tratadores.push_back(t);
+	//tratadores.push_back(t);
 	
 	if (tratadores.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
 		cout << "Falha no cadastro do funcionario!" << endl;
 	}else{
 		cout << "Cadastro efetuado com sucesso!!" << endl;
-		cout << t << endl;
 	}
 }
 
 
 //void remover funcionario();
 
-void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex, vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex, vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex, vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex){
+void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 	char tipo_func; //_animal
 	char continuar = 'n', resp;
 
@@ -126,23 +191,23 @@ void cadastrar_animal(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXO
 			continue;
 		}else{
 			if(tipo_func == 'a'){
-				cadastrar_anfibio(anfibios_nat, anfibios_ex);
+				cadastrar(anfibios_nat, anfibios_ex);
 			}
 			else if(tipo_func == 'm'){
-				cadastrar_mamifero(mamiferos_nat, mamiferos_ex);
+				cadastrar(mamiferos_nat, mamiferos_ex);
 			}
 			else if(tipo_func == 'r'){
-				cadastrar_reptil(repteis_nat, repteis_ex);
+				cadastrar(repteis_nat, repteis_ex);
 			}		
 			else{
-				cadastrar_ave(aves_nat, aves_ex);
+				cadastrar(aves_nat, aves_ex);
 			}
 		}
 	} while (continuar == 's');
 	
 }
 
-void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EXOTICO> &anfibios_ex){
+void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
 	int id, total_mudas, ultima_muda[3];
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
 	char sexo, tipo_func, continuar = 's';
@@ -194,19 +259,20 @@ void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EX
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				ANFIBIO_NATIVO a(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+				
+				//anfibios_nat[id] = ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 
-				anfibios_nat.push_back(a);
+				//anfibios_nat.push_back(a);
 
 				//Cria o arquivo se não houver
-				ofstream appFile;
+				/*ofstream appFile;
 				appFile.open("anfibios_nativos.txt", ios::app);
 				if(!appFile){
 					cout << "Arquivo nao encontrado :( " << endl;
 					exit(0);	
 				}
 				appFile << id << ';' << classe << ';' << nome_cientifico << ';' << sexo << ';' << tamanho << ';' << dieta << ';' << veterinario << ';' <<  tratador << ';' <<  nome_batismo << ';' << total_mudas << ';' << ultima_muda[0] << '/' << ultima_muda[1] << '/' << ultima_muda[2]  << ';' << autorizacao_IBAMA << ';' << origem << ';' << autorizacao << ';' << '\n';
-				appFile.close();
+				appFile.close(); */
 				//Fecha o arquivo
 
 				if (anfibios_nat.size() == old_size){
@@ -223,9 +289,10 @@ void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EX
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				ANFIBIO_EXOTICO a(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+				anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO> (id, ANFIBIO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+				//anfibios_ex[id] = ANFIBIO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 
-				anfibios_ex.push_back(a);
+				//anfibios_ex.push_back(a);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -252,7 +319,7 @@ void cadastrar_anfibio(vector <ANFIBIO_NATIVO> &anfibios_nat, vector <ANFIBIO_EX
 	
 }
 
-void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFERO_EXOTICO> &mamiferos_ex){
+void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
 	int id;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
 	char sexo, tipo_func, continuar = 's';
@@ -301,9 +368,10 @@ void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFER
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				MAMIFERO_NATIVO m(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+				mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO> (id, MAMIFERO_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
+				//mamiferos_nat[id] = MAMIFERO_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 
-				mamiferos_nat.push_back(m);
+				//mamiferos_nat.push_back(m);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -330,9 +398,10 @@ void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFER
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				MAMIFERO_EXOTICO m(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+				mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO> (id, MAMIFERO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
+				//mamiferos_ex[id] = MAMIFERO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 
-				mamiferos_ex.push_back(m);
+				//mamiferos_ex.push_back(m);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -359,7 +428,7 @@ void cadastrar_mamifero(vector <MAMIFERO_NATIVO> &mamiferos_nat, vector <MAMIFER
 	
 }
 
-void cadastrar_reptil(vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTICO> &repteis_ex){
+void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex){
 	int id;
 	bool venenoso;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno;
@@ -411,9 +480,10 @@ void cadastrar_reptil(vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTIC
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				REPTIL_NATIVO r(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
+				repteis_nat.insert(pair <int, REPTIL_NATIVO> (id, REPTIL_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
+				//repteis_nat[id] = REPTIL_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 
-				repteis_nat.push_back(r);
+				//repteis_nat.push_back(r);
 			
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -440,9 +510,10 @@ void cadastrar_reptil(vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTIC
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				REPTIL_EXOTICO r(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
+				repteis_ex.insert(pair <int, REPTIL_EXOTICO> (id, REPTIL_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
+				//repteis_ex[id] = REPTIL_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 
-				repteis_ex.push_back(r);
+				//repteis_ex.push_back(r);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -469,7 +540,7 @@ void cadastrar_reptil(vector <REPTIL_NATIVO> &repteis_nat, vector <REPTIL_EXOTIC
 	
 }
 
-void cadastrar_ave(vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex){
+void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 	int id;
 	double tam_bico, envergadura;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
@@ -521,9 +592,10 @@ void cadastrar_ave(vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex)
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				AVE_NATIVO a(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
+				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+				//aves_nat[id] = AVE_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 
-				aves_nat.push_back(a);
+				//aves_nat.push_back(a);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -550,9 +622,10 @@ void cadastrar_ave(vector <AVE_NATIVO> &aves_nat, vector <AVE_EXOTICO> &aves_ex)
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				AVE_EXOTICO a(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
+				aves_ex.insert(pair <int, AVE_EXOTICO> (id, AVE_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+				//aves_ex[id] = AVE_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 
-				aves_ex.push_back(a);
+				//aves_ex.push_back(a);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;

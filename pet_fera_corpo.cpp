@@ -40,9 +40,9 @@ ANIMAL::~ANIMAL(){}
 
 
 //Animal Silvestre
-string ANIMAL_SILVESTRE::getAutorizacao_IBAMA(){
-	return autorizacao_IBAMA;
-}
+// string ANIMAL_SILVESTRE::getAutorizacao_IBAMA(){
+// 	return autorizacao_IBAMA;
+// }
 
 ANIMAL_SILVESTRE::ANIMAL_SILVESTRE(string aut){
 	this->autorizacao_IBAMA = aut;
@@ -65,12 +65,13 @@ ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, stri
 	this->autorizacao = a;
 }
 
-int ANIMAL_NATIVO::getId(){
-	return this->id;
-}
+// int ANIMAL_NATIVO::getId(){
+// 	return this->id;
+// }
 string ANIMAL_NATIVO::getAutorizacao_IBAMA(){
 	return this->autorizacao_IBAMA;
 }
+
 ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
 
 
@@ -78,34 +79,59 @@ ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
 //Anfibio Nativo
 ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
 ANFIBIO_NATIVO::~ANFIBIO_NATIVO(){}
+int ANFIBIO_NATIVO::getId(){
+	return id;
+}
+
 
 //Anfibio Exotico
 ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
 ANFIBIO_EXOTICO::~ANFIBIO_EXOTICO(){}
+int ANFIBIO_EXOTICO::getId(){
+	return id;
+}
 
 //MAmifero Nativo
 MAMIFERO_NATIVO::MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), MAMIFERO(cor){}
 MAMIFERO_NATIVO::~MAMIFERO_NATIVO(){}
+int MAMIFERO_NATIVO::getId(){
+	return id;
+}
 
 //Mamifero Exotico
 MAMIFERO_EXOTICO::MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), MAMIFERO(cor){}
 MAMIFERO_EXOTICO::~MAMIFERO_EXOTICO(){}
+int MAMIFERO_EXOTICO::getId(){
+	return id;
+}
 
 //Reptil Nativo
 REPTIL_NATIVO::REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), REPTIL(v, t){}
 REPTIL_NATIVO::~REPTIL_NATIVO(){}
+int REPTIL_NATIVO::getId(){
+	return id;
+}
 
 //Reptil Exotico
 REPTIL_EXOTICO::REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a): ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), REPTIL(v, t){}
 REPTIL_EXOTICO::~REPTIL_EXOTICO(){}
+int REPTIL_EXOTICO::getId(){
+	return id;
+}
 
 //Ave Nativo
 AVE_NATIVO::AVE_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), AVE(t, e){}
 AVE_NATIVO::~AVE_NATIVO(){}
+int AVE_NATIVO::getId(){
+	return id;
+}
 
 //Ave Exotico
 AVE_EXOTICO::AVE_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a): ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), AVE(t, e){}
 AVE_EXOTICO::~AVE_EXOTICO(){}
+int AVE_EXOTICO::getId(){
+	return id;
+}
 
 
 
@@ -116,15 +142,16 @@ string ANIMAL_EXOTICO::getPais_origem(){
 string ANIMAL_EXOTICO::getAutorizacao(){
 	return autorizacao;
 }
-		
+
+
 ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
 	this->pais_origem = p;
 	this->autorizacao = a;
 }
 
-int ANIMAL_EXOTICO::getId(){
-	return this->id;
-}
+// int ANIMAL_EXOTICO::getId(){
+// 	return this->id;
+// }
 string ANIMAL_EXOTICO::getAutorizacao_IBAMA(){
 	return this->autorizacao_IBAMA;
 }
@@ -139,6 +166,9 @@ int ANFIBIO::getTotal_mudas(){
 int* ANFIBIO::getUltima_muda(){
 	return ultima_muda;
 }
+// int ANFIBIO::getId(){
+// 	return id;
+// }
 
 ANFIBIO::ANFIBIO(int mudas, int data[3]){
 	total_mudas = mudas;
@@ -169,7 +199,6 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 ANFIBIO::~ANFIBIO(){}
 
 
-
 //Mamífero
 string MAMIFERO::getCor_pelo(){
 	return cor_pelo;
@@ -177,6 +206,10 @@ string MAMIFERO::getCor_pelo(){
 MAMIFERO::MAMIFERO(string cor){
 	cor_pelo = cor;
 }
+
+// int MAMIFERO::getId(){
+// 	return id;
+// }
 
 ostream& operator << (ostream &out, MAMIFERO_NATIVO &m){
 	cout << endl;
@@ -229,6 +262,9 @@ bool REPTIL::getVenenoso(){
 string REPTIL::getTipo_veneno(){
 	return tipo_veneno;
 }
+// int REPTIL::getId(){
+// 	return id;
+// }
 
 REPTIL::REPTIL(bool v, string t){
 	venenoso = v;
@@ -293,6 +329,9 @@ double AVE::getEnvergadura(){
 	return envergadura;
 }
 
+// int AVE::getId(){
+// 	return id;
+// }
 AVE::AVE(double t, double e){
 	tamanho_bico = t;
 	envergadura = e;
@@ -430,6 +469,8 @@ ostream& operator << (ostream &out, VETERINARIO &v){
 	return out;
 }
 
+
+
 //Tratador
 int TRATADOR::getNivel_seguranca(){
 	return nivel_seguranca;
@@ -438,6 +479,8 @@ int TRATADOR::getNivel_seguranca(){
 int TRATADOR::getId(){
 	return id;
 }
+
+
 
 TRATADOR::TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel){
 	id = i;
@@ -449,9 +492,7 @@ TRATADOR::TRATADOR(int i, string n, long int c, int ida, string t, char f, strin
 	especialidade = e;
 	nivel_seguranca = nivel;
 }
-TRATADOR::~TRATADOR(){
 
-}
 ostream& operator << (ostream &out, TRATADOR &v){
 	cout << endl;
 	cout << "**Tratador**" << endl << endl;
