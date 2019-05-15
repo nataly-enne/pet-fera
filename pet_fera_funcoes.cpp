@@ -5,55 +5,70 @@
 // 1- Remoção dos animais
 // 2- Utilizar o vector melhor
 
-void carregar_arquivos(){
+void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
 	string nome, matricula;
 	int id, total_mudas;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, ultima_muda, autorizacao_IBAMA, origem, autorizacao;
 	char sexo;
 	double tamanho;
-	string vetor_anfibios[13];
-
-
-
+	string vetor_anfibios[14];
 
 	ifstream appFile("anfibios_nat.txt");
 	if(!appFile.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 	}
 
-
+while(!appFile.eof()){
 	while(appFile.good()){
 		getline(appFile, vetor_anfibios[0], ';');
-		/*getline(id, vetor_anfibios[1], ';');
-		getline(id, vetor_anfibios[2], ';');
-		getline(id, vetor_anfibios[3], ';');
-		getline(id, vetor_anfibios[4], ';');
-		getline(id, vetor_anfibios[5], ';');
-		getline(id, vetor_anfibios[6], ';');
-		getline(id, vetor_anfibios[7], ';');
-		getline(id, vetor_anfibios[8], ';');
-		getline(id, vetor_anfibios[9], ';');
-		getline(id, vetor_anfibios[10], ';');
-		getline(id, vetor_anfibios[11], ';'); 
-		getline(id, vetor_anfibios[12], '\n');*/
+		getline(appFile, vetor_anfibios[1], ';');
+		getline(appFile, vetor_anfibios[2], ';');
+		getline(appFile, vetor_anfibios[3], ';');
+		getline(appFile, vetor_anfibios[4], ';');
+		getline(appFile, vetor_anfibios[5], ';');
+		getline(appFile, vetor_anfibios[6], ';');
+		getline(appFile, vetor_anfibios[7], ';');
+		getline(appFile, vetor_anfibios[8], ';');
+		getline(appFile, vetor_anfibios[9], ';');
+		getline(appFile, vetor_anfibios[10], ';');
+		getline(appFile, vetor_anfibios[11], ';');
+		getline(appFile, vetor_anfibios[12], ';'); 
+		getline(appFile, vetor_anfibios[13], '\n');
+	//}
+	id = stoi(vetor_anfibios[0]);
+	classe = vetor_anfibios[1];
+	nome_cientifico = vetor_anfibios[2];
+	sexo = (char) vetor_anfibios[3][0];
+	tamanho = stod(vetor_anfibios[4]);
+	dieta = vetor_anfibios[5];
+	veterinario = vetor_anfibios[6];
+	tratador = vetor_anfibios[7];
+	nome_batismo = vetor_anfibios[8];
+	total_mudas = stoi(vetor_anfibios[9]);
+	ultima_muda = vetor_anfibios[10];
+	autorizacao_IBAMA = vetor_anfibios[11];
+	origem = vetor_anfibios[12];
+	autorizacao = vetor_anfibios[13];
+
+	anfibios_nat.insert(pair(<int, ANFIBIO_NATIVO>(id, ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao))));
+
+	/*cout << "Id: " << id << endl;
+	cout << "Classe: " << classe << endl;
+	cout << "Nome cientifico: " << nome_cientifico << endl;
+	cout << "Sexo: " << sexo << endl;
+	cout << "Tamanho: " << tamanho << endl;
+	cout << "Dieta: " << dieta << endl;
+	cout << "Veterinario: " << veterinario << endl;
+	cout << "Tratador " << tratador << endl;
+	cout << "Nome Batismo: " << nome_batismo << endl;
+	cout << "Total Mudas: " << total_mudas << endl;
+	cout << "Ultima muda: " << ultima_muda << endl;
+	cout << "Autorizacao IBAMA: "  << autorizacao_IBAMA << endl;
+	cout << "Origem: " << origem << endl;
+	cout << "Autorizacao geral: " << autorizacao << endl; */
+
 	}
-	classe = vetor_anfibios[0];
-	/*nome_cientifico = vetor_anfibios[1];
-	sexo = (char) vetor_anfibios[2];
-	tamanho = (double)vetor_anfibios[3];
-	dieta = vetor_anfibios[4];
-	veterinario = vetor_anfibios[5];
-	tratador = vetor_anfibios[6];
-	nome_batismo = vetor_anfibios[7];
-	total_mudas = vetor_anfibios[8];
-	ultima_muda = vetor_anfibios[9];
-	autorizacao_IBAMA = vetor_anfibios[10];
-	origem = vetor_anfibios[11];
-	autorizacao = vetor_anfibios[12];*/
-
-	cout << "classe: " << classe << endl;
-
-
+}
 	//anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id,ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 
 /*
