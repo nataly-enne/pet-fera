@@ -19,20 +19,20 @@ int main(){
 	// map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
 	// mp_anfibio_nat.insert(0, X);
 
-	vector <ANFIBIO_NATIVO> anfibios_nat;
-	vector <ANFIBIO_EXOTICO> anfibios_ex;
+	map <int, ANFIBIO_NATIVO> anfibios_nat;
+	map <int, ANFIBIO_EXOTICO> anfibios_ex;
 
-	vector <MAMIFERO_NATIVO> mamiferos_nat;
-	vector <MAMIFERO_EXOTICO> mamiferos_ex;
+	map <int, MAMIFERO_NATIVO> mamiferos_nat;
+	map <int, MAMIFERO_EXOTICO> mamiferos_ex;
 
-	vector <REPTIL_NATIVO> repteis_nat;
-	vector <REPTIL_EXOTICO> repteis_ex;
+	map <int, REPTIL_NATIVO> repteis_nat;
+	map <int, REPTIL_EXOTICO> repteis_ex;
 
-	vector <AVE_NATIVO> aves_nat;
-	vector <AVE_EXOTICO> aves_ex;
+	map <int, AVE_NATIVO> aves_nat;
+	map <int, AVE_EXOTICO> aves_ex;
 
-	vector <VETERINARIO> vets;
-	vector <TRATADOR> tratadores;
+	map <int, VETERINARIO> vets;
+	map <int, TRATADOR> tratadores;
 
 
 	do{
