@@ -77,7 +77,7 @@ ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
 
 
 //Anfibio Nativo
-ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
+ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
 ANFIBIO_NATIVO::~ANFIBIO_NATIVO(){}
 int ANFIBIO_NATIVO::getId(){
 	return id;
@@ -85,7 +85,7 @@ int ANFIBIO_NATIVO::getId(){
 
 
 //Anfibio Exotico
-ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
+ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
 ANFIBIO_EXOTICO::~ANFIBIO_EXOTICO(){}
 int ANFIBIO_EXOTICO::getId(){
 	return id;
@@ -163,18 +163,16 @@ ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
 int ANFIBIO::getTotal_mudas(){
 	return total_mudas;
 }
-int* ANFIBIO::getUltima_muda(){
+string ANFIBIO::getUltima_muda(){
 	return ultima_muda;
 }
 // int ANFIBIO::getId(){
 // 	return id;
 // }
 
-ANFIBIO::ANFIBIO(int mudas, int data[3]){
+ANFIBIO::ANFIBIO(int mudas, string data){
 	total_mudas = mudas;
-	ultima_muda[0] = data[0];
-	ultima_muda[1] = data[1];
-	ultima_muda[2] = data[2];
+	ultima_muda = data;
 }
 ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	cout << endl;
