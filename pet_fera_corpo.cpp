@@ -87,7 +87,6 @@ int ANFIBIO_NATIVO::getId(){
 //Anfibio Exotico
 ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
 ANFIBIO_EXOTICO::~ANFIBIO_EXOTICO(){}
-
 int ANFIBIO_EXOTICO::getId(){
 	return id;
 }
@@ -198,7 +197,6 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 } 
 
 ANFIBIO::~ANFIBIO(){}
-
 
 
 //Mamífero

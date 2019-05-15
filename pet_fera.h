@@ -106,6 +106,7 @@ class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 	public:
 		//construtor
+		ANFIBIO_EXOTICO();
 		ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, int data[3], string aut, string pais, string a);
 		//destrutor
 		~ANFIBIO_EXOTICO();
@@ -132,6 +133,7 @@ class MAMIFERO{
 class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 	public:
 		//construtor
+		MAMIFERO_NATIVO();
 		MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
 		//destrutor
 		~MAMIFERO_NATIVO();
@@ -142,6 +144,7 @@ class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 	public:
 		//construtor
+		MAMIFERO_EXOTICO();
 		MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a);
 		//destrutor
 		~MAMIFERO_EXOTICO();
@@ -172,6 +175,7 @@ class REPTIL{
 class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
 	public:
 		//construtor
+		REPTIL_NATIVO();
 		REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
 		//destrutor
 		~REPTIL_NATIVO();
@@ -182,6 +186,7 @@ class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
 class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
 	public:
 		//construtor
+		REPTIL_EXOTICO();
 		REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
 		//destrutor
 		~REPTIL_EXOTICO();
@@ -210,6 +215,7 @@ class AVE{
 class AVE_NATIVO: public ANIMAL_NATIVO, AVE{
 	public:
 		//construtor
+		AVE_NATIVO();
 		AVE_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a);
 		//destrutor
 		~AVE_NATIVO();
@@ -219,6 +225,7 @@ class AVE_NATIVO: public ANIMAL_NATIVO, AVE{
 class AVE_EXOTICO: public ANIMAL_EXOTICO, AVE{
 	public:
 		//construtor
+		AVE_EXOTICO();
 		AVE_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a);
 		//destrutor
 		~AVE_EXOTICO();
@@ -281,7 +288,6 @@ class TRATADOR: public FUNCIONARIO{
 		//Construtor
 		TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel);
 		TRATADOR();
-		~TRATADOR();
 		//setters
 		void setNivel_seguranca(int nivel);
 		//getters
