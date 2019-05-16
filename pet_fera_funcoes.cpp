@@ -7,15 +7,23 @@
 
 
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
+<<<<<<< HEAD
 	int id, total_mudas, op = 1;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao_IBAMA, origem, autorizacao,  ultima_muda, cor, tipo_veneno;
 	char sexo;
+=======
+	int id, total_mudas, nivel_seg, idade;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao_IBAMA, origem, autorizacao,  ultima_muda, cor, tipo_veneno, crmv, nome, tipo_sang, especialidade;
+	char sexo, fator_rh;
+	long int cpf;
+>>>>>>> Hilton
 	double tamanho, tamanho_bico, envergadura;
 	bool venenoso; 
 	string vetor_anfibios[14];
 	string vetor_mamiferos[13];
 	string vetor_repteis[14];
 	string vetor_aves[14];
+<<<<<<< HEAD
 
 	//Carregando o arquivo "anfibios_nat.txt" para o seu map
 	ifstream appFile("anfibios_nat.txt");
@@ -39,6 +47,29 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile, vetor_anfibios[11], ';');
 				getline(appFile, vetor_anfibios[12], ';'); 
 				getline(appFile, vetor_anfibios[13], '\n');
+=======
+	string vetor_veterinarios[8];
+	string vetor_tratadores[8];
+
+	//Carregando o arquivo "anfibios_nat.txt" para o seu map
+	ifstream appFile("anfibios_nat.txt");
+	if(appFile.is_open()){
+		while(appFile.good()){
+			getline(appFile, vetor_anfibios[0], ';');
+			getline(appFile, vetor_anfibios[1], ';');
+			getline(appFile, vetor_anfibios[2], ';');
+			getline(appFile, vetor_anfibios[3], ';');
+			getline(appFile, vetor_anfibios[4], ';');
+			getline(appFile, vetor_anfibios[5], ';');
+			getline(appFile, vetor_anfibios[6], ';');
+			getline(appFile, vetor_anfibios[7], ';');
+			getline(appFile, vetor_anfibios[8], ';');
+			getline(appFile, vetor_anfibios[9], ';');
+			getline(appFile, vetor_anfibios[10], ';');
+			getline(appFile, vetor_anfibios[11], ';');
+			getline(appFile, vetor_anfibios[12], ';'); 
+			getline(appFile, vetor_anfibios[13], '\n');
+>>>>>>> Hilton
 		
 			id = stoi(vetor_anfibios[0]);
 			classe = vetor_anfibios[1];
@@ -55,17 +86,23 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			origem = vetor_anfibios[12];
 			autorizacao = vetor_anfibios[13];
 
+<<<<<<< HEAD
 			//cout << "ID: " << id << endl;
 
 			anfibios_nat.insert(pair <int, ANFIBIO_NATIVO>(id, ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 
 			}
+=======
+			anfibios_nat.insert(pair <int, ANFIBIO_NATIVO>(id, ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+		}
+>>>>>>> Hilton
 		appFile.close();
 	}
 
 
 	//Carregando o arquivo "anfibios_ex.txt" para o seu map
 	ifstream appFile2("anfibios_ex.txt");
+<<<<<<< HEAD
 	if(!appFile2.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -88,6 +125,25 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile2, vetor_anfibios[12], ';'); 
 				getline(appFile2, vetor_anfibios[13], '\n');
 		
+=======
+	if(appFile2.is_open()){
+		while(appFile2.good()){
+			getline(appFile2, vetor_anfibios[0], ';');
+			getline(appFile2, vetor_anfibios[1], ';');
+			getline(appFile2, vetor_anfibios[2], ';');
+			getline(appFile2, vetor_anfibios[3], ';');
+			getline(appFile2, vetor_anfibios[4], ';');
+			getline(appFile2, vetor_anfibios[5], ';');
+			getline(appFile2, vetor_anfibios[6], ';');
+			getline(appFile2, vetor_anfibios[7], ';');
+			getline(appFile2, vetor_anfibios[8], ';');
+			getline(appFile2, vetor_anfibios[9], ';');
+			getline(appFile2, vetor_anfibios[10], ';');
+			getline(appFile2, vetor_anfibios[11], ';');
+			getline(appFile2, vetor_anfibios[12], ';'); 
+			getline(appFile2, vetor_anfibios[13], '\n');
+	
+>>>>>>> Hilton
 			id = stoi(vetor_anfibios[0]);
 			classe = vetor_anfibios[1];
 			nome_cientifico = vetor_anfibios[2];
@@ -104,14 +160,19 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_anfibios[13];
 
 			anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO>(id, ANFIBIO_EXOTICO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 			}
+=======
+		}
+>>>>>>> Hilton
 		appFile2.close();
 	}
 
 
 	//Carregando o arquivo "mamiferos_nat.txt" para o seu map
 	ifstream appFile3("mamiferos_nat.txt");
+<<<<<<< HEAD
 	if(!appFile3.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -132,6 +193,24 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile3, vetor_mamiferos[11], ';');
 				getline(appFile3, vetor_mamiferos[12], '\n'); 
 		
+=======
+	if(appFile3.is_open()){
+		while(appFile3.good()){
+			getline(appFile3, vetor_mamiferos[0], ';');
+			getline(appFile3, vetor_mamiferos[1], ';');
+			getline(appFile3, vetor_mamiferos[2], ';');
+			getline(appFile3, vetor_mamiferos[3], ';');
+			getline(appFile3, vetor_mamiferos[4], ';');
+			getline(appFile3, vetor_mamiferos[5], ';');
+			getline(appFile3, vetor_mamiferos[6], ';');
+			getline(appFile3, vetor_mamiferos[7], ';');
+			getline(appFile3, vetor_mamiferos[8], ';');
+			getline(appFile3, vetor_mamiferos[9], ';');
+			getline(appFile3, vetor_mamiferos[10], ';');
+			getline(appFile3, vetor_mamiferos[11], ';');
+			getline(appFile3, vetor_mamiferos[12], '\n'); 
+	
+>>>>>>> Hilton
 			id = stoi(vetor_mamiferos[0]);
 			classe = vetor_mamiferos[1];
 			nome_cientifico = vetor_mamiferos[2];
@@ -147,14 +226,19 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_mamiferos[12];
 
 			mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO>(id, MAMIFERO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 			}
+=======
+		}
+>>>>>>> Hilton
 		appFile3.close();
 	}
 
 	
 	//Carregando o arquivo "mamiferos_nat.txt" para o seu map
 	ifstream appFile4("mamiferos_ex.txt");
+<<<<<<< HEAD
 	if(!appFile4.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -175,6 +259,24 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile4, vetor_mamiferos[11], ';');
 				getline(appFile4, vetor_mamiferos[12], '\n'); 
 		
+=======
+	if(appFile4.is_open()){
+		while(appFile4.good()){
+			getline(appFile4, vetor_mamiferos[0], ';');
+			getline(appFile4, vetor_mamiferos[1], ';');
+			getline(appFile4, vetor_mamiferos[2], ';');
+			getline(appFile4, vetor_mamiferos[3], ';');
+			getline(appFile4, vetor_mamiferos[4], ';');
+			getline(appFile4, vetor_mamiferos[5], ';');
+			getline(appFile4, vetor_mamiferos[6], ';');
+			getline(appFile4, vetor_mamiferos[7], ';');
+			getline(appFile4, vetor_mamiferos[8], ';');
+			getline(appFile4, vetor_mamiferos[9], ';');
+			getline(appFile4, vetor_mamiferos[10], ';');
+			getline(appFile4, vetor_mamiferos[11], ';');
+			getline(appFile4, vetor_mamiferos[12], '\n'); 
+	
+>>>>>>> Hilton
 			id = stoi(vetor_mamiferos[0]);
 			classe = vetor_mamiferos[1];
 			nome_cientifico = vetor_mamiferos[2];
@@ -190,13 +292,18 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_mamiferos[12];
 
 			mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO>(id, MAMIFERO_EXOTICO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 			}
+=======
+		}
+>>>>>>> Hilton
 		appFile4.close();
 	}
 
 	//Carregando o arquivo "repteis_nat.txt" para o seu map
 	ifstream appFile5("repteis_nat.txt");
+<<<<<<< HEAD
 	if(!appFile5.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -218,6 +325,25 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile5, vetor_repteis[12], ';');
 				getline(appFile5, vetor_repteis[13], '\n'); 
 		
+=======
+	if(appFile5.is_open()){
+		while(appFile5.good()){
+			getline(appFile5, vetor_repteis[0], ';');
+			getline(appFile5, vetor_repteis[1], ';');
+			getline(appFile5, vetor_repteis[2], ';');
+			getline(appFile5, vetor_repteis[3], ';');
+			getline(appFile5, vetor_repteis[4], ';');
+			getline(appFile5, vetor_repteis[5], ';');
+			getline(appFile5, vetor_repteis[6], ';');
+			getline(appFile5, vetor_repteis[7], ';');
+			getline(appFile5, vetor_repteis[8], ';');
+			getline(appFile5, vetor_repteis[9], ';');
+			getline(appFile5, vetor_repteis[10], ';');
+			getline(appFile5, vetor_repteis[11], ';');
+			getline(appFile5, vetor_repteis[12], ';');
+			getline(appFile5, vetor_repteis[13], '\n'); 
+	
+>>>>>>> Hilton
 			id = stoi(vetor_repteis[0]);
 			classe = vetor_repteis[1];
 			nome_cientifico = vetor_repteis[2];
@@ -234,14 +360,19 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_repteis[13];
 
 			repteis_nat.insert(pair <int, REPTIL_NATIVO>(id, REPTIL_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 		
 			}
+=======
+		}
+>>>>>>> Hilton
 		appFile5.close();
 	}
 
 	//Carregando o arquivo "repteis_ex.txt" para o seu map
 	ifstream appFile6("repteis_ex.txt");
+<<<<<<< HEAD
 	if(!appFile6.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -263,6 +394,25 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile6, vetor_repteis[12], ';');
 				getline(appFile6, vetor_repteis[13], '\n'); 
 		
+=======
+	if(appFile6.is_open()){
+		while(appFile6.good()){
+			getline(appFile6, vetor_repteis[0], ';');
+			getline(appFile6, vetor_repteis[1], ';');
+			getline(appFile6, vetor_repteis[2], ';');
+			getline(appFile6, vetor_repteis[3], ';');
+			getline(appFile6, vetor_repteis[4], ';');
+			getline(appFile6, vetor_repteis[5], ';');
+			getline(appFile6, vetor_repteis[6], ';');
+			getline(appFile6, vetor_repteis[7], ';');
+			getline(appFile6, vetor_repteis[8], ';');
+			getline(appFile6, vetor_repteis[9], ';');
+			getline(appFile6, vetor_repteis[10], ';');
+			getline(appFile6, vetor_repteis[11], ';');
+			getline(appFile6, vetor_repteis[12], ';');
+			getline(appFile6, vetor_repteis[13], '\n'); 
+	
+>>>>>>> Hilton
 			id = stoi(vetor_repteis[0]);
 			classe = vetor_repteis[1];
 			nome_cientifico = vetor_repteis[2];
@@ -279,13 +429,18 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_repteis[13];
 
 			repteis_ex.insert(pair <int, REPTIL_EXOTICO>(id, REPTIL_EXOTICO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 			}
+=======
+		}
+>>>>>>> Hilton
 		appFile6.close();
 	}
 
 	//Carregando o arquivo "anfibios_nat.txt" para o seu map
 	ifstream appFile7("aves_nat.txt");
+<<<<<<< HEAD
 	if(!appFile7.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -307,6 +462,25 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile7, vetor_anfibios[12], ';'); 
 				getline(appFile7, vetor_anfibios[13], '\n');
 		
+=======
+	if(appFile7.is_open()){
+		while(appFile.good()){
+			getline(appFile7, vetor_anfibios[0], ';');
+			getline(appFile7, vetor_anfibios[1], ';');
+			getline(appFile7, vetor_anfibios[2], ';');
+			getline(appFile7, vetor_anfibios[3], ';');
+			getline(appFile7, vetor_anfibios[4], ';');
+			getline(appFile7, vetor_anfibios[5], ';');
+			getline(appFile7, vetor_anfibios[6], ';');
+			getline(appFile7, vetor_anfibios[7], ';');
+			getline(appFile7, vetor_anfibios[8], ';');
+			getline(appFile7, vetor_anfibios[9], ';');
+			getline(appFile7, vetor_anfibios[10], ';');
+			getline(appFile7, vetor_anfibios[11], ';');
+			getline(appFile7, vetor_anfibios[12], ';'); 
+			getline(appFile7, vetor_anfibios[13], '\n');
+	
+>>>>>>> Hilton
 			id = stoi(vetor_aves[0]);
 			classe = vetor_aves[1];
 			nome_cientifico = vetor_aves[2];
@@ -323,13 +497,18 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_aves[13];
 
 			aves_nat.insert(pair <int, AVE_NATIVO>(id, AVE_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tamanho_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 			}
+=======
+		}
+>>>>>>> Hilton
 		appFile7.close();
 	}
 
 	//Carregando o arquivo "aves_ex.txt" para o seu map
 	ifstream appFile8("aves_ex.txt");
+<<<<<<< HEAD
 	if(!appFile8.is_open()){
 		cout << "ERROR: arquivo não existe!" << endl;
 		op = 0;
@@ -351,6 +530,25 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 				getline(appFile8, vetor_anfibios[12], ';'); 
 				getline(appFile8, vetor_anfibios[13], '\n');
 		
+=======
+	if(appFile8.is_open()){
+		while(appFile.good()){
+			getline(appFile8, vetor_anfibios[0], ';');
+			getline(appFile8, vetor_anfibios[1], ';');
+			getline(appFile8, vetor_anfibios[2], ';');
+			getline(appFile8, vetor_anfibios[3], ';');
+			getline(appFile8, vetor_anfibios[4], ';');
+			getline(appFile8, vetor_anfibios[5], ';');
+			getline(appFile8, vetor_anfibios[6], ';');
+			getline(appFile8, vetor_anfibios[7], ';');
+			getline(appFile8, vetor_anfibios[8], ';');
+			getline(appFile8, vetor_anfibios[9], ';');
+			getline(appFile8, vetor_anfibios[10], ';');
+			getline(appFile8, vetor_anfibios[11], ';');
+			getline(appFile8, vetor_anfibios[12], ';'); 
+			getline(appFile8, vetor_anfibios[13], '\n');
+	
+>>>>>>> Hilton
 			id = stoi(vetor_aves[0]);
 			classe = vetor_aves[1];
 			nome_cientifico = vetor_aves[2];
@@ -367,6 +565,7 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			autorizacao = vetor_aves[13];
 
 			aves_ex.insert(pair <int, AVE_EXOTICO>(id, AVE_EXOTICO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tamanho_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 
 			}
 		appFile8.close();
@@ -374,6 +573,63 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 
 
 
+=======
+		}
+		appFile8.close();
+	}
+	//carregando arquivo veterinarios.txt no map
+	ifstream appFile9("veterinarios.txt");
+	if(appFile9.is_open()){
+		while(appFile9.good()){
+			getline(appFile9, vetor_veterinarios[0], ';');
+			getline(appFile9, vetor_veterinarios[1], ';');
+			getline(appFile9, vetor_veterinarios[2], ';');
+			getline(appFile9, vetor_veterinarios[3], ';');
+			getline(appFile9, vetor_veterinarios[4], ';');
+			getline(appFile9, vetor_veterinarios[5], ';');
+			getline(appFile9, vetor_veterinarios[6], ';');
+			getline(appFile9, vetor_veterinarios[7], '\n');
+			
+			id = stoi(vetor_veterinarios[0]);
+			nome = vetor_veterinarios[1];
+			cpf = stol(vetor_veterinarios[2]);
+			idade = stoi(vetor_veterinarios[3]);
+			tipo_sang = vetor_veterinarios[4];
+			fator_rh = vetor_veterinarios[5][1];
+			especialidade = vetor_veterinarios[6];
+			crmv = vetor_veterinarios[7];
+
+			vets.insert(pair <int, VETERINARIO>(id, VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
+		}
+		appFile9.close();
+	}
+
+	//carregando arquivo "tratadores.txt"
+	ifstream appFile10("veterinarios.txt");
+	if(appFile10.is_open()){
+		while(appFile10.good()){
+			getline(appFile10, vetor_tratadores[0], ';');
+			getline(appFile10, vetor_tratadores[1], ';');
+			getline(appFile10, vetor_tratadores[2], ';');
+			getline(appFile10, vetor_tratadores[3], ';');
+			getline(appFile10, vetor_tratadores[4], ';');
+			getline(appFile10, vetor_tratadores[5], ';');
+			getline(appFile10, vetor_tratadores[6], ';');
+			getline(appFile10, vetor_tratadores[7], '\n');
+			
+			id = stoi(vetor_tratadores[0]);
+			nome = vetor_tratadores[1];
+			cpf = stol(vetor_tratadores[2]);
+			idade = stoi(vetor_tratadores[3]);
+			tipo_sang = vetor_tratadores[4];
+			fator_rh = vetor_tratadores[5][1];
+			especialidade = vetor_tratadores[6];
+			nivel_seg = stoi(vetor_tratadores[7]);
+			tratadores.insert(pair <int, TRATADOR>(id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
+		}
+		appFile10.close();
+	}
+>>>>>>> Hilton
 
 
 
@@ -522,19 +778,36 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 	int id, total_mudas;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
 
+<<<<<<< HEAD
 	char sexo, tipo_func, continuar = 's';
 	double tamanho;
 	unsigned int old_size;
+=======
+	char sexo, tipo_func, continuar;
+	double tamanho;
+	unsigned int old_size;
+	ofstream nativos;
+	ofstream exoticos;
+>>>>>>> Hilton
 
 	do{
 		cout << "Deseja cadastrar um ANFIBIO NATIVO ou ANNFIBIO EXOTICO? \n n - NATIVO\n e - EXOTICO" << endl;
 		cin >> tipo_func;
 		if(tipo_func != 'n' && tipo_func != 'e'){
+<<<<<<< HEAD
 			//continuar = 's';
 			continue;
 		}
 		else{
 			continuar = 'n';
+=======
+			cout << "Tipo invalido, tente novamente!" << endl;
+			continuar = 's';
+			continue;
+		}
+		else{
+			//continuar = 'n';
+>>>>>>> Hilton
 			cout << "Digite o id: " << endl;
 			cin >> id;
 			cout << "Digite a classe: " << endl;
@@ -557,6 +830,10 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			cout << "Insira o total de mudas:" << endl;
 			cin >> total_mudas;
 			cout << "Insira a data da última muda(D/M/A)" << endl;
+<<<<<<< HEAD
+=======
+			cin.ignore();
+>>>>>>> Hilton
 			getline(cin, ultima_muda);
 			cout << "Insira a autorizacao do IBAMA: " << endl;
 			cin.ignore();
@@ -571,6 +848,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
+<<<<<<< HEAD
 
 				
 
@@ -599,6 +877,18 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				}
 			}
 			else if(tipo_func == 'e'){
+=======
+				anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id,ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+
+				if (anfibios_nat.size() == old_size){
+					cout << "Falha no cadastro do animal! Tente novamente." << endl;
+					continuar = 's';
+					continue;
+				}
+		
+			}
+			else{
+>>>>>>> Hilton
 				old_size = anfibios_ex.size();
 				cout << "Digite o País de origem: " << endl;
 				getline(cin, origem);
@@ -606,6 +896,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				getline(cin, autorizacao);
 
 				anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO> (id, ANFIBIO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+<<<<<<< HEAD
 				//anfibios_ex[id] = ANFIBIO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 
 				//anfibios_ex.push_back(a);
@@ -633,6 +924,27 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 
 	}while(continuar == 's');
 	
+=======
+							
+				if (anfibios_nat.size() == old_size){
+					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					continuar = 's';
+					continue;
+				}	
+			}
+		}
+		cout << "Deseja cadastrar um novo animal? s-sim n-nao" << endl;
+		cin >> continuar;
+	}while(continuar == 's');
+	if(!anfibios_nat.empty()){
+		nativos.open("anfibios_nat.txt");
+		for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
+			nativos << (*it).second;
+			//nativos << (*it).second.getId() << ";" << (*it).second.getClasse() << ";" << (*it).second.getNome_cientifico() << ";" << (*it).second.getSexo();
+		}
+		nativos.close();
+	}
+>>>>>>> Hilton
 }
 
 void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){

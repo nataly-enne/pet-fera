@@ -92,6 +92,33 @@ class ANFIBIO{
 		//destrutor
 		~ANFIBIO();
 
+<<<<<<< HEAD
+=======
+};
+class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
+	public:
+		//construtor
+		ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
+		ANFIBIO_NATIVO();
+		//destrutor
+		~ANFIBIO_NATIVO();
+		friend ostream& operator << (ostream &out, ANFIBIO_NATIVO &m);
+		friend ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &m);
+		int getId();
+};
+class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
+	public:
+		//construtor
+		ANFIBIO_EXOTICO();
+
+		ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a);
+
+		//destrutor
+		~ANFIBIO_EXOTICO();
+		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
+		int getId();
+
+>>>>>>> Hilton
 };
 class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 	public:
@@ -100,6 +127,7 @@ class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 		ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
 
 
+<<<<<<< HEAD
 
 		ANFIBIO_NATIVO();
 		//destrutor
@@ -122,6 +150,8 @@ class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 };
 
 
+=======
+>>>>>>> Hilton
 class MAMIFERO{
 	protected:
 		string cor_pelo;
@@ -135,6 +165,7 @@ class MAMIFERO{
 		~MAMIFERO();
 
 		//friend ostream& operator << (ostream &out, MAMIFERO &m);
+<<<<<<< HEAD
 };
 class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 	public:
@@ -162,6 +193,35 @@ class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 
 
 
+=======
+};
+class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
+	public:
+		//construtor
+		MAMIFERO_NATIVO();
+		MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
+		//destrutor
+		~MAMIFERO_NATIVO();
+		int getId();
+
+		friend ostream& operator << (ostream &out, MAMIFERO_NATIVO &m);
+};
+class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
+	public:
+		//construtor
+		MAMIFERO_EXOTICO();
+		MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a);
+		//destrutor
+		~MAMIFERO_EXOTICO();
+		int getId();
+
+		friend ostream& operator << (ostream &out, MAMIFERO_EXOTICO &m);
+};
+
+
+
+
+>>>>>>> Hilton
 class REPTIL{
 	protected:
 		bool venenoso;
@@ -177,6 +237,7 @@ class REPTIL{
 		~REPTIL();
 
 		friend ostream& operator << (ostream &out, REPTIL &r);
+<<<<<<< HEAD
 };
 class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
 	public:
@@ -199,8 +260,35 @@ class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
 		int getId();
 
 		friend ostream& operator << (ostream &out, REPTIL_EXOTICO &r);
+=======
+>>>>>>> Hilton
+};
+class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
+	public:
+		//construtor
+		REPTIL_NATIVO();
+		REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
+		//destrutor
+		~REPTIL_NATIVO();
+		int getId();
+
+		friend ostream& operator << (ostream &out, REPTIL_NATIVO &r);
+};
+class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
+	public:
+		//construtor
+		REPTIL_EXOTICO();
+		REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
+		//destrutor
+		~REPTIL_EXOTICO();
+		int getId();
+
+<<<<<<< HEAD
+=======
+		friend ostream& operator << (ostream &out, REPTIL_EXOTICO &r);
 };
 
+>>>>>>> Hilton
 
 class AVE{
 	private:
