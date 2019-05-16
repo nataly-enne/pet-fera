@@ -96,7 +96,11 @@ class ANFIBIO{
 class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 	public:
 		//construtor
+
 		ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
+
+
+
 		ANFIBIO_NATIVO();
 		//destrutor
 		~ANFIBIO_NATIVO();
@@ -107,7 +111,9 @@ class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 	public:
 		//construtor
 		ANFIBIO_EXOTICO();
+
 		ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a);
+
 		//destrutor
 		~ANFIBIO_EXOTICO();
 		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
@@ -299,7 +305,9 @@ class TRATADOR: public FUNCIONARIO{
 };
 
 //funções de cadastrar objetos
+
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
+
 
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
 void cadastrar(map <int, VETERINARIO> &vets); //_vet(
