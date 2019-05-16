@@ -193,10 +193,24 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	cout << endl;
 	return out;	
 } 
+<<<<<<< HEAD
 
 ANFIBIO::~ANFIBIO(){}
 
 
+=======
+
+ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &a){
+	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
+	a.getVeterinario() << ";" << a.getTratador() << ";" << a.getNome_batismo() << ";" << a.getTotal_mudas() << ";" << a.getUltima_muda() << ";" << a.getAutorizacao_IBAMA() << ";" << 
+	a.getUf_origem() << ";" << a.getAutorizacao() << "\n";
+	return out;
+}
+
+ANFIBIO::~ANFIBIO(){}
+
+
+>>>>>>> Hilton
 //Mamífero
 string MAMIFERO::getCor_pelo(){
 	return cor_pelo;
@@ -355,6 +369,7 @@ ostream& operator << (ostream &out, AVE_NATIVO &a){
 	cout << endl;
 	return out;
 
+<<<<<<< HEAD
 }
 
 ostream& operator << (ostream &out, AVE_EXOTICO &a){
@@ -379,6 +394,32 @@ ostream& operator << (ostream &out, AVE_EXOTICO &a){
 
 }
 
+=======
+}
+
+ostream& operator << (ostream &out, AVE_EXOTICO &a){
+	cout << endl;
+	cout << "**AVE**" << endl << endl;
+	out << "Id: " << a.getId() << endl;
+	out << "Clase: " << a.getClasse() << endl;
+	out << "Nome Científico: " << a.getNome_cientifico() << endl;
+	out << "Sexo: " << a.getSexo() << endl;
+	out << "Tamanho: " << a.getTamanho() << endl;
+	out << "Dieta: " << a.getDieta() << endl;
+	out << "Veterinário: " << a.getVeterinario() << endl;
+	out << "Tratador: " << a.getTratador() << endl;
+	out << "Nome de batismo: " << a.getNome_batismo() << endl;
+	out << "Tamanho do bico: " << a.getTamanho_bico() << endl;
+	out << "Envergadura: " << a.getEnvergadura() << endl;
+	out << "Autorização IBAMA: " << a.getAutorizacao_IBAMA() << endl;
+	out << "País de origem: " << a.getPais_origem() << endl;
+	out << "Autorização geral: " << a.getAutorizacao() << endl;
+	cout << endl;
+	return out;
+
+}
+
+>>>>>>> Hilton
 
 AVE::~AVE(){}
 
