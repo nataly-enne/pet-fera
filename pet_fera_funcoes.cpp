@@ -25,46 +25,26 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	ifstream appFile("anfibios_nat.txt");
 
 	int cont = 0, j;
+
 	if(appFile.is_open()){
-		j = 0;
 		while(appFile.good()){
 			getline(appFile, line);
-			
-			
-			for(int i=0; i<(int)line.size(); i++){
-				
-				//int contador = 0;
+			j = 0;
+			for(int i=0; i<(int)line.length(); i++){
 				if(line[i]  == ';'){
-					//tmp[j-1] = '\0';
-					vetor_anfibios[cont] = tmp[0];
-					
+					vetor_anfibios[cont] = tmp;
+					cout << "tmp: " << tmp <<endl;
+					tmp.erase();
 					cont++;
 					j = 0;
 				}
 				else{
-					tmp[j] = line[i];
-					//cout << "tmp: " << tmp[j] << endl;
+					tmp.push_back(line[i]);
 					j++;
-					
 				}
-				
 
-			}cout << "vetor[0]: " << vetor_anfibios[0] << endl;
-			/*etline(appFile, vetor_anfibios[0], ';');
-			getline(appFile, vetor_anfibios[1], ';');
-			getline(appFile, vetor_anfibios[2], ';');
-			getline(appFile, vetor_anfibios[3], ';');
-			getline(appFile, vetor_anfibios[4], ';');
-			getline(appFile, vetor_anfibios[5], ';');
-			getline(appFile, vetor_anfibios[6], ';');
-			getline(appFile, vetor_anfibios[7], ';');
-			getline(appFile, vetor_anfibios[8], ';');
-			getline(appFile, vetor_anfibios[9], ';');
-			getline(appFile, vetor_anfibios[10], ';');
-			getline(appFile, vetor_anfibios[11], ';');
-			getline(appFile, vetor_anfibios[12], ';'); 
-			getline(appFile, vetor_anfibios[13], '\n');
-		
+			}
+
 			id = stoi(vetor_anfibios[0]);
 			classe = vetor_anfibios[1];
 			nome_cientifico = vetor_anfibios[2];
@@ -78,33 +58,33 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			ultima_muda = vetor_anfibios[10];
 			autorizacao_IBAMA = vetor_anfibios[11];
 			origem = vetor_anfibios[12];
-			autorizacao = vetor_anfibios[13];*/
+			autorizacao = vetor_anfibios[13];
 
 			anfibios_nat.insert(pair <int, ANFIBIO_NATIVO>(id, ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 		}
 		appFile.close();
 	}
 
-/*
+
 	//Carregando o arquivo "anfibios_ex.txt" para o seu map
 	ifstream appFile2("anfibios_ex.txt");
-	if(appFile2.is_open()){
-		while(appFile2.good()){
-			getline(appFile2, vetor_anfibios[0], ';');
-			getline(appFile2, vetor_anfibios[1], ';');
-			getline(appFile2, vetor_anfibios[2], ';');
-			getline(appFile2, vetor_anfibios[3], ';');
-			getline(appFile2, vetor_anfibios[4], ';');
-			getline(appFile2, vetor_anfibios[5], ';');
-			getline(appFile2, vetor_anfibios[6], ';');
-			getline(appFile2, vetor_anfibios[7], ';');
-			getline(appFile2, vetor_anfibios[8], ';');
-			getline(appFile2, vetor_anfibios[9], ';');
-			getline(appFile2, vetor_anfibios[10], ';');
-			getline(appFile2, vetor_anfibios[11], ';');
-			getline(appFile2, vetor_anfibios[12], ';'); 
-			getline(appFile2, vetor_anfibios[13], '\n');
-	
+		if(appFile2.is_open()){
+			while(appFile2.good()){
+				getline(appFile2, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_anfibios[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
+
 			id = stoi(vetor_anfibios[0]);
 			classe = vetor_anfibios[1];
 			nome_cientifico = vetor_anfibios[2];
@@ -124,26 +104,27 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		}
 		appFile2.close();
 	}
-
+/*
 
 	//Carregando o arquivo "mamiferos_nat.txt" para o seu map
 	ifstream appFile3("mamiferos_nat.txt");
 	if(appFile3.is_open()){
 		while(appFile3.good()){
-			getline(appFile3, vetor_mamiferos[0], ';');
-			getline(appFile3, vetor_mamiferos[1], ';');
-			getline(appFile3, vetor_mamiferos[2], ';');
-			getline(appFile3, vetor_mamiferos[3], ';');
-			getline(appFile3, vetor_mamiferos[4], ';');
-			getline(appFile3, vetor_mamiferos[5], ';');
-			getline(appFile3, vetor_mamiferos[6], ';');
-			getline(appFile3, vetor_mamiferos[7], ';');
-			getline(appFile3, vetor_mamiferos[8], ';');
-			getline(appFile3, vetor_mamiferos[9], ';');
-			getline(appFile3, vetor_mamiferos[10], ';');
-			getline(appFile3, vetor_mamiferos[11], ';');
-			getline(appFile3, vetor_mamiferos[12], '\n'); 
-	
+				getline(appFile3, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_mamiferos[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
+
 			id = stoi(vetor_mamiferos[0]);
 			classe = vetor_mamiferos[1];
 			nome_cientifico = vetor_mamiferos[2];
@@ -168,20 +149,21 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	ifstream appFile4("mamiferos_ex.txt");
 	if(appFile4.is_open()){
 		while(appFile4.good()){
-			getline(appFile4, vetor_mamiferos[0], ';');
-			getline(appFile4, vetor_mamiferos[1], ';');
-			getline(appFile4, vetor_mamiferos[2], ';');
-			getline(appFile4, vetor_mamiferos[3], ';');
-			getline(appFile4, vetor_mamiferos[4], ';');
-			getline(appFile4, vetor_mamiferos[5], ';');
-			getline(appFile4, vetor_mamiferos[6], ';');
-			getline(appFile4, vetor_mamiferos[7], ';');
-			getline(appFile4, vetor_mamiferos[8], ';');
-			getline(appFile4, vetor_mamiferos[9], ';');
-			getline(appFile4, vetor_mamiferos[10], ';');
-			getline(appFile4, vetor_mamiferos[11], ';');
-			getline(appFile4, vetor_mamiferos[12], '\n'); 
-	
+				getline(appFile4, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_mamiferos[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
+
 			id = stoi(vetor_mamiferos[0]);
 			classe = vetor_mamiferos[1];
 			nome_cientifico = vetor_mamiferos[2];
@@ -205,20 +187,21 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	ifstream appFile5("repteis_nat.txt");
 	if(appFile5.is_open()){
 		while(appFile5.good()){
-			getline(appFile5, vetor_repteis[0], ';');
-			getline(appFile5, vetor_repteis[1], ';');
-			getline(appFile5, vetor_repteis[2], ';');
-			getline(appFile5, vetor_repteis[3], ';');
-			getline(appFile5, vetor_repteis[4], ';');
-			getline(appFile5, vetor_repteis[5], ';');
-			getline(appFile5, vetor_repteis[6], ';');
-			getline(appFile5, vetor_repteis[7], ';');
-			getline(appFile5, vetor_repteis[8], ';');
-			getline(appFile5, vetor_repteis[9], ';');
-			getline(appFile5, vetor_repteis[10], ';');
-			getline(appFile5, vetor_repteis[11], ';');
-			getline(appFile5, vetor_repteis[12], ';');
-			getline(appFile5, vetor_repteis[13], '\n'); 
+				getline(appFile, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_repteis[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
+
 	
 			id = stoi(vetor_repteis[0]);
 			classe = vetor_repteis[1];
@@ -244,20 +227,21 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	ifstream appFile6("repteis_ex.txt");
 	if(appFile6.is_open()){
 		while(appFile6.good()){
-			getline(appFile6, vetor_repteis[0], ';');
-			getline(appFile6, vetor_repteis[1], ';');
-			getline(appFile6, vetor_repteis[2], ';');
-			getline(appFile6, vetor_repteis[3], ';');
-			getline(appFile6, vetor_repteis[4], ';');
-			getline(appFile6, vetor_repteis[5], ';');
-			getline(appFile6, vetor_repteis[6], ';');
-			getline(appFile6, vetor_repteis[7], ';');
-			getline(appFile6, vetor_repteis[8], ';');
-			getline(appFile6, vetor_repteis[9], ';');
-			getline(appFile6, vetor_repteis[10], ';');
-			getline(appFile6, vetor_repteis[11], ';');
-			getline(appFile6, vetor_repteis[12], ';');
-			getline(appFile6, vetor_repteis[13], '\n'); 
+				getline(appFile6, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_repteis[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
+
 	
 			id = stoi(vetor_repteis[0]);
 			classe = vetor_repteis[1];
@@ -282,21 +266,21 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	//Carregando o arquivo "anfibios_nat.txt" para o seu map
 	ifstream appFile7("aves_nat.txt");
 	if(appFile7.is_open()){
-		while(appFile.good()){
-			getline(appFile7, vetor_anfibios[0], ';');
-			getline(appFile7, vetor_anfibios[1], ';');
-			getline(appFile7, vetor_anfibios[2], ';');
-			getline(appFile7, vetor_anfibios[3], ';');
-			getline(appFile7, vetor_anfibios[4], ';');
-			getline(appFile7, vetor_anfibios[5], ';');
-			getline(appFile7, vetor_anfibios[6], ';');
-			getline(appFile7, vetor_anfibios[7], ';');
-			getline(appFile7, vetor_anfibios[8], ';');
-			getline(appFile7, vetor_anfibios[9], ';');
-			getline(appFile7, vetor_anfibios[10], ';');
-			getline(appFile7, vetor_anfibios[11], ';');
-			getline(appFile7, vetor_anfibios[12], ';'); 
-			getline(appFile7, vetor_anfibios[13], '\n');
+		while(appFile7.good()){
+				getline(appFile7, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_aves[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
 	
 			id = stoi(vetor_aves[0]);
 			classe = vetor_aves[1];
@@ -321,21 +305,21 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	//Carregando o arquivo "aves_ex.txt" para o seu map
 	ifstream appFile8("aves_ex.txt");
 	if(appFile8.is_open()){
-		while(appFile.good()){
-			getline(appFile8, vetor_anfibios[0], ';');
-			getline(appFile8, vetor_anfibios[1], ';');
-			getline(appFile8, vetor_anfibios[2], ';');
-			getline(appFile8, vetor_anfibios[3], ';');
-			getline(appFile8, vetor_anfibios[4], ';');
-			getline(appFile8, vetor_anfibios[5], ';');
-			getline(appFile8, vetor_anfibios[6], ';');
-			getline(appFile8, vetor_anfibios[7], ';');
-			getline(appFile8, vetor_anfibios[8], ';');
-			getline(appFile8, vetor_anfibios[9], ';');
-			getline(appFile8, vetor_anfibios[10], ';');
-			getline(appFile8, vetor_anfibios[11], ';');
-			getline(appFile8, vetor_anfibios[12], ';'); 
-			getline(appFile8, vetor_anfibios[13], '\n');
+		while(appFile8.good()){
+				getline(appFile8, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_aves[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
 	
 			id = stoi(vetor_aves[0]);
 			classe = vetor_aves[1];
@@ -360,14 +344,20 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	ifstream appFile9("veterinarios.txt");
 	if(appFile9.is_open()){
 		while(appFile9.good()){
-			getline(appFile9, vetor_veterinarios[0], ';');
-			getline(appFile9, vetor_veterinarios[1], ';');
-			getline(appFile9, vetor_veterinarios[2], ';');
-			getline(appFile9, vetor_veterinarios[3], ';');
-			getline(appFile9, vetor_veterinarios[4], ';');
-			getline(appFile9, vetor_veterinarios[5], ';');
-			getline(appFile9, vetor_veterinarios[6], ';');
-			getline(appFile9, vetor_veterinarios[7], '\n');
+				getline(appFile9, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_veterinarios[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
 			
 			id = stoi(vetor_veterinarios[0]);
 			nome = vetor_veterinarios[1];
@@ -387,14 +377,20 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	ifstream appFile10("veterinarios.txt");
 	if(appFile10.is_open()){
 		while(appFile10.good()){
-			getline(appFile10, vetor_tratadores[0], ';');
-			getline(appFile10, vetor_tratadores[1], ';');
-			getline(appFile10, vetor_tratadores[2], ';');
-			getline(appFile10, vetor_tratadores[3], ';');
-			getline(appFile10, vetor_tratadores[4], ';');
-			getline(appFile10, vetor_tratadores[5], ';');
-			getline(appFile10, vetor_tratadores[6], ';');
-			getline(appFile10, vetor_tratadores[7], '\n');
+				getline(appFile10, line);
+				j = 0;
+				for(int i=0; i<(int)line.length(); i++){
+					if(line[i]  == ';'){
+						vetor_aves[cont] = tmp;
+						tmp.erase();
+						cont++;
+						j = 0;
+					}
+					else{
+						tmp.push_back(line[i]);
+						j++;
+					}
+				}
 			
 			id = stoi(vetor_tratadores[0]);
 			nome = vetor_tratadores[1];
@@ -408,9 +404,7 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		}
 		appFile10.close();
 	}
-
 */
-
 }
 
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){ //_func
@@ -571,7 +565,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			continue;
 		}
 		else{
-			//continuar = 'n';
+			continuar = 'n';
 			cout << "Digite o id: " << endl;
 			cin >> id;
 			cout << "Digite a classe: " << endl;
@@ -634,17 +628,23 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				}	
 			}
 		}
-		cout << "Deseja cadastrar um novo animal? s-sim n-nao" << endl;
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
-	}while(continuar == 'n');
-	if(!anfibios_nat.empty()){
-		nativos.open("anfibios_nat.txt");
-		for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
-			nativos << (*it).second;
-			//nativos << (*it).second.getId() << ";" << (*it).second.getClasse() << ";" << (*it).second.getNome_cientifico() << ";" << (*it).second.getSexo();
-		}
-		nativos.close();
-	}
+		}while(continuar == 's');
+			if(!anfibios_nat.empty()){
+				nativos.open("anfibios_nat.txt");
+				for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
+					nativos << (*it).second;
+				}
+				nativos.close();
+			}
+			if(!anfibios_ex.empty()){
+				exoticos.open("anfibios_ex.txt");
+				for(auto it = anfibios_ex.begin(); it != anfibios_ex.end(); it++){
+					exoticos << (*it).second;
+				}
+				exoticos.close();
+			}
 }
 
 void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
@@ -653,6 +653,8 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 	char sexo, tipo_func, continuar = 's';
 	double tamanho;
 	unsigned int old_size;
+	ofstream nativos;
+	ofstream exoticos;
 
 	do{
 		cout << "Deseja cadastrar um MAMIFERO NATIVO ou MAMIFERO EXOTICO? \n n - NATIVO\n e - EXOTICO" << endl;
@@ -697,9 +699,8 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				getline(cin, autorizacao);
 
 				mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO> (id, MAMIFERO_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
-				//mamiferos_nat[id] = MAMIFERO_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+	
 
-				//mamiferos_nat.push_back(m);
 
 				//Cria o arquivo se não houver
 				ofstream appFile;
@@ -727,32 +728,27 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				getline(cin, autorizacao);
 
 				mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO> (id, MAMIFERO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
-				//mamiferos_ex[id] = MAMIFERO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
-
-				//mamiferos_ex.push_back(m);
-
-				//Cria o arquivo se não houver
-				ofstream appFile;
-				appFile.open("mamiferos_exoticos.txt", ios::app);
-				if(!appFile){
-					cout << "Arquivo nao encontrado :( " << endl;
-					exit(0);	
-				}
-				appFile << id << ';' << classe << ';' << nome_cientifico << ';' << sexo << ';' << tamanho << ';' << dieta << ';' << veterinario << ';' <<  tratador << ';' <<  nome_batismo << ';' << cor  << ';' << autorizacao_IBAMA << ';' << origem << ';' << autorizacao << ';' << '\n';
-				appFile.close();
-				//Fecha o arquivo
-
-				if (mamiferos_ex.size() == old_size){
-					cout << "Falha no cadastro do animal!" << endl;
-				}
-				else{
-					cout << "Cadastro efetuado com sucesso!!" << endl;
-				}
+	
 			}
 		}
 	
-
-	}while(continuar == 's');
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+		}while(continuar == 's');
+			if(!mamiferos_nat.empty()){
+					nativos.open("mamiferos_nat.txt");
+					for(auto it = mamiferos_nat.begin(); it != mamiferos_nat.end(); it++){
+						nativos << (*it).second;
+					}
+					nativos.close();
+			}
+			if(!mamiferos_ex.empty()){
+					exoticos.open("mamiferos_ex.txt");
+					for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end(); it++){
+						exoticos << (*it).second;
+					}
+					exoticos.close();
+			}
 	
 }
 

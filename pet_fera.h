@@ -114,6 +114,7 @@ class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 		//destrutor
 		~ANFIBIO_EXOTICO();
 		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
+		friend ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &m);
 		int getId();
 
 };
@@ -143,6 +144,7 @@ class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 		int getId();
 
 		friend ostream& operator << (ostream &out, MAMIFERO_NATIVO &m);
+		friend ofstream& operator << (ofstream &out, MAMIFERO_NATIVO &m);
 };
 class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 	public:
@@ -154,6 +156,7 @@ class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 		int getId();
 
 		friend ostream& operator << (ostream &out, MAMIFERO_EXOTICO &m);
+		friend ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m);
 };
 
 

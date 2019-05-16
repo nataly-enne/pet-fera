@@ -186,7 +186,7 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	out << "Veterinário: " << a.getVeterinario() << endl;
 	out << "Nome de batismo: " << a.getTratador() << endl;
 	out << "Total de mudas: " << a.getTotal_mudas() << endl;
-	out << "Última muda: " << a.getUltima_muda()[0] << "-" << a.getUltima_muda()[1] << "-" << a.getUltima_muda()[2] << endl;
+	out << "Última muda: " << a.getUltima_muda() << endl;
 	out << "Autorização IBAMA: " << a.getAutorizacao_IBAMA() << endl;
 	out << "UF de origem: " << a.getUf_origem() << endl;
 	out << "Autorização geral: " << a.getAutorizacao() << endl;
@@ -194,14 +194,24 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	return out;	
 } 
 
+//Escrevendo no arquivo "anfibios_nat.txt"
 ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &a){
 	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
 	a.getVeterinario() << ";" << a.getTratador() << ";" << a.getNome_batismo() << ";" << a.getTotal_mudas() << ";" << a.getUltima_muda() << ";" << a.getAutorizacao_IBAMA() << ";" << 
-	a.getUf_origem() << ";" << a.getAutorizacao() << "\n";
+	a.getUf_origem() << ";" << a.getAutorizacao() << ";" << '\n';
+	return out;
+}
+
+//Escrevendo no arquivo "anfibios_ex.txt"
+ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &a){
+	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
+	a.getVeterinario() << ";" << a.getTratador() << ";" << a.getNome_batismo() << ";" << a.getTotal_mudas() << ";" << a.getUltima_muda() << ";" << a.getAutorizacao_IBAMA() << ";" << 
+	a.getPais_origem() << ";" << a.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
 ANFIBIO::~ANFIBIO(){}
+
 
 
 //Mamífero
@@ -233,6 +243,20 @@ ostream& operator << (ostream &out, MAMIFERO_NATIVO &m){
 	out << "UF de origem: " << m.getUf_origem() << endl;
 	out << "Autorização geral: " << m.getAutorizacao() << endl;
 	cout << endl;
+	return out;
+}
+
+ofstream& operator << (ofstream &out, MAMIFERO_NATIVO &m){
+	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
+	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";" << ";" << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
+	m.getUf_origem() << ";" << m.getAutorizacao() << ";";
+	return out;
+}
+
+ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m){
+	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
+	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";" << ";" << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
+	m.getPais_origem() << ";" << m.getAutorizacao() << ";";
 	return out;
 }
 
