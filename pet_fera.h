@@ -96,15 +96,12 @@ class ANFIBIO{
 class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 	public:
 		//construtor
-
 		ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
-
-
-
 		ANFIBIO_NATIVO();
 		//destrutor
 		~ANFIBIO_NATIVO();
 		friend ostream& operator << (ostream &out, ANFIBIO_NATIVO &m);
+		friend ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &m);
 		int getId();
 };
 class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{

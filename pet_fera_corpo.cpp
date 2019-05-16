@@ -194,6 +194,13 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	return out;	
 } 
 
+ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &a){
+	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
+	a.getVeterinario() << ";" << a.getTratador() << ";" << a.getNome_batismo() << ";" << a.getTotal_mudas() << ";" << a.getUltima_muda() << ";" << a.getAutorizacao_IBAMA() << ";" << 
+	a.getUf_origem() << ";" << a.getAutorizacao() << "\n";
+	return out;
+}
+
 ANFIBIO::~ANFIBIO(){}
 
 
