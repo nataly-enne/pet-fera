@@ -35,6 +35,10 @@ int main(){
 	map <int, TRATADOR> tratadores;
 
 
+	carregar_arquivos(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex, vets, tratadores);
+
+
+
 	do{
 		cout << "***MENU INICIAL***" << endl << endl;
 		cout << "0- Sair" << endl;
