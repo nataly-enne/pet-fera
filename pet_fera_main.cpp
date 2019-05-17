@@ -41,7 +41,7 @@ int main(){
 				cadastrar_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
 			case 4:
-				alterar_dados();
+				alterar_dados(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
 
 		}

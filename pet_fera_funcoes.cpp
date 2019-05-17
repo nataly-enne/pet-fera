@@ -967,27 +967,12 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex)
 	
 }
 
-void alterar_dados(){
+void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 	char tipo_animal, opcao;
-	char continuar = 'n', resp;
+	char continuar = 's', resp, op='s';
 
-	do{
-		cout << "Alterar dados de um animal? \n s/n" << endl;
-		cin >> opcao;
-		if(opcao != 's'){
-			cout << "Opção inválida!! Tente novamente!\n" << endl;
-			cout << endl;
-			cout << "Deseja sair? s/n" << endl;
-			cin >> resp;
-			if(resp == 's'){
-				continuar = 'n';;
-				break;
-			}
-			continuar = 's';
-			continue;
-		}
-		else{
-			cout << "Qual animal a ser editado? \n a - anfíbio\n m - mamífero \n r - reptil \n v - ave" << endl;
+		do{
+			cout << "Qual animal deseja editar? \n a - anfíbio\n m - mamífero \n r - reptil \n v - ave" << endl;
 			cin >> tipo_animal;
 			if(tipo_animal != 'a' && tipo_animal != 'm' && tipo_animal != 'r' && tipo_animal != 'v' ){
 				cout << "Opção inválida!! Tente novamente!\n" << endl;
@@ -1014,161 +999,117 @@ void alterar_dados(){
 					}
 					else{
 						if(tipo_animal == 'a' && opcao == 'n'){
-							fstream appFile("anfibios_nativos.txt", ios::in | ios::out); //Abrir para leitura e escrita ao mesmo tempo
-							string str;
-							int id_buscado, id;
-							char delim = ';';
+							int id_buscado;
 
-							//map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
-	
 							cout << "Insira o ID buscado: " << endl;
 							cin >> id_buscado;
 
-							while(appFile){
-								if(!appFile.eof()){
+							auto result = anfibios_nat.find(id_buscado);
+						
+							if(result != anfibios_nat.end()){
+								cout << "ID existe!" << endl;
 
-									getline(appFile, str);
-									for(int i=0; i<(int)str.size(); i++){
+								int total_mudas;
+								string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
+								char sexo;;
+								double tamanho;
+								ofstream nativos;
 
-										if(str[i] == delim){
-											int tmp = i;
-											for(int j=0; j<tmp; j++){
-												istringstream(str) >> id;
-												if(id_buscado == id){
-													cout << "Id encontrado" << endl;
-													break;
-												}
-											}
-											cout << endl;
-											break;
-										}
+								cout << "Digite a classe: " << endl;
+								cin.ignore();
+								getline(cin, classe);
+								cout << "Digite o nome científico: " << endl;
+								getline(cin, nome_cientifico);
+								cout << "Digite a dieta: " << endl;
+								getline(cin, dieta);
+								cout << "Digite o nome do veterinario: " << endl;
+								getline(cin, veterinario);
+								cout << "Digite o nome do tratador: " << endl;
+								getline(cin, tratador);
+								cout << "Digite o nome de batismo: " << endl;
+								getline(cin, nome_batismo);
+								cout << "Digite o sexo do animal: " << endl;
+								cin >> sexo;
+								cout << "Digite o tamanho do animal: " << endl;
+								cin >> tamanho;
+								cout << "Insira o total de mudas:" << endl;
+								cin >> total_mudas;
+								cout << "Insira a data da última muda(D/M/A)" << endl;
+								cin.ignore();
+								getline(cin, ultima_muda);
+								cout << "Insira a autorizacao do IBAMA: " << endl;
+								getline(cin, autorizacao_IBAMA);
+								cout << "Digite a UF de origem: " << endl;
+								getline(cin, origem);
+								cout << "Insira a autorizacao do animal: " << endl;
+								getline(cin, autorizacao);
 
+								/*for(auto it = vets.begin(); it != vets.end(); it++){
+									veterinarios << (*it).second;*/
 
+								//map <int, ANFIBIO_NATIVO>::iterator it;
+								//auto it = anfibios_nat.find(id_buscado);
+								anfibios_nat[id_buscado] = ANFIBIO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+								//.insert(pair <int, ANFIBIO_NATIVO> (id_buscado,ANFIBIO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+								
+								/*if(!anfibios_nat.empty()){
+									nativos.open("anfibios_nat.txt");
+									for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
+										nativos << (*it).second;
 									}
-									
-								}else{
-									appFile.close();
-									break;
-								}
+									nativos.close();
+								}*/
 
 							}
+							else{
+								cout << "ID não existe!" << endl;
+							}
+
+							cout << "Editar outro ?" << endl;
+							cin >> op;
 						
+
+
 
 						}
 						else if(tipo_animal == 'a' && opcao == 'e'){
-							fstream appFile("anfibios_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'm' && opcao == 'n'){
-							fstream appFile("mamiferos_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'm' && opcao == 'e'){
-							fstream appFile("mamiferos_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'r' && opcao == 'n'){
-							fstream appFile("repteis_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'r' && opcao == 'e'){
-							fstream appFile("repteis_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'v' && opcao == 'n'){
-							fstream appFile("aves_nativas.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'v' && opcao == 'e'){
-							fstream appFile("aves_exoticas.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 
 						//cout << "ok" << endl;
 					}
 			}
-		}
 
 
-
-	}while(continuar == 's');
+	}while(op == 's');
 
 }
 
-
-
-/*
-
-//vector <ANIMAL_NATIVO> &nativos, vector <ANIMAL_EXOTICO> &exoticos, vector <ANIMAL_SILVESTRE> &silvestres
-
-
-//void remover_animal()
-
-//menu listar animal */
-/*
-void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v){
-
-	char tipo_func;
-	char continuar = 'n';
-
-	do{
-		cout << "Qual tipo de animal você quer listar? \n a - anfíbio\n m - mamífero \n r - repteis \n e - aves" << endl;
-		cin >> tipo_func;
-		if(tipo_func != 'a' && tipo_func != 'm' && tipo_func != 'r' && tipo_func != 'v'){
-			cout << "Tipo de animal incorreto!! Tente novamente!\n" << endl;
-			continuar = 's';
-			continue;
-		}else{
-			if(tipo_func == 'a'){
-				listar_anfibio(list_a);
-			}
-			else if(tipo_func == 'm'){
-				listar_mamifero(list_m);
-			}
-			else if(tipo_func == 'r'){
-				listar_reptil(list_r);
-			}		
-			else{
-				listar_ave(list_v);
-			}
-		}
-	} while (continuar == 's');
-	
-}
-
-
-void listar_anfibio(vector <ANFIBIO> &lista_a){
-	
-	int i;
-	for(i = 0; i < (int)list_a.size(); i++){
-		cout << list_a[i];
-	}
-}
-
-void listar_mamifero(vector <MAMIFERO> &lista_m){
-	
-	int i;
-	for(i = 0; i < (int)list_m.size(); i++){
-		cout << list_m[i];
-	}
-}
-
-void listar_reptil(vector <REPTIL> &lista_r){
-	
-	int i;
-	for(i = 0; i < (int)list_r.size(); i++){
-		cout << list_r[i];
-	}
-}
-
-void listar_ave(vector <AVE> &lista_v){
-	
-	int i;
-	for(i = 0; i < (int)list_v.size(); i++){
-		cout << list_v[i];
-	}
-}
- */
 
 
 
