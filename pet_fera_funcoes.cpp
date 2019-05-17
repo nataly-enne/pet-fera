@@ -363,7 +363,7 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			cpf = stol(vetor_veterinarios[2]);
 			idade = stoi(vetor_veterinarios[3]);
 			tipo_sang = vetor_veterinarios[4];
-			fator_rh = vetor_veterinarios[5][1];
+			fator_rh = (char) vetor_veterinarios[5][0];
 			especialidade = vetor_veterinarios[6];
 			crmv = vetor_veterinarios[7];
 
@@ -373,14 +373,14 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	}
 
 	//carregando arquivo "tratadores.txt"
-	ifstream appFile10("veterinarios.txt");
+	ifstream appFile10("tratadores.txt");
 	if(appFile10.is_open()){
 		while(getline(appFile10, line)){
 				cont = 0;
 				j = 0;
 				for(int i=0; i<(int)line.length(); i++){
 					if(line[i]  == ';'){
-						vetor_aves[cont] = tmp;
+						vetor_tratadores[cont] = tmp;
 						tmp.erase();
 						cont++;
 						j = 0;
@@ -396,17 +396,19 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			cpf = stol(vetor_tratadores[2]);
 			idade = stoi(vetor_tratadores[3]);
 			tipo_sang = vetor_tratadores[4];
-			fator_rh = vetor_tratadores[5][1];
+			fator_rh = (char) vetor_tratadores[5][0];
 			especialidade = vetor_tratadores[6];
 			nivel_seg = stoi(vetor_tratadores[7]);
+
 			tratadores.insert(pair <int, TRATADOR>(id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
 		}
 		appFile10.close();
 	}
 
+
 }
 
-void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){ //_func
+void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){
 	char tipo_func;
 	char continuar = 'n';
 	do{
@@ -429,98 +431,106 @@ void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratador
 	
 }
 
-void cadastrar(map <int, VETERINARIO> &vets){ //_vet
+void cadastrar(map <int, VETERINARIO> &vets){ 
 	int id, idade;
 	unsigned int old_size;
 	long int cpf;
 	string nome, especialidade, crmv, tipo_sang;
-	char fator_rh;
+	char fator_rh, continuar;
 	old_size = vets.size();
 	ofstream veterinarios;
+	do{
+		cout << "Digite o id: " << endl;
+		cin >> id;
+		cout << "Digite o nome: " << endl;
+		cin.ignore();
+		getline(cin, nome);
+		cout << "Digite o cpf: " << endl;
+		cin >> cpf;
+		cout << "Digite a idade: " << endl;
+		cin >> idade;
+		cout << "Insira o tipo sanguineo: " << endl;
+		cin >> tipo_sang;
+		cout << "Insira o fator RH: " << endl;
+		cin >> fator_rh;
+		cout << "Digite a especialidade: " << endl;
+		cin.ignore();
+		getline(cin, especialidade);
+		cout << "Digite o crmv: "<< endl;
+		getline(cin, crmv);
 
-	cout << "Digite o id: " << endl;
-	cin >> id;
-	cout << "Digite o nome: " << endl;
-	cin.ignore();
-	getline(cin, nome); //pegar o nome e sobrenome
-	cout << "Digite o cpf: " << endl;
-	cin >> cpf;
-	cout << "Digite a idade: " << endl;
-	cin >> idade;
-	cout << "Insira o tipo sanguineo: " << endl;
-	cin >> tipo_sang;
-	cout << "Insira o fator RH: " << endl;
-	cin >> fator_rh;
-	cout << "Digite a especialidade: " << endl;
-	cin >> especialidade;
-	cout << "Digite o crmv: "<< endl;
-	cin >> crmv;
-	vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
-	//vets[id] = VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv);
-	//vets.push_back(v);
-	if (vets.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
-		cout << "Falha no cadastro do funcionario!" << endl;
-	}
-	else{
+		vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
 		
-		if(!vets.empty()){
-			veterinarios.open("veterinarios.txt");
-			for(auto it = vets.begin(); it != vets.end(); it++){
-				veterinarios << (*it).second;
-			}
-			veterinarios.close();
+
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+	}while(continuar == 's');
+
+		if (vets.size() == old_size){ 
+			cout << "Falha no cadastro do funcionario!" << endl;
 		}
-		
-			cout << "Cadastro efetuado com sucesso!!" << endl;
-	}
+		else{
+			if(!vets.empty()){
+				veterinarios.open("veterinarios.txt");
+				for(auto it = vets.begin(); it != vets.end(); it++){
+					veterinarios << (*it).second;
+				}
+				veterinarios.close();
+			}
+				cout << "Cadastro efetuado com sucesso!!" << endl;
+		}
 }
+
+
 
 	void cadastrar(map <int, TRATADOR>  &tratadores){ //_trat
 	int id, idade,nivel_seg;
 	unsigned int old_size;
 	long int cpf;
 	string nome, especialidade, tipo_sang;
-	char fator_rh;
+	char fator_rh, continuar;
 	old_size = tratadores.size();
 	ofstream tratador;
+	do{
+		cout << "Digite o id: " << endl;
+		cin >> id;
+		cout << "Digite o nome: " << endl;
+		cin.ignore();
+		getline(cin, nome);  
+		cout << "Digite o cpf: " << endl;
+		cin >> cpf;
+		cout << "Digite a idade: " << endl;
+		cin >> idade;
+		cout << "Insira o tipo sanguineo: " << endl;
+		cin.ignore();
+		getline(cin, tipo_sang);
+		cout << "Insira o fator RH: " << endl;
+		cin >> fator_rh;
+		cout << "Digite a especialidade: " << endl;
+		cin.ignore();
+		getline(cin, especialidade);
+		cout << "Digite o nivel de seguranca: "<< endl;
+		cin >> nivel_seg;
+		
+		tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
+		
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+	}while(continuar == 's');
 
-	cout << "Digite o id: " << endl;
-	cin >> id;
-	cout << "Digite o nome: " << endl;
-	cin.ignore();
-	getline(cin, nome);  //pegar o nome e sobrenome
-	cout << "Digite o cpf: " << endl;
-	cin >> cpf;
-	cout << "Digite a idade: " << endl;
-	cin >> idade;
-	cout << "Insira o tipo sanguineo: " << endl;
-	cin >> tipo_sang;
-	cout << "Insira o fator RH: " << endl;
-	cin >> fator_rh;
-	cout << "Digite a especialidade: " << endl;
-	cin.ignore();
-	getline(cin, especialidade);
-	cout << "Digite o nivel de seguranca: "<< endl;
-	cin >> nivel_seg;
-	
-	tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
-	//tratadores[id] = TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg);
+		if (tratadores.size() == old_size){ 
+			cout << "Falha no cadastro do funcionario!" << endl;
+		}else{
 
-	//tratadores.push_back(t);
-	
-	if (tratadores.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
-		cout << "Falha no cadastro do funcionario!" << endl;
-	}else{
-
-		if(!tratadores.empty()){
-			tratador.open("tratadores.txt");
-			for(auto it = tratadores.begin(); it != tratadores.end(); it++){
-				tratador << (*it).second;
+			if(!tratadores.empty()){
+				tratador.open("tratadores.txt");
+				for(auto it = tratadores.begin(); it != tratadores.end(); it++){
+					tratador << (*it).second;
+				}
+				tratador.close();
 			}
-			tratador.close();
+			cout << "Cadastro efetuado com sucesso!!" << endl;
 		}
-		cout << "Cadastro efetuado com sucesso!!" << endl;
-	}
 }
 
 
@@ -608,13 +618,11 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			cin.ignore();
 			getline(cin, ultima_muda);
 			cout << "Insira a autorizacao do IBAMA: " << endl;
-			cin.ignore();
 			getline(cin, autorizacao_IBAMA);
 			
 
 			if(tipo_func == 'n'){
 				old_size = anfibios_nat.size();
-
 				cout << "Digite a UF de origem: " << endl;
 				getline(cin, origem);
 				cout << "Insira a autorizacao do animal: " << endl;
@@ -840,22 +848,23 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			}
 		}
 	
-
-	}while(continuar == 's');
-		if(!repteis_nat.empty()){
-					nativos.open("repteis_nat.txt");
-					for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
-						nativos << (*it).second;
-					}
-					nativos.close();
-			}
-			if(!repteis_ex.empty()){
-					exoticos.open("repteis_ex.txt");
-					for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
-						exoticos << (*it).second;
-					}
-					exoticos.close();
-			}
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+		}while(continuar == 's');
+			if(!repteis_nat.empty()){
+						nativos.open("repteis_nat.txt");
+						for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
+							nativos << (*it).second;
+						}
+						nativos.close();
+				}
+				if(!repteis_ex.empty()){
+						exoticos.open("repteis_ex.txt");
+						for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
+							exoticos << (*it).second;
+						}
+						exoticos.close();
+				}
 	
 }
 
@@ -938,22 +947,23 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex)
 			}
 		}
 	
-
-	}while(continuar == 's');
-		if(!aves_nat.empty()){
-					nativos.open("aves_nat.txt");
-					for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
-						nativos << (*it).second;
-					}
-					nativos.close();
-			}
-			if(!aves_ex.empty()){
-					exoticos.open("aves_ex.txt");
-					for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
-						exoticos << (*it).second;
-					}
-					exoticos.close();
-			}
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+		}while(continuar == 's');
+			if(!aves_nat.empty()){
+						nativos.open("aves_nat.txt");
+						for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
+							nativos << (*it).second;
+						}
+						nativos.close();
+				}
+				if(!aves_ex.empty()){
+						exoticos.open("aves_ex.txt");
+						for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
+							exoticos << (*it).second;
+						}
+						exoticos.close();
+				}
 	
 }
 

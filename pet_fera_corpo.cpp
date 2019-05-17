@@ -426,14 +426,14 @@ ostream& operator << (ostream &out, AVE_EXOTICO &a){
 
 ofstream& operator << (ofstream &out, AVE_NATIVO &v){
 	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
-	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << ";" << v.getAutorizacao_IBAMA() << ";" << 
+	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << v.getAutorizacao_IBAMA() << ";" << 
 	v.getUf_origem() << ";" << v.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
 ofstream& operator << (ofstream &out, AVE_EXOTICO &v){
 	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
-	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << ";" << v.getAutorizacao_IBAMA() << ";" << 
+	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << v.getAutorizacao_IBAMA() << ";" << 
 	v.getPais_origem() << ";" << v.getAutorizacao() << ";" << '\n';
 	return out;
 }
@@ -555,23 +555,23 @@ TRATADOR::TRATADOR(int i, string n, long int c, int ida, string t, char f, strin
 	nivel_seguranca = nivel;
 }
 
-ostream& operator << (ostream &out, TRATADOR &v){
+ostream& operator << (ostream &out, TRATADOR &t){
 	cout << endl;
 	cout << "**Tratador**" << endl << endl;
-	out << "Id: " << v.getId() << endl;
-	out << "Nome: " << v.getNome() << endl;
-	out << "CPF: " << v.getCpf() << endl;
-	out << "Idade: " << v.getIdade() << endl;
-	out << "Tipo sanguineo: " << v.getTipo_sanguineo() << endl;
-	out << "Fator RH: " << v.getFator_rh() << endl;
-	out << "Especialidade: " << v.getEspecialidade() << endl;
-	out << "Nivel de segurança: " << v.getNivel_seguranca() << endl;
+	out << "Id: " << t.getId() << endl;
+	out << "Nome: " << t.getNome() << endl;
+	out << "CPF: " << t.getCpf() << endl;
+	out << "Idade: " << t.getIdade() << endl;
+	out << "Tipo sanguineo: " << t.getTipo_sanguineo() << endl;
+	out << "Fator RH: " << t.getFator_rh() << endl;
+	out << "Especialidade: " << t.getEspecialidade() << endl;
+	out << "Nivel de segurança: " << t.getNivel_seguranca() << endl;
 	cout << endl;
 
 	return out;
 }
 
-ofstream& operator << (ofstream &out, 	TRATADOR &t){
+ofstream& operator << (ofstream &out, TRATADOR &t){
 	out << t.getId() << ";" << t.getNome() << ";" << t.getCpf() << ";" << t.getIdade() << ";" << t.getTipo_sanguineo() << ";" << t.getFator_rh() << ";" <<
 	t.getEspecialidade() << ";" << t.getNivel_seguranca() << ";" << '\n';
 	return out;
