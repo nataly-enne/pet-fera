@@ -248,15 +248,15 @@ ostream& operator << (ostream &out, MAMIFERO_NATIVO &m){
 
 ofstream& operator << (ofstream &out, MAMIFERO_NATIVO &m){
 	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
-	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";" << ";" << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
-	m.getUf_origem() << ";" << m.getAutorizacao() << ";";
+	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";"  << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
+	m.getUf_origem() << ";" << m.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
 ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m){
 	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
-	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";" << ";" << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
-	m.getPais_origem() << ";" << m.getAutorizacao() << ";";
+	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";"  << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
+	m.getPais_origem() << ";" << m.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
@@ -341,7 +341,21 @@ ostream& operator << (ostream &out, REPTIL_EXOTICO &r){
 	out << "Autorização geral: " << r.getAutorizacao() << endl;
 	cout << endl;
 	return out;
+}
 
+
+ofstream& operator << (ofstream &out, REPTIL_NATIVO &r){
+	out << r.getId() << ";" << r.getClasse() << ";" << r.getNome_cientifico() << ";" << r.getSexo() << ";" << r.getTamanho() << ";" << r.getDieta() << ";" <<
+	r.getVeterinario() << ";" << r.getTratador() << ";" << r.getNome_batismo() << ";"  << r.getVenenoso() <<  ";" << r.getTipo_veneno()  << ";" << r.getAutorizacao_IBAMA() << ";" << 
+	r.getUf_origem() << ";" << r.getAutorizacao() << ";" << '\n';
+	return out;
+}
+
+ofstream& operator << (ofstream &out, REPTIL_EXOTICO &r){
+	out << r.getId() << ";" << r.getClasse() << ";" << r.getNome_cientifico() << ";" << r.getSexo() << ";" << r.getTamanho() << ";" << r.getDieta() << ";" <<
+	r.getVeterinario() << ";" << r.getTratador() << ";" << r.getNome_batismo() << ";"  << r.getVenenoso() <<  ";" << r.getTipo_veneno()  << ";" << r.getAutorizacao_IBAMA() << ";" << 
+	r.getPais_origem() << ";" << r.getAutorizacao() << ";" << '\n';
+	return out;
 }
 
 REPTIL::~REPTIL(){}
@@ -410,9 +424,22 @@ ostream& operator << (ostream &out, AVE_EXOTICO &a){
 
 }
 
+ofstream& operator << (ofstream &out, AVE_NATIVO &v){
+	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
+	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << ";" << v.getAutorizacao_IBAMA() << ";" << 
+	v.getUf_origem() << ";" << v.getAutorizacao() << ";" << '\n';
+	return out;
+}
+
+ofstream& operator << (ofstream &out, AVE_EXOTICO &v){
+	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
+	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << ";" << v.getAutorizacao_IBAMA() << ";" << 
+	v.getPais_origem() << ";" << v.getAutorizacao() << ";" << '\n';
+	return out;
+}
+
 
 AVE::~AVE(){}
-
 
 
 
@@ -499,6 +526,12 @@ ostream& operator << (ostream &out, VETERINARIO &v){
 }
 
 
+ofstream& operator << (ofstream &out, VETERINARIO &v){
+	out << v.getId() << ";" << v.getNome() << ";" << v.getCpf() << ";" << v.getIdade() << ";" << v.getTipo_sanguineo() << ";" << v.getFator_rh() << ";" <<
+	v.getEspecialidade() << ";" << v.getCrmv() << ";" << '\n';
+	return out;
+}
+
 
 //Tratador
 int TRATADOR::getNivel_seguranca(){
@@ -535,6 +568,12 @@ ostream& operator << (ostream &out, TRATADOR &v){
 	out << "Nivel de segurança: " << v.getNivel_seguranca() << endl;
 	cout << endl;
 
+	return out;
+}
+
+ofstream& operator << (ofstream &out, 	TRATADOR &t){
+	out << t.getId() << ";" << t.getNome() << ";" << t.getCpf() << ";" << t.getIdade() << ";" << t.getTipo_sanguineo() << ";" << t.getFator_rh() << ";" <<
+	t.getEspecialidade() << ";" << t.getNivel_seguranca() << ";" << '\n';
 	return out;
 }
 
