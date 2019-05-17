@@ -363,7 +363,7 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			cpf = stol(vetor_veterinarios[2]);
 			idade = stoi(vetor_veterinarios[3]);
 			tipo_sang = vetor_veterinarios[4];
-			fator_rh = vetor_veterinarios[5][1];
+			fator_rh = (char) vetor_veterinarios[5][0];
 			especialidade = vetor_veterinarios[6];
 			crmv = vetor_veterinarios[7];
 
@@ -396,59 +396,19 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			cpf = stol(vetor_tratadores[2]);
 			idade = stoi(vetor_tratadores[3]);
 			tipo_sang = vetor_tratadores[4];
-			fator_rh = vetor_tratadores[5][1];
+			fator_rh = (char) vetor_tratadores[5][0];
 			especialidade = vetor_tratadores[6];
 			nivel_seg = stoi(vetor_tratadores[7]);
+
 			tratadores.insert(pair <int, TRATADOR>(id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
 		}
 		appFile10.close();
 	}
 
 
-	//Carregando o arquivo "anfibios_nat.txt" para o seu map
-	ifstream appFile11("veterinarios.txt");
-
-	if(appFile11.is_open()){
-		while(getline(appFile11, line)){ 
-			cont = 0;
-			j = 0;
-			for(int i=0; i<(int)line.length(); i++){
-				if(line[i]  == ';'){
-					vetor_veterinarios[cont] = tmp;
-					tmp.erase();
-					cont++;
-					j = 0;
-				}
-				else{
-					tmp.push_back(line[i]);
-					j++;
-				}
-
-			}
-
-			id = stoi(vetor_anfibios[0]);
-			classe = vetor_anfibios[1];
-			nome_cientifico = vetor_anfibios[2];
-			sexo = (char) vetor_anfibios[3][0];
-			tamanho = stod(vetor_anfibios[4]);
-			dieta = vetor_anfibios[5];
-			veterinario = vetor_anfibios[6];
-			tratador = vetor_anfibios[7];
-			nome_batismo = vetor_anfibios[8];
-			total_mudas = stoi(vetor_anfibios[9]);
-			ultima_muda = vetor_anfibios[10];
-			autorizacao_IBAMA = vetor_anfibios[11];
-			origem = vetor_anfibios[12];
-			autorizacao = vetor_anfibios[13];
-
-			anfibios_nat.insert(pair <int, ANFIBIO_NATIVO>(id, ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
-		}
-		appFile.close();
-	}
-
 }
 
-void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){ //_func
+void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){
 	char tipo_func;
 	char continuar = 'n';
 	do{
@@ -471,98 +431,106 @@ void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratador
 	
 }
 
-void cadastrar(map <int, VETERINARIO> &vets){ //_vet
+void cadastrar(map <int, VETERINARIO> &vets){ 
 	int id, idade;
 	unsigned int old_size;
 	long int cpf;
 	string nome, especialidade, crmv, tipo_sang;
-	char fator_rh;
+	char fator_rh, continuar;
 	old_size = vets.size();
 	ofstream veterinarios;
+	do{
+		cout << "Digite o id: " << endl;
+		cin >> id;
+		cout << "Digite o nome: " << endl;
+		cin.ignore();
+		getline(cin, nome);
+		cout << "Digite o cpf: " << endl;
+		cin >> cpf;
+		cout << "Digite a idade: " << endl;
+		cin >> idade;
+		cout << "Insira o tipo sanguineo: " << endl;
+		cin >> tipo_sang;
+		cout << "Insira o fator RH: " << endl;
+		cin >> fator_rh;
+		cout << "Digite a especialidade: " << endl;
+		cin.ignore();
+		getline(cin, especialidade);
+		cout << "Digite o crmv: "<< endl;
+		getline(cin, crmv);
 
-	cout << "Digite o id: " << endl;
-	cin >> id;
-	cout << "Digite o nome: " << endl;
-	cin.ignore();
-	getline(cin, nome); //pegar o nome e sobrenome
-	cout << "Digite o cpf: " << endl;
-	cin >> cpf;
-	cout << "Digite a idade: " << endl;
-	cin >> idade;
-	cout << "Insira o tipo sanguineo: " << endl;
-	cin >> tipo_sang;
-	cout << "Insira o fator RH: " << endl;
-	cin >> fator_rh;
-	cout << "Digite a especialidade: " << endl;
-	cin >> especialidade;
-	cout << "Digite o crmv: "<< endl;
-	cin >> crmv;
-	vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
-	//vets[id] = VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv);
-	//vets.push_back(v);
-	if (vets.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
-		cout << "Falha no cadastro do funcionario!" << endl;
-	}
-	else{
+		vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
 		
-		if(!vets.empty()){
-			veterinarios.open("veterinarios.txt");
-			for(auto it = vets.begin(); it != vets.end(); it++){
-				veterinarios << (*it).second;
-			}
-			veterinarios.close();
+
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+	}while(continuar == 's');
+
+		if (vets.size() == old_size){ 
+			cout << "Falha no cadastro do funcionario!" << endl;
 		}
-		
-			cout << "Cadastro efetuado com sucesso!!" << endl;
-	}
+		else{
+			if(!vets.empty()){
+				veterinarios.open("veterinarios.txt");
+				for(auto it = vets.begin(); it != vets.end(); it++){
+					veterinarios << (*it).second;
+				}
+				veterinarios.close();
+			}
+				cout << "Cadastro efetuado com sucesso!!" << endl;
+		}
 }
+
+
 
 	void cadastrar(map <int, TRATADOR>  &tratadores){ //_trat
 	int id, idade,nivel_seg;
 	unsigned int old_size;
 	long int cpf;
 	string nome, especialidade, tipo_sang;
-	char fator_rh;
+	char fator_rh, continuar;
 	old_size = tratadores.size();
 	ofstream tratador;
+	do{
+		cout << "Digite o id: " << endl;
+		cin >> id;
+		cout << "Digite o nome: " << endl;
+		cin.ignore();
+		getline(cin, nome);  
+		cout << "Digite o cpf: " << endl;
+		cin >> cpf;
+		cout << "Digite a idade: " << endl;
+		cin >> idade;
+		cout << "Insira o tipo sanguineo: " << endl;
+		cin.ignore();
+		getline(cin, tipo_sang);
+		cout << "Insira o fator RH: " << endl;
+		cin >> fator_rh;
+		cout << "Digite a especialidade: " << endl;
+		cin.ignore();
+		getline(cin, especialidade);
+		cout << "Digite o nivel de seguranca: "<< endl;
+		cin >> nivel_seg;
+		
+		tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
+		
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+	}while(continuar == 's');
 
-	cout << "Digite o id: " << endl;
-	cin >> id;
-	cout << "Digite o nome: " << endl;
-	cin.ignore();
-	getline(cin, nome);  //pegar o nome e sobrenome
-	cout << "Digite o cpf: " << endl;
-	cin >> cpf;
-	cout << "Digite a idade: " << endl;
-	cin >> idade;
-	cout << "Insira o tipo sanguineo: " << endl;
-	cin >> tipo_sang;
-	cout << "Insira o fator RH: " << endl;
-	cin >> fator_rh;
-	cout << "Digite a especialidade: " << endl;
-	cin.ignore();
-	getline(cin, especialidade);
-	cout << "Digite o nivel de seguranca: "<< endl;
-	cin >> nivel_seg;
-	
-	tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
-	//tratadores[id] = TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg);
+		if (tratadores.size() == old_size){ 
+			cout << "Falha no cadastro do funcionario!" << endl;
+		}else{
 
-	//tratadores.push_back(t);
-	
-	if (tratadores.size() == old_size){ //não adicionou ao vector, por isso continua com o tam antigo
-		cout << "Falha no cadastro do funcionario!" << endl;
-	}else{
-
-		if(!tratadores.empty()){
-			tratador.open("tratadores.txt");
-			for(auto it = tratadores.begin(); it != tratadores.end(); it++){
-				tratador << (*it).second;
+			if(!tratadores.empty()){
+				tratador.open("tratadores.txt");
+				for(auto it = tratadores.begin(); it != tratadores.end(); it++){
+					tratador << (*it).second;
+				}
+				tratador.close();
 			}
-			tratador.close();
+			cout << "Cadastro efetuado com sucesso!!" << endl;
 		}
-		cout << "Cadastro efetuado com sucesso!!" << endl;
-	}
 }
 
 
@@ -650,13 +618,11 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			cin.ignore();
 			getline(cin, ultima_muda);
 			cout << "Insira a autorizacao do IBAMA: " << endl;
-			cin.ignore();
 			getline(cin, autorizacao_IBAMA);
 			
 
 			if(tipo_func == 'n'){
 				old_size = anfibios_nat.size();
-
 				cout << "Digite a UF de origem: " << endl;
 				getline(cin, origem);
 				cout << "Insira a autorizacao do animal: " << endl;
@@ -882,22 +848,23 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			}
 		}
 	
-
-	}while(continuar == 's');
-		if(!repteis_nat.empty()){
-					nativos.open("repteis_nat.txt");
-					for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
-						nativos << (*it).second;
-					}
-					nativos.close();
-			}
-			if(!repteis_ex.empty()){
-					exoticos.open("repteis_ex.txt");
-					for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
-						exoticos << (*it).second;
-					}
-					exoticos.close();
-			}
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+		}while(continuar == 's');
+			if(!repteis_nat.empty()){
+						nativos.open("repteis_nat.txt");
+						for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
+							nativos << (*it).second;
+						}
+						nativos.close();
+				}
+				if(!repteis_ex.empty()){
+						exoticos.open("repteis_ex.txt");
+						for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
+							exoticos << (*it).second;
+						}
+						exoticos.close();
+				}
 	
 }
 
@@ -980,46 +947,32 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex)
 			}
 		}
 	
-
-	}while(continuar == 's');
-		if(!aves_nat.empty()){
-					nativos.open("aves_nat.txt");
-					for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
-						nativos << (*it).second;
-					}
-					nativos.close();
-			}
-			if(!aves_ex.empty()){
-					exoticos.open("aves_ex.txt");
-					for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
-						exoticos << (*it).second;
-					}
-					exoticos.close();
-			}
+		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cin >> continuar;
+		}while(continuar == 's');
+			if(!aves_nat.empty()){
+						nativos.open("aves_nat.txt");
+						for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
+							nativos << (*it).second;
+						}
+						nativos.close();
+				}
+				if(!aves_ex.empty()){
+						exoticos.open("aves_ex.txt");
+						for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
+							exoticos << (*it).second;
+						}
+						exoticos.close();
+				}
 	
 }
 
-void alterar_dados(){
+void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 	char tipo_animal, opcao;
-	char continuar = 'n', resp;
+	char continuar = 's', resp, op='s';
 
-	do{
-		cout << "Alterar dados de um animal? \n s/n" << endl;
-		cin >> opcao;
-		if(opcao != 's'){
-			cout << "Opção inválida!! Tente novamente!\n" << endl;
-			cout << endl;
-			cout << "Deseja sair? s/n" << endl;
-			cin >> resp;
-			if(resp == 's'){
-				continuar = 'n';;
-				break;
-			}
-			continuar = 's';
-			continue;
-		}
-		else{
-			cout << "Qual animal a ser editado? \n a - anfíbio\n m - mamífero \n r - reptil \n v - ave" << endl;
+		do{
+			cout << "Qual animal deseja editar? \n a - anfíbio\n m - mamífero \n r - reptil \n v - ave" << endl;
 			cin >> tipo_animal;
 			if(tipo_animal != 'a' && tipo_animal != 'm' && tipo_animal != 'r' && tipo_animal != 'v' ){
 				cout << "Opção inválida!! Tente novamente!\n" << endl;
@@ -1046,161 +999,117 @@ void alterar_dados(){
 					}
 					else{
 						if(tipo_animal == 'a' && opcao == 'n'){
-							fstream appFile("anfibios_nativos.txt", ios::in | ios::out); //Abrir para leitura e escrita ao mesmo tempo
-							string str;
-							int id_buscado, id;
-							char delim = ';';
+							int id_buscado;
 
-							//map<int, ANFIBIO_NATIVO>mp_anfibio_nat;
-	
 							cout << "Insira o ID buscado: " << endl;
 							cin >> id_buscado;
 
-							while(appFile){
-								if(!appFile.eof()){
+							auto result = anfibios_nat.find(id_buscado);
+						
+							if(result != anfibios_nat.end()){
+								cout << "ID existe!" << endl;
 
-									getline(appFile, str);
-									for(int i=0; i<(int)str.size(); i++){
+								int total_mudas;
+								string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
+								char sexo;;
+								double tamanho;
+								ofstream nativos;
 
-										if(str[i] == delim){
-											int tmp = i;
-											for(int j=0; j<tmp; j++){
-												istringstream(str) >> id;
-												if(id_buscado == id){
-													cout << "Id encontrado" << endl;
-													break;
-												}
-											}
-											cout << endl;
-											break;
-										}
+								cout << "Digite a classe: " << endl;
+								cin.ignore();
+								getline(cin, classe);
+								cout << "Digite o nome científico: " << endl;
+								getline(cin, nome_cientifico);
+								cout << "Digite a dieta: " << endl;
+								getline(cin, dieta);
+								cout << "Digite o nome do veterinario: " << endl;
+								getline(cin, veterinario);
+								cout << "Digite o nome do tratador: " << endl;
+								getline(cin, tratador);
+								cout << "Digite o nome de batismo: " << endl;
+								getline(cin, nome_batismo);
+								cout << "Digite o sexo do animal: " << endl;
+								cin >> sexo;
+								cout << "Digite o tamanho do animal: " << endl;
+								cin >> tamanho;
+								cout << "Insira o total de mudas:" << endl;
+								cin >> total_mudas;
+								cout << "Insira a data da última muda(D/M/A)" << endl;
+								cin.ignore();
+								getline(cin, ultima_muda);
+								cout << "Insira a autorizacao do IBAMA: " << endl;
+								getline(cin, autorizacao_IBAMA);
+								cout << "Digite a UF de origem: " << endl;
+								getline(cin, origem);
+								cout << "Insira a autorizacao do animal: " << endl;
+								getline(cin, autorizacao);
 
+								/*for(auto it = vets.begin(); it != vets.end(); it++){
+									veterinarios << (*it).second;*/
 
+								//map <int, ANFIBIO_NATIVO>::iterator it;
+								//auto it = anfibios_nat.find(id_buscado);
+								anfibios_nat[id_buscado] = ANFIBIO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+								//.insert(pair <int, ANFIBIO_NATIVO> (id_buscado,ANFIBIO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+								
+								/*if(!anfibios_nat.empty()){
+									nativos.open("anfibios_nat.txt");
+									for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
+										nativos << (*it).second;
 									}
-									
-								}else{
-									appFile.close();
-									break;
-								}
+									nativos.close();
+								}*/
 
 							}
+							else{
+								cout << "ID não existe!" << endl;
+							}
+
+							cout << "Editar outro ?" << endl;
+							cin >> op;
 						
+
+
 
 						}
 						else if(tipo_animal == 'a' && opcao == 'e'){
-							fstream appFile("anfibios_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'm' && opcao == 'n'){
-							fstream appFile("mamiferos_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'm' && opcao == 'e'){
-							fstream appFile("mamiferos_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'r' && opcao == 'n'){
-							fstream appFile("repteis_nativos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'r' && opcao == 'e'){
-							fstream appFile("repteis_exoticos.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'v' && opcao == 'n'){
-							fstream appFile("aves_nativas.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 						else if(tipo_animal == 'v' && opcao == 'e'){
-							fstream appFile("aves_exoticas.txt", ios::in | ios::out); //Abrir apra leitura e escrita ao mesmo tempo
+							
 
 						}
 
 						//cout << "ok" << endl;
 					}
 			}
-		}
 
 
-
-	}while(continuar == 's');
+	}while(op == 's');
 
 }
 
-
-
-/*
-
-//vector <ANIMAL_NATIVO> &nativos, vector <ANIMAL_EXOTICO> &exoticos, vector <ANIMAL_SILVESTRE> &silvestres
-
-
-//void remover_animal()
-
-//menu listar animal */
-/*
-void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v){
-
-	char tipo_func;
-	char continuar = 'n';
-
-	do{
-		cout << "Qual tipo de animal você quer listar? \n a - anfíbio\n m - mamífero \n r - repteis \n e - aves" << endl;
-		cin >> tipo_func;
-		if(tipo_func != 'a' && tipo_func != 'm' && tipo_func != 'r' && tipo_func != 'v'){
-			cout << "Tipo de animal incorreto!! Tente novamente!\n" << endl;
-			continuar = 's';
-			continue;
-		}else{
-			if(tipo_func == 'a'){
-				listar_anfibio(list_a);
-			}
-			else if(tipo_func == 'm'){
-				listar_mamifero(list_m);
-			}
-			else if(tipo_func == 'r'){
-				listar_reptil(list_r);
-			}		
-			else{
-				listar_ave(list_v);
-			}
-		}
-	} while (continuar == 's');
-	
-}
-
-
-void listar_anfibio(vector <ANFIBIO> &lista_a){
-	
-	int i;
-	for(i = 0; i < (int)list_a.size(); i++){
-		cout << list_a[i];
-	}
-}
-
-void listar_mamifero(vector <MAMIFERO> &lista_m){
-	
-	int i;
-	for(i = 0; i < (int)list_m.size(); i++){
-		cout << list_m[i];
-	}
-}
-
-void listar_reptil(vector <REPTIL> &lista_r){
-	
-	int i;
-	for(i = 0; i < (int)list_r.size(); i++){
-		cout << list_r[i];
-	}
-}
-
-void listar_ave(vector <AVE> &lista_v){
-	
-	int i;
-	for(i = 0; i < (int)list_v.size(); i++){
-		cout << list_v[i];
-	}
-}
- */
 
 
 
