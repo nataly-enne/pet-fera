@@ -181,7 +181,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 	ofstream exoticos;
 
 	do{
-		cout << "Deseja cadastrar um ANFIBIO NATIVO ou ANNFIBIO EXÓTICO? \n n - NATIVO\n e - EXÓTICO" << endl;
+		cout << "Deseja cadastrar um ANFIBIO NATIVO ou ANFIBIO EXÓTICO? \n n - NATIVO\n e - EXÓTICO" << endl;
 		cin >> tipo_func;
 		if(tipo_func != 'n' && tipo_func != 'e'){
 			cout << "Tipo invalido, tente novamente!" << endl;

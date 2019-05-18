@@ -1,6 +1,6 @@
 #include "pet_fera.h"
 
-int main(){
+int main() {
 	int op;
 	string especialidade, crmv;
 
@@ -60,7 +60,7 @@ int main(){
 				remover_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
 			case 5:
-				alterar_dados(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
+				// editar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
 				break;
 			case 6:
 				editar_func(vets, tratadores);
