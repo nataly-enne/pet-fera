@@ -36,13 +36,17 @@ int main(){
 		cout << "|"<<"3" << "|" << " - Remover um funcionario" << endl;
 		cout << "|"<<"4" << "|" << " - Remover um animal" << endl;
 		cout << "|"<<"5" << "|" << " - Alterar dados de um animal" << endl;
-		cout << "|"<<"6" << "|" << " - Consultar dados através da classe" << endl;
-		cout << "|"<<"7" << "|" << " - Consultar dados de um animal sob responsabilidade de um veterinario ou tratador" << endl;
-		cout << "|"<<"8" << "|" << " - Todas as atividades de um determinado veterinario ou tratador" << endl;
+		cout << "|"<<"6" << "|" << " - Alterar dados de um funcionário" << endl;
+		cout << "|"<<"7" << "|" << " - Consultar dados através da classe" << endl;
+		cout << "|"<<"8" << "|" << " - Consultar dados de um animal sob responsabilidade de um veterinario ou tratador" << endl;
+		cout << "|"<<"9" << "|" << " - Todas as atividades de um determinado veterinario ou tratador" << endl;
 		cout << "|"<<"0" << "|" << " - Sair" << endl;
 		cin >> op;
 
 		switch (op){
+			case 0:
+				cout << "Programa finalizado!!" << endl;
+				break;
 			case 1: 
 				cadastrar_func(vets, tratadores);
 				break;
@@ -58,7 +62,14 @@ int main(){
 			case 5:
 				alterar_dados(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
-
+			case 6:
+				editar_func(vets, tratadores);
+				break;
+			case 7:
+				pesquisar_classe(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
+				break;
+			default:
+				cout << "Opcao indisponivel! Tente novamente." << endl;
 		}
 
 
