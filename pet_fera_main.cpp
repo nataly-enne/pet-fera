@@ -4,6 +4,7 @@ int main(){
 	int op;
 	string especialidade, crmv;
 
+	// Declarando o map das classes
 	map <int, ANFIBIO_NATIVO> anfibios_nat;
 	map <int, ANFIBIO_EXOTICO> anfibios_ex;
 
@@ -21,13 +22,15 @@ int main(){
 
 	carregar_arquivos(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex, vets, tratadores);
 
-		cout << ">>> Bem-Vindo ao Sistema da Pet Fera! <<<" << endl;
+	// Menu da tela inicial
+	cout << "" << endl;
+	cout << ">>> Bem-Vindo ao Sistema da Pet Fera! <<<" << endl;
 
 	do{
-		cout << 	   "___________________________________________" << endl;
-		cout << "|" << "-----------" <<"***MENU INICIAL***"  << "-----------" << " |" << endl;
-		cout << "|" << "_________________________________________" << "|" << endl << endl;
-		cout << "|"<<"0" << "|" << " - Sair" << endl;
+		cout << 	   " _________________________________________" << endl;
+		cout << "|" << "                                         |" << endl;
+		cout << "|" << "              MENU INICIAL               |" << endl;
+		cout << "|" << "_________________________________________|" << endl << endl;
 		cout << "|"<<"1" << "|" << " - Cadastrar novo funcionario" << endl;
 		cout << "|"<<"2" << "|" << " - Cadastrar novo animal" << endl;
 		cout << "|"<<"3" << "|" << " - Remover um funcionario" << endl;
@@ -36,6 +39,7 @@ int main(){
 		cout << "|"<<"6" << "|" << " - Consultar dados através da classe" << endl;
 		cout << "|"<<"7" << "|" << " - Consultar dados de um animal sob responsabilidade de um veterinario ou tratador" << endl;
 		cout << "|"<<"8" << "|" << " - Todas as atividades de um determinado veterinario ou tratador" << endl;
+		cout << "|"<<"0" << "|" << " - Sair" << endl;
 		cin >> op;
 
 		switch (op){
