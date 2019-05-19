@@ -27,7 +27,6 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			for(int i=0; i<(int)line.length(); i++){
 				if(line[i]  == ';'){
 					vetor_anfibios[cont] = tmp;
-					//cout << "tmp: " << tmp <<endl;
 					tmp.erase();
 					cont++;
 					j = 0;

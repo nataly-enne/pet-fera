@@ -5,22 +5,22 @@ void consulta_p_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratado
 	char cargo, continuar;
 
 	do{
-		cout << "Deseja consultar por tratador ou veterinario: \n t-tratador\n v-veterinario" << endl;
+		cout << "Deseja consultar por tratador ou veterinario: \n v- veterinario \n t- tratador" << endl;
 		cin >> cargo;
-		if(cargo != 't' && cargo != 'v'){
+		if(cargo != 'v' && cargo != 't'){
 			cout << "Cargo inexistente!! Tente novamente." << endl << endl;
-			continuar = 's';
+			//continuar = 's';
 		}else if(cargo == 't'){
 			consulta_p_tratador(tratadores, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 		}else{
 			consulta_p_veterinario(vets, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 		}
-		do{
+		//do{
 			cout << "Deseja consultar novamente? \n s-sim \n n-nao" << endl;
 			cin >> continuar;
-		}while(continuar != 'n' && continuar != 's');
+		//}while(continuar != 'n' && continuar != 's');
 		
-	}while(continuar != 'n');
+	}while(continuar == 's');
 	
 }
 
@@ -30,7 +30,8 @@ void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATI
 	char tipo = 't';
 
 	cout << "Digite o nome do tratador:" << endl;
-	cin >> nome;
+	cin.ignore();
+	getline(cin, nome);
 	cout << endl;
 	for(auto it = tratadores.begin(); it != tratadores.end();it++){
 		if(it->second.getNome() == nome){
@@ -40,6 +41,8 @@ void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATI
 	if(count == 0){
 		cout << "Tratador nao cadastrado!" << endl << endl;
 	}else{
+		cout << "Tratador cadastrado!" << endl << endl;
+		cout << "***" << "Animais Atendidos pelo Tratador " << nome << "***" << endl;
 		imprimeAnimais(tipo,nome, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 	}
 }
@@ -50,7 +53,8 @@ void consulta_p_veterinario(map <int, VETERINARIO> &vets, map <int, ANFIBIO_NATI
 	string nome;
 	char tipo = 'v';
 	cout << "Digite o nome do veterinario:" << endl;
-	cin >> nome;
+	cin.ignore();
+	getline(cin, nome);
 	cout << endl;
 	for(auto it = vets.begin(); it != vets.end();it++){
 		if(it->second.getNome() == nome){
@@ -60,7 +64,9 @@ void consulta_p_veterinario(map <int, VETERINARIO> &vets, map <int, ANFIBIO_NATI
 	if(count == 0){
 		cout << "Veterinario nao cadastrado!" << endl << endl;
 	}else{
-		imprimeAnimais(tipo,nome, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
+		cout << "Veterinario cadastrado!" << endl << endl;
+		cout << "***" << "Animais Atendidos pelo Veterinario " << nome << "***" << endl;
+		imprimeAnimais(tipo, nome, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 	}
 }
 

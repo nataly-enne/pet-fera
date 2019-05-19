@@ -51,7 +51,7 @@ int main(){
 				cadastrar_func(vets, tratadores);
 				break;
 			case 2:
-				cadastrar_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
+				cadastrar_animal(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex, vets, tratadores);
 				break;
 			case 3:
 				remover_funcionario(vets, tratadores);
