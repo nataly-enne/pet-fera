@@ -22,7 +22,7 @@ void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratador
 				cadastrar(tratadores);
 			}
 		}
-	} while (continuar == 's'); // Parada 
+	} while (continuar == 's'); 
 	
 }
 // Função especifica para cadastro dos veterinarios
@@ -59,7 +59,7 @@ void cadastrar(map <int, VETERINARIO> &vets){
 		vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
 		
 
-		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cout << "Deseja cadastrar um novo funcionario ? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
 
@@ -113,7 +113,7 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 		// Armazenando os valores recebidos pelo usuário no map.
 		tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
 		
-		cout << "Deseja cadastrar um novo animal? s/n" << endl;
+		cout << "Deseja cadastrar um novo funcionario ? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
 
@@ -134,7 +134,7 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 
 // Função geral para cadastro dos animais
 void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
-	char tipo_func; //_animal
+	char tipo_func;
 	char continuar = 'n', resp;
 
 	do{
@@ -143,7 +143,7 @@ void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 		if(tipo_func != 'a' && tipo_func != 'm' && tipo_func != 'r' && tipo_func != 'v'){
 			cout << "Tipo de animal incorreto!! Tente novamente!\n" << endl;
 			cout << endl;
-			cout << "Deseja sair ?" << endl;
+			cout << "Deseja sair? s/n" << endl;
 			cin >> resp;
 			if(resp == 's'){
 				continuar = 'n';;

@@ -2,7 +2,7 @@
 
 void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 	int classe;
-	char sucesso;
+	char sucesso = 'n';
 
 	do{
 		cout << "Digite a opcao referente a classe que deseja pesquisar: \n  1-Amphibia\n  2-Mammalia\n  3-Reptilia\n  4-Aves" << endl;
@@ -25,17 +25,20 @@ void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 				sucesso = 's';
 				break;
 			default:
-				cout << "Opcao nao existe!! Tente novamente." << endl;	
-				sucesso = 'n';
+				cout << "Opcao nao existe!! Tente novamente." << endl;
+				cout << "Deseja sair ? s/n" << endl;
+				cin >> sucesso;	
 		}
 	}while(sucesso != 's');
 }
 
 void imprimir_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
+	cout << endl;
 	cout << "Anfibios Nativos:" << endl;
 	for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
 		cout << it -> second;
 	}
+	cout << endl;
 	cout << "Anfibios Exoticos:" << endl;
 	for(auto it = anfibios_ex.begin(); it != anfibios_ex.end(); it++){
 		cout << it -> second;
@@ -43,10 +46,12 @@ void imprimir_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_
 }
 
 void imprimir_classe(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
+	cout << endl;
 	cout << "Mamiferos Nativos:" << endl;
 	for(auto it = mamiferos_nat.begin(); it != mamiferos_nat.end(); it++){
 		cout << it -> second;
 	}
+	cout << endl;
 	cout << "Mamiferos Exoticos:" << endl;
 	for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end(); it++){
 		cout << it -> second;
@@ -54,10 +59,12 @@ void imprimir_classe(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFE
 }
 
 void imprimir_classe(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex){
+	cout << endl;
 	cout << "Repteis Nativos:" << endl;
 	for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
 		cout << it -> second;
 	}
+	cout << endl;
 	cout << "Repteis Exoticos:" << endl;
 	for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
 		cout << it -> second;
@@ -65,10 +72,12 @@ void imprimir_classe(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXO
 }
 
 void imprimir_classe(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
+	cout << endl;
 	cout << "Aves Nativas:" << endl;
 	for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
 		cout << it -> second;
 	}
+	cout << endl;
 	cout << "Aves Exoticas:" << endl;
 	for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
 		cout << it -> second;

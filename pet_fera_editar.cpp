@@ -1,8 +1,8 @@
 #include "pet_fera.h"
 
-void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
-	char tipo_animal, opcao;
-	char resp, op = 's',sucesso;
+void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
+	char tipo_animal;
+	char resp, op = 'n';
 
 	do{  
 		cout << "Qual animal deseja editar? \n a - anfíbio\n m - mamífero \n r - reptil \n v - ave" << endl;
@@ -16,6 +16,37 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 					break;
 				}
 		}else{
+			if(tipo_animal == 'a'){
+				editar(anfibios_nat, anfibios_ex);
+			}
+			else if(tipo_animal == 'm'){
+				editar(mamiferos_nat, mamiferos_ex);
+			}
+			else if(tipo_animal == 'r'){
+				editar(repteis_nat, repteis_ex);
+			}
+			else{
+				editar(aves_nat, aves_ex);
+			}
+		
+
+		}//Primeiro Else
+
+	}while(op == 's');
+
+
+}
+
+void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
+	char opcao, resp, op, sucesso, sexo;
+	int total_mudas, id_buscado;;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
+	double tamanho;
+	ofstream nativos;
+	ofstream exoticos;
+			
+
+		do{
 			cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
 			cin >> opcao;
 			if(opcao != 'n' && opcao != 'e'){
@@ -27,10 +58,7 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 					break;
 				}	
 			}else{ 
-				if(tipo_animal == 'a' && opcao == 'n'){
-					int id_buscado;
-					ofstream nativos;
-
+				if(opcao == 'n'){
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -38,12 +66,6 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 				
 					if(result != anfibios_nat.end()){
 						cout << "ID existe!" << endl;
-
-						int total_mudas;
-						string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
-						char sexo;
-						double tamanho;
-						
 
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
@@ -77,28 +99,22 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = ANFIBIO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
-				
 					if(sucesso == 's'){
 						nativos.open("anfibios_nat.txt");
 						for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
 							nativos << (*it).second;
-						}
+					}
 						nativos.close();
 					}
 
 					cout << "Deseja editar outro ? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'a' && opcao == 'e'){
-					int id_buscado;
-					int total_mudas;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
-					char sexo;
-					double tamanho;
-					ofstream exoticos;
-
+					
+				}
+				else{
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -139,7 +155,7 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = ANFIBIO_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
 					if(sucesso == 's'){
@@ -152,13 +168,37 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 
 					cout << "Deseja editar outro ? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'm' && opcao == 'n'){
-					int id_buscado;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
-					char sexo;
-					double tamanho;
-					ofstream nativos;
+				}	
 
+
+			}//Primeiro Else
+
+		}while(op == 's');
+
+}
+
+void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
+	char opcao, resp, op, sucesso, sexo;
+	int id_buscado;;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
+	double tamanho;
+	ofstream nativos;
+	ofstream exoticos;
+			
+
+		do{
+			cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
+			cin >> opcao;
+			if(opcao != 'n' && opcao != 'e'){
+				cout << "Opção inválida!! Tente novamente!\n" << endl;
+				cout << endl;
+				cout << "Deseja sair? s/n" << endl;
+				cin >> resp;
+				if(resp == 's'){
+					break;
+				}	
+			}else{ 
+				if(opcao == 'n'){
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -198,7 +238,7 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = MAMIFERO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
 					if(sucesso == 's'){
@@ -211,13 +251,9 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 
 					cout << "Deseja editar outro ? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'm' && opcao == 'e'){
-					int id_buscado;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
-					char sexo;
-					double tamanho;
-					ofstream exoticos;
+				}
 
+				else{
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -257,10 +293,9 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = MAMIFERO_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
-
 					if(sucesso == 's'){
 						exoticos.open("mamiferos_ex.txt");
 						for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end(); it++){
@@ -270,14 +305,41 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 					}
 					cout << "Deseja editar outro ? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'r' && opcao == 'n'){
-					int id_buscado;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno;
-					char sexo;
-					double tamanho;
-					bool venenoso;
-					ofstream nativos;
+				}
 
+
+			}//Primeiro Else
+
+
+	}while(op == 's');
+}
+
+
+
+
+void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex){
+	char opcao, resp, op, sucesso, sexo;
+	int id_buscado;;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno;
+	double tamanho;
+	bool venenoso;
+	ofstream nativos;
+	ofstream exoticos;
+			
+
+		do{
+			cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
+			cin >> opcao;
+			if(opcao != 'n' && opcao != 'e'){
+				cout << "Opção inválida!! Tente novamente!\n" << endl;
+				cout << endl;
+				cout << "Deseja sair? s/n" << endl;
+				cin >> resp;
+				if(resp == 's'){
+					break;
+				}	
+			}else{ 
+				if(opcao == 'n'){
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -322,10 +384,9 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = REPTIL_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
-
 					if(sucesso == 's'){
 						nativos.open("repteis_nat.txt");
 						for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
@@ -336,14 +397,9 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 
 					cout << "Deseja editar outro ? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'r' && opcao == 'e'){
-					int id_buscado;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno;
-					char sexo;
-					double tamanho;
-					bool venenoso;
-					ofstream exoticos;
+				}
 
+				else{
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -388,12 +444,10 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 
 						(*result).second = REPTIL_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
-					
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
-
 					if(sucesso == 's'){
 						exoticos.open("repteis_ex.txt");
 						for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
@@ -404,14 +458,36 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 
 					cout << "Deseja editar outro ? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'v' && opcao == 'n'){
-					int id_buscado;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
-					char sexo;
-					double tamanho;
-					double envergadura, tam_bico;
-					ofstream nativos;
+				}
 
+			}//Primeiro Else
+		}while(op == 's');
+
+
+
+}
+void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
+	char opcao, resp, op, sucesso, sexo;
+	int id_buscado;;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
+	double tamanho, envergadura, tam_bico;
+	ofstream nativos;
+	ofstream exoticos;
+			
+
+		do{
+			cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
+			cin >> opcao;
+			if(opcao != 'n' && opcao != 'e'){
+				cout << "Opção inválida!! Tente novamente!\n" << endl;
+				cout << endl;
+				cout << "Deseja sair? s/n" << endl;
+				cin >> resp;
+				if(resp == 's'){
+					break;
+				}	
+			}else{ 
+				if(opcao == 'n'){
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -452,10 +528,9 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = AVE_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
-
 					if(sucesso == 's'){
 						nativos.open("aves_nat.txt");
 						for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
@@ -466,14 +541,9 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 
 					cout << "Deseja editar outro? s/n" << endl;
 					cin >> op;
-				}else if(tipo_animal == 'v' && opcao == 'e'){
-					int id_buscado;
-					string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
-					char sexo;
-					double tamanho;
-					double envergadura, tam_bico;
-					ofstream exoticos;
 
+				}//if nativo
+				else{
 					cout << "Insira o ID buscado: " << endl;
 					cin >> id_buscado;
 
@@ -514,7 +584,7 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 						(*result).second = AVE_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
-						cout << "Animal nao cadastrado!" << endl;
+						cout << "Animal nao cadastrado!!" << endl;
 						sucesso = 'n';
 					}
 					if(sucesso == 's'){
@@ -526,12 +596,13 @@ void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EX
 					}
 
 					cout << "Deseja editar outro? s/n" << endl;
-					cin >> op;		
-				}
-			}
-		}
-	}while(op == 's');
+					cin >> op;
+				}//Else exotico
+
+			}//Primeiro Else
+		}while(op == 's');
 }
+
 
 void editar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
 	char tipo_func;
@@ -559,9 +630,12 @@ void editar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
 }
 
 void editar(map <int, VETERINARIO> &vets){
-	int id_buscado;
+	int id_buscado, idade;
+	long int cpf;
+	string nome, especialidade, crmv, tipo_sang;
+	char fator_rh, sucesso;
 	ofstream veterinarios;
-	char sucesso;
+
 	cout << "Insira o ID buscado: " << endl;
 	cin >> id_buscado;
 
@@ -570,11 +644,6 @@ void editar(map <int, VETERINARIO> &vets){
 	if(result != vets.end()){
 		cout << "ID existe!" << endl;
 
-		int idade;
-		long int cpf;
-		string nome, especialidade, crmv, tipo_sang;
-		char fator_rh;
-	
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
 		getline(cin, nome);
@@ -609,9 +678,11 @@ void editar(map <int, VETERINARIO> &vets){
 }
 
 void editar(map <int, TRATADOR> &tratadores){
-	int id_buscado;
+	int id_buscado, idade,nivel_seg;
+	long int cpf;
+	string nome, especialidade, tipo_sang;
+	char fator_rh, sucesso;
 	ofstream tratador;
-	char sucesso;
 
 	cout << "Insira o ID buscado: " << endl;
 	cin >> id_buscado;
@@ -621,11 +692,6 @@ void editar(map <int, TRATADOR> &tratadores){
 	if(result != tratadores.end()){
 		cout << "ID existe!" << endl;
 
-		int idade,nivel_seg;
-		long int cpf;
-		string nome, especialidade, tipo_sang;
-		char fator_rh;
-	
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
 		getline(cin, nome);  
