@@ -68,6 +68,9 @@ int main(){
 			case 7:
 				pesquisar_classe(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
+			case 8:
+				consulta_p_func(vets,tratadores,anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
+				break;
 			default:
 				cout << "Opcao indisponivel! Tente novamente." << endl;
 		}
