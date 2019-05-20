@@ -30,7 +30,6 @@ void remover_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 				remover(aves_nat, aves_ex);
 			}
 		
-
 		}//Primeiro Else
 
 	}while(op == 's');

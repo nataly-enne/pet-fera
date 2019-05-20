@@ -91,6 +91,7 @@ void cadastrar(map <int, VETERINARIO> &vets){
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
 		getline(cin, nome);
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
 		check = check_CPF(vets, cpf);
@@ -150,7 +151,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 		cin >> id;
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
-		getline(cin, nome);  
+		getline(cin, nome); 
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
 		check = check_CPF(tratadores, cpf);

@@ -663,6 +663,7 @@ void editar(map <int, VETERINARIO> &vets){
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
 		getline(cin, nome);
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
 		cout << "Digite a idade: " << endl;
@@ -710,7 +711,8 @@ void editar(map <int, TRATADOR> &tratadores){
 
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
-		getline(cin, nome);  
+		getline(cin, nome); 
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
 		cout << "Digite a idade: " << endl;

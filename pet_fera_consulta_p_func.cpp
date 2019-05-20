@@ -9,7 +9,6 @@ void consulta_p_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratado
 		cin >> cargo;
 		if(cargo != 'v' && cargo != 't'){
 			cout << "Cargo inexistente!! Tente novamente." << endl << endl;
-			//continuar = 's';
 		}else if(cargo == 't'){
 			consulta_p_tratador(tratadores, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 		}else{
@@ -32,6 +31,7 @@ void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATI
 	cout << "Digite o nome do tratador:" << endl;
 	cin.ignore();
 	getline(cin, nome);
+	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
 	cout << endl;
 	for(auto it = tratadores.begin(); it != tratadores.end();it++){
 		if(it->second.getNome() == nome){
@@ -55,6 +55,7 @@ void consulta_p_veterinario(map <int, VETERINARIO> &vets, map <int, ANFIBIO_NATI
 	cout << "Digite o nome do veterinario:" << endl;
 	cin.ignore();
 	getline(cin, nome);
+	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
 	cout << endl;
 	for(auto it = vets.begin(); it != vets.end();it++){
 		if(it->second.getNome() == nome){

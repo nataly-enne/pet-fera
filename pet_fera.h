@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <cstring>
+#include<bits/stdc++.h> //Para utilizar o std::transform e std::toupper()
 #include <sstream> // Converter cadeias de caracters em int
 #include <fstream> // Arquivo
 
