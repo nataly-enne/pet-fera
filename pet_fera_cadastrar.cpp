@@ -55,7 +55,7 @@ void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratador
 	char continuar = 'n';
 	
 	do{ // Enquanto o usuário quiser cadastrar (continuar != s), o programa roda. 
-		cout << "Qual o tipo de funcionario a ser cadastrado? \n -> v - Veterinário\n -> t - Tratador" << endl;
+		cout << "Qual o tipo de funcionario a ser cadastrado? \n  v - Veterinário\n  t - Tratador" << endl;
 		cin >> tipo_func;
 		if(tipo_func != 'v' && tipo_func != 't'){
 			cout << "Tipo de funcionario incorreto!! Tente novamente!\n" << endl;
@@ -233,7 +233,7 @@ void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 // Função especifica para cadastro dos anfibios
 void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id, total_mudas;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda, nome;
 	bool check;
 	char sexo, tipo_func, continuar;
 	double tamanho;
@@ -256,6 +256,8 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			cout << "Digite a classe: " << endl;
 			cin.ignore();
 			getline(cin, classe);
+			cout << "Digite o nome: " << endl;
+			getline(cin, nome);
 			cout << "Digite o nome científico: " << endl;
 			getline(cin, nome_cientifico);
 			cout << "Digite a dieta: " << endl;
@@ -299,7 +301,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				getline(cin, autorizacao);
 
 				// Armazenando valores no map para tipo anfíbio nativo passados pelo usuário
-				anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id,ANFIBIO_NATIVO(id, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+				anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id, ANFIBIO_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 
 				if (anfibios_nat.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente." << endl;
@@ -316,9 +318,9 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				getline(cin, autorizacao);
 
 				// Armazenando valores no map para tipo anfíbio exótico passados pelo usuário
-				anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO> (id, ANFIBIO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
+				anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO> (id, ANFIBIO_EXOTICO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 							
-				if (anfibios_nat.size() == old_size){
+				if (anfibios_ex.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;
 					continuar = 's';
 					continue;
@@ -348,7 +350,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 //Função especifica para cadastro dos mamiferos
 void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor, nome;
 	char sexo, tipo_func, continuar = 's';
 	double tamanho;
 	bool check;
@@ -369,6 +371,8 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 			cout << "Digite a classe: " << endl;
 			cin.ignore();
 			getline(cin, classe);
+			cout << "Digite o nome: " << endl;
+			getline(cin, nome);
 			cout << "Digite o nome científico: " << endl;
 			getline(cin, nome_cientifico);
 			cout << "Digite a dieta: " << endl;
@@ -411,7 +415,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				getline(cin, autorizacao);
 
 				// Armazenando no map dados do tipo mamífero nativo passados pelo usuário
-				mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO> (id, MAMIFERO_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
+				mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO> (id, MAMIFERO_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (mamiferos_nat.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;
@@ -427,7 +431,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				getline(cin, autorizacao);
 				
 				// Armazenando no map dados do tipo mamífero exótico passados pelo usuário
-				mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO> (id, MAMIFERO_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
+				mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO> (id, MAMIFERO_EXOTICO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (mamiferos_ex.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;
@@ -463,7 +467,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id;
 	bool venenoso, check;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno, nome;
 	char sexo, tipo_func, continuar = 's';
 	double tamanho;
 	unsigned int old_size;
@@ -484,6 +488,8 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			cout << "Digite a classe: " << endl;
 			cin.ignore();
 			getline(cin, classe);
+			cout << "Digite o nome: " << endl;
+			getline(cin, nome);
 			cout << "Digite o nome científico: " << endl;
 			getline(cin, nome_cientifico);
 			cout << "Digite a dieta: " << endl;
@@ -531,7 +537,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				getline(cin, autorizacao);
 
 				// Armazenando no map dados do tipo réptil nativo passados pelo usuário
-				repteis_nat.insert(pair <int, REPTIL_NATIVO> (id, REPTIL_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
+				repteis_nat.insert(pair <int, REPTIL_NATIVO> (id, REPTIL_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (repteis_nat.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;
@@ -547,7 +553,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				getline(cin, autorizacao);
 				
 				// Armazenando no map dados do tipo réptil exótico passados pelo usuário
-				repteis_ex.insert(pair <int, REPTIL_EXOTICO> (id, REPTIL_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
+				repteis_ex.insert(pair <int, REPTIL_EXOTICO> (id, REPTIL_EXOTICO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (repteis_ex.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;
@@ -582,7 +588,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 	int id;
 	bool check;
 	double tam_bico, envergadura, tamanho;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, nome;
 	char sexo, tipo_func, continuar = 's';
 	unsigned int old_size;
 	ofstream nativos;
@@ -602,6 +608,8 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 			cout << "Digite a classe: " << endl;
 			cin.ignore();
 			getline(cin, classe);
+			cout << "Digite o nome: " << endl;
+			getline(cin, nome);
 			cout << "Digite o nome científico: " << endl;
 			getline(cin, nome_cientifico);
 			cout << "Digite a dieta: " << endl;
@@ -645,7 +653,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				getline(cin, autorizacao);
 
 				// Armazenando valores do tipo ave nativa no map passado pelo usuário
-				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_nat.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;
@@ -661,7 +669,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				getline(cin, autorizacao);
 
 				// Armazenando valores de ave exótica no map passada pelo usuário
-				aves_ex.insert(pair <int, AVE_EXOTICO> (id, AVE_EXOTICO(id,classe,nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+				aves_ex.insert(pair <int, AVE_EXOTICO> (id, AVE_EXOTICO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_ex.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente" << endl;

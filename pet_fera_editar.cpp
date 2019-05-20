@@ -40,7 +40,7 @@ void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
 	char opcao, resp, op, sucesso, sexo;
 	int total_mudas, id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda, nome;
 	double tamanho;
 	ofstream nativos;
 	ofstream exoticos;
@@ -70,6 +70,8 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -96,7 +98,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 						cout << "Insira a autorizacao do animal: " << endl;
 						getline(cin, autorizacao);
 
-						(*result).second = ANFIBIO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = ANFIBIO_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -126,6 +128,8 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -152,7 +156,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 						cout << "Insira a autorizacao do animal: " << endl;
 						getline(cin, autorizacao);
 
-						(*result).second = ANFIBIO_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = ANFIBIO_EXOTICO(id_buscado, classe,nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -180,7 +184,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
 	char opcao, resp, op, sucesso, sexo;
 	int id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor, nome;
 	double tamanho;
 	ofstream nativos;
 	ofstream exoticos;
@@ -210,6 +214,8 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -235,7 +241,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 						getline(cin, autorizacao);
 
 
-						(*result).second = MAMIFERO_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = MAMIFERO_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -265,6 +271,8 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -290,7 +298,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 						getline(cin, autorizacao);
 
 
-						(*result).second = MAMIFERO_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = MAMIFERO_EXOTICO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -320,7 +328,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex){
 	char opcao, resp, op, sucesso, sexo;
 	int id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno, nome;
 	double tamanho;
 	bool venenoso;
 	ofstream nativos;
@@ -351,6 +359,8 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -381,7 +391,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 						cout << "Insira a autorizacao do animal: " << endl;
 						getline(cin, autorizacao);
 
-						(*result).second = REPTIL_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = REPTIL_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -411,6 +421,8 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -442,7 +454,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 						getline(cin, autorizacao);
 
 
-						(*result).second = REPTIL_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = REPTIL_EXOTICO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -469,7 +481,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 	char opcao, resp, op, sucesso, sexo;
 	int id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, nome;
 	double tamanho, envergadura, tam_bico;
 	ofstream nativos;
 	ofstream exoticos;
@@ -499,6 +511,8 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -525,7 +539,7 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 						cout << "Insira a autorizacao do animal: " << endl;
 						getline(cin, autorizacao);
 
-						(*result).second = AVE_NATIVO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = AVE_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;
@@ -555,6 +569,8 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 						cout << "Digite a classe: " << endl;
 						cin.ignore();
 						getline(cin, classe);
+						cout << "Digite o nome: " << endl;
+						getline(cin, nome);
 						cout << "Digite o nome científico: " << endl;
 						getline(cin, nome_cientifico);
 						cout << "Digite a dieta: " << endl;
@@ -581,7 +597,7 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 						cout << "Insira a autorizacao do animal: " << endl;
 						getline(cin, autorizacao);
 
-						(*result).second = AVE_EXOTICO(id_buscado, classe, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
+						(*result).second = AVE_EXOTICO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 						sucesso = 's';
 					}else{
 						cout << "Animal nao cadastrado!!" << endl;

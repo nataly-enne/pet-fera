@@ -14,6 +14,7 @@ class ANIMAL{
 	protected:
 		int id;
 		string classe;
+		string nome;
 		string nome_cientifico;
 		char sexo;
 		double tamanho;
@@ -24,6 +25,7 @@ class ANIMAL{
 	public:
 		virtual int getId() = 0;
 		string getClasse();
+		string getNome();
 		string getNome_cientifico();
 		char getSexo();
 		double getTamanho();
@@ -32,7 +34,7 @@ class ANIMAL{
 		string getTratador();
 		string getNome_batismo();
 		//  Construtor
-		ANIMAL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome);
+		ANIMAL(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome);
 		//  Destrutor
 		~ANIMAL();
 };
@@ -59,7 +61,7 @@ class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 		string getAutorizacao_IBAMA();
 		virtual int getId() = 0;
 		//  Construtor
-		ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
+		ANIMAL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
 		//  Destrutor
 		~ANIMAL_NATIVO();
 };
@@ -74,7 +76,7 @@ class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 		string getAutorizacao_IBAMA();
 		// virtual int getId() = 0;
 		//  Construtor
-		ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
+		ANIMAL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
 		~ANIMAL_EXOTICO();
 };
 
@@ -96,7 +98,7 @@ class ANFIBIO{
 class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 	public:
 		// Construtor
-		ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
+		ANFIBIO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
 		ANFIBIO_NATIVO();
 		// Destrutor
 		~ANFIBIO_NATIVO();
@@ -109,7 +111,7 @@ class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 		// Construtor
 		ANFIBIO_EXOTICO();
 
-		ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a);
+		ANFIBIO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a);
 
 		// Destrutor
 		~ANFIBIO_EXOTICO();
@@ -138,7 +140,7 @@ class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 	public:
 		//  Construtor
 		MAMIFERO_NATIVO();
-		MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
+		MAMIFERO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
 		//  Destrutor
 		~MAMIFERO_NATIVO();
 		int getId();
@@ -150,7 +152,7 @@ class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 	public:
 		// Construtor
 		MAMIFERO_EXOTICO();
-		MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a);
+		MAMIFERO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a);
 		// Destrutor
 		~MAMIFERO_EXOTICO();
 		int getId();
@@ -180,7 +182,7 @@ class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
 	public:
 		// Construtor
 		REPTIL_NATIVO();
-		REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
+		REPTIL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
 		// Destrutor
 		~REPTIL_NATIVO();
 		int getId();
@@ -192,7 +194,7 @@ class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
 	public:
 		// Construtor
 		REPTIL_EXOTICO();
-		REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
+		REPTIL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
 		// Destrutor
 		~REPTIL_EXOTICO();
 		int getId();
@@ -222,7 +224,7 @@ class AVE_NATIVO: public ANIMAL_NATIVO, AVE{
 	public:
 		// Construtor
 		AVE_NATIVO();
-		AVE_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a);
+		AVE_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a);
 		// Destrutor
 		~AVE_NATIVO();
 		int getId();
@@ -233,7 +235,7 @@ class AVE_EXOTICO: public ANIMAL_EXOTICO, AVE{
 	public:
 		// Construtor
 		AVE_EXOTICO();
-		AVE_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a);
+		AVE_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a);
 		// Destrutor
 		~AVE_EXOTICO();
 		int getId();

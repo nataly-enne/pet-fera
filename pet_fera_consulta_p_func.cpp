@@ -15,10 +15,10 @@ void consulta_p_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratado
 		}else{
 			consulta_p_veterinario(vets, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 		}
-		//do{
+	
 			cout << "Deseja consultar novamente? \n s-sim \n n-nao" << endl;
 			cin >> continuar;
-		//}while(continuar != 'n' && continuar != 's');
+		
 		
 	}while(continuar == 's');
 	
