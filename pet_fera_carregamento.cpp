@@ -2,6 +2,7 @@
 
 // Carrega todos os arquivos pra seus respectivos maps, para assim ser utilizado de forma eficiente em todas as operações.
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
+	
 	int id, total_mudas, nivel_seg, idade;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao_IBAMA, origem, autorizacao,  ultima_muda, cor, tipo_veneno, crmv, nome, tipo_sang, especialidade;
 	char sexo, fator_rh;
@@ -235,7 +236,6 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 					j++;
 				}
 			}
-
 	
 			id = stoi(vetor_repteis[0]);
 			classe = vetor_repteis[1];
