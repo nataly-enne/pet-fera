@@ -35,9 +35,9 @@ class ANIMAL{
 		string getVeterinario();
 		string getTratador();
 		string getNome_batismo();
-		//  Construtor.
+		// Construtor.
 		ANIMAL(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome);
-		//  Destrutor.
+		// Destrutor.
 		~ANIMAL();
 };
 
@@ -48,7 +48,7 @@ class ANIMAL_SILVESTRE{
 	public:
 		// Getter.
 		virtual string getAutorizacao_IBAMA() = 0;
-		//  Construtor.
+		// Construtor.
 		ANIMAL_SILVESTRE(string aut);
 		~ANIMAL_SILVESTRE();
 };
@@ -59,14 +59,14 @@ class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 		string uf_origem;
 		string autorizacao;
 	public:
-		//  Getters.
+		// Getters.
 		string getUf_origem();
 		string getAutorizacao();
 		string getAutorizacao_IBAMA();
 		virtual int getId() = 0;
-		//  Construtor.
+		// Construtor.
 		ANIMAL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
-		//  Destrutor.
+		// Destrutor.
 		~ANIMAL_NATIVO();
 };
 
@@ -76,11 +76,11 @@ class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 		string pais_origem;
 		string autorizacao;
 	public:
-		//  Getters.
+		// Getters.
 		string getPais_origem();
 		string getAutorizacao();
 		string getAutorizacao_IBAMA();
-		//  Construtor.
+		// Construtor.
 		ANIMAL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
 		~ANIMAL_EXOTICO();
 };
@@ -135,12 +135,12 @@ class MAMIFERO{
 	protected:
 		string cor_pelo;
 	public:
-		//  Getters.
+		// Getters.
 		//int getId();
 		string getCor_pelo();
-		//  Construtor.
+		// Construtor.
 		MAMIFERO(string cor);
-		//  Destrutor.
+		// Destrutor.
 		~MAMIFERO();
 
 		//friend ostream& operator << (ostream &out, MAMIFERO &m);
@@ -149,10 +149,10 @@ class MAMIFERO{
 // Declaração da classe Mamífero Nativo.
 class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 	public:
-		//  Construtor.
+		// Construtor.
 		MAMIFERO_NATIVO();
 		MAMIFERO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
-		//  Destrutor.
+		// Destrutor.
 		~MAMIFERO_NATIVO();
 		int getId();
 
