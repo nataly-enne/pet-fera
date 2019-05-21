@@ -10,19 +10,19 @@ void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 		cin >> classe;
 		switch (classe){
 			case 1:
-				imprimir_classe(anfibios_nat, anfibios_ex);
+				imprimir_classe(anfibios_nat, anfibios_ex); // Chama função que imprime a classe anfíbio.
 				sucesso = 's';
 				break;
 			case 2:
-				imprimir_classe(mamiferos_nat, mamiferos_ex);
+				imprimir_classe(mamiferos_nat, mamiferos_ex); // Chama função que imprime a classe mamífero.
 				sucesso = 's';
 				break;
 			case 3:
-				imprimir_classe(repteis_nat, repteis_ex);
+				imprimir_classe(repteis_nat, repteis_ex); // Chama função que imprime a classe réptil.
 				sucesso = 's';
 				break;
 			case 4:
-				imprimir_classe(aves_nat, aves_ex);
+				imprimir_classe(aves_nat, aves_ex); // Chama função que imprime a classe ave.
 				sucesso = 's';
 				break;
 			default:

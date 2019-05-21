@@ -27,10 +27,10 @@ int main(){
 	cout << ">>> Bem-Vindo ao Sistema da Pet Fera! <<<" << endl;
 
 	do{
-		cout << 	   " _________________________________________" << endl;
-		cout << "|" << "                                         |" << endl;
-		cout << "|" << "              MENU INICIAL               |" << endl;
-		cout << "|" << "_________________________________________|" << endl << endl;
+		cout << " _________________________________________" << endl;
+		cout << "|                                         |" << endl;
+		cout << "|              MENU INICIAL               |" << endl;
+		cout << "|_________________________________________|" << endl << endl;
 		cout << "|"<<"1" << "|" << " - Cadastrar novo funcionario" << endl;
 		cout << "|"<<"2" << "|" << " - Cadastrar novo animal" << endl;
 		cout << "|"<<"3" << "|" << " - Remover um funcionario" << endl;
