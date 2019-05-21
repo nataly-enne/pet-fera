@@ -35,6 +35,7 @@ void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 	}while(op == 's');
 }
 
+// Editar anfíbio.
 void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
 	char opcao, resp, op, sucesso, sexo;
 	int total_mudas, id_buscado;;
@@ -98,7 +99,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 					(*result).second = ANFIBIO_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
 				}else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -109,7 +110,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 					nativos.close();
 				}
 
-				cout << "Deseja editar outro ? s/n" << endl;
+				cout << "Deseja editar outro? s/n" << endl;
 				cin >> op;
 				
 			}
@@ -157,7 +158,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -168,7 +169,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 					exoticos.close();
 				}
 
-				cout << "Deseja editar outro ? s/n" << endl;
+				cout << "Deseja editar outro? s/n" << endl;
 				cin >> op;
 			}	
 		} // Primeiro else.
@@ -240,7 +241,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -251,7 +252,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 					nativos.close();
 				}
 
-				cout << "Deseja editar outro ? s/n" << endl;
+				cout << "Deseja editar outro? s/n" << endl;
 				cin >> op;
 			}
 			else{
@@ -297,7 +298,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -307,10 +308,10 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 					}
 					exoticos.close();
 				}
-				cout << "Deseja editar outro ? s/n" << endl;
+				cout << "Deseja editar outro? s/n" << endl;
 				cin >> op;
 			}
-		} //Primeiro Else
+		} // Primeiro else.
 	}while(op == 's');
 }
 
@@ -365,7 +366,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 					cin >> sexo;
 					cout << "Digite o tamanho do animal: " << endl;
 					cin >> tamanho;
-					cout << "Digite 0-não venenoso / 1-venenoso: " << endl;
+					cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
 					cin >> venenoso;
 					if(venenoso){
 						cout << "Digite o tipo do veneno: " << endl;
@@ -386,7 +387,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -397,7 +398,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 					nativos.close();
 				}
 
-				cout << "Deseja editar outro ? s/n" << endl;
+				cout << "Deseja editar outro? s/n" << endl;
 				cin >> op;
 			}
 			else{
@@ -450,7 +451,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -460,7 +461,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 					}
 					exoticos.close();
 				}
-				cout << "Deseja editar outro ? s/n" << endl;
+				cout << "Deseja editar outro? s/n" << endl;
 				cin >> op;
 			}
 		} // Primeiro else.
@@ -534,7 +535,7 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -592,7 +593,7 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 					sucesso = 's';
 				}
 				else{
-					cout << "Animal nao cadastrado!!" << endl;
+					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}
 				if(sucesso == 's'){
@@ -630,7 +631,7 @@ void editar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
 				editar(tratadores);
 			}
 		}
-		cout << "Deseja editar mais funcionarios? s-sim n-nao" << endl;
+		cout << "Deseja editar mais funcionarios? s - SIM n - NÃO" << endl;
 		cin >> continuar;
 	} while (continuar == 's'); // Parada.
 }
@@ -673,7 +674,7 @@ void editar(map <int, VETERINARIO> &vets){
 		sucesso = 's';
 	}
 	else{
-		cout << "Funcionario nao cadastrado!!" << endl;
+		cout << "Funcionario não cadastrado!!" << endl;
 		sucesso = 'n';
 	}
 
@@ -725,7 +726,7 @@ void editar(map <int, TRATADOR> &tratadores){
 		sucesso = 's';
 	}
 	else{
-		cout << "Funcionario nao cadastrado!!" << endl;
+		cout << "Funcionario não cadastrado!!" << endl;
 		sucesso = 'n';
 	}
 

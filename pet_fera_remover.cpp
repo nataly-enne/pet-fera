@@ -19,7 +19,7 @@ void remover_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 		}
 		else{
 			if(tipo_animal == 'a'){
-				remover(anfibios_nat, anfibios_ex); //Função remover sobrecarregada
+				remover(anfibios_nat, anfibios_ex); // Função remover sobrecarregada.
 			}
 			else if(tipo_animal == 'm'){
 				remover(mamiferos_nat, mamiferos_ex);
@@ -31,7 +31,7 @@ void remover_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 				remover(aves_nat, aves_ex);
 			}
 		
-		}//Primeiro Else
+		} // Primeiro else.
 
 	}while(op == 's');
 }
@@ -78,7 +78,7 @@ void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO>
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 
 			}
@@ -104,7 +104,7 @@ void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO>
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 			}
 		} // Primeiro else.
@@ -153,7 +153,7 @@ void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTI
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 
 			}
@@ -179,7 +179,7 @@ void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTI
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 			}
 		} // Primeiro else.
@@ -228,7 +228,7 @@ void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &r
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 
 			}
@@ -254,7 +254,7 @@ void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &r
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 			}
 		} // Primeiro else.
@@ -304,7 +304,7 @@ void remover(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 
 			}
@@ -330,7 +330,7 @@ void remover(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 				else{
 					cout << "Animal não cadastrado!" << endl;
 				}
-				cout << "Deseja remover outro ? s/n" << endl;
+				cout << "Deseja remover outro? s/n" << endl;
 				cin >> op;
 			}
 		} // Primeiro else.
@@ -394,7 +394,7 @@ void remover(map <int, VETERINARIO> &vets){
 		else{
 			cout << "Funcionario não cadastrado!" << endl;
 		}
-		cout << "Deseja remover outro ? s/n" << endl;
+		cout << "Deseja remover outro? s/n" << endl;
 		cin >> op;
 
 	}while(op == 's');
@@ -428,7 +428,12 @@ void remover(map <int, TRATADOR>  &tratadores){
 		else{
 			cout << "Funcionario não cadastrado!" << endl;
 		}
-		cout << "Deseja remover outro ? s/n" << endl;
+		cout << "Deseja remover outro? s/n" << endl;
 		cin >> op;
 	}while(op == 's');
 }
+
+
+
+
+

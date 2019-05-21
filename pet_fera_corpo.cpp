@@ -48,7 +48,6 @@ ANIMAL_SILVESTRE::ANIMAL_SILVESTRE(string aut){
 
 ANIMAL_SILVESTRE::~ANIMAL_SILVESTRE(){}
 
-
 // Implementação da classe Animal Nativo.
 string ANIMAL_NATIVO::getUf_origem(){
 	return uf_origem;
@@ -126,8 +125,6 @@ int AVE_EXOTICO::getId(){
 	return id;
 }
 
-
-
 // Implementação da classe Animal Exótico.
 string ANIMAL_EXOTICO::getPais_origem(){
 	return pais_origem;
@@ -146,7 +143,6 @@ string ANIMAL_EXOTICO::getAutorizacao_IBAMA(){
 }
 
 ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
-
 
 // Implementação da classe Anfibio
 int ANFIBIO::getTotal_mudas(){
@@ -223,7 +219,6 @@ ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &a){
 
 ANFIBIO::~ANFIBIO(){}
 
-
 // Implementação da classe Mamífero.
 string MAMIFERO::getCor_pelo(){
 	return cor_pelo;
@@ -293,8 +288,6 @@ ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m){
 }
 
 MAMIFERO::~MAMIFERO(){}
-
-
 
 // Implementação da classe Réptil.
 bool REPTIL::getVenenoso(){
@@ -453,7 +446,6 @@ ofstream& operator << (ofstream &out, AVE_EXOTICO &v){
 
 AVE::~AVE(){}
 
-
 // Implementação da classe Funcionário.
 void FUNCIONARIO::setId(int i){
 	this->id = i;
@@ -542,7 +534,6 @@ ofstream& operator << (ofstream &out, VETERINARIO &v){
 	return out;
 }
 
-
 // Implementação da classe Tratador.
 int TRATADOR::getNivel_seguranca(){
 	return nivel_seguranca;
@@ -586,3 +577,5 @@ ofstream& operator << (ofstream &out, TRATADOR &t){
 	t.getEspecialidade() << ";" << t.getNivel_seguranca() << ";" << '\n';
 	return out;
 }
+
+

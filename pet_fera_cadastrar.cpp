@@ -1,6 +1,6 @@
 #include "pet_fera.h"
 
-// Função geral cadastrar os funcionarios.
+// Função geral que faz a chamada das funções de cadastrar os funcionarios.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){
 	char tipo_func;
 	char continuar = 'n';
@@ -24,7 +24,7 @@ void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratador
 	}while (continuar == 's'); 	
 }
 
-// Função específica para cadastro dos veterinarios.
+// Função específica para cadastro dos veterinários.
 void cadastrar(map <int, VETERINARIO> &vets){ 
 	int id, idade;
 	unsigned int old_size;
@@ -44,7 +44,7 @@ void cadastrar(map <int, VETERINARIO> &vets){
 		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
-		check = check_CPF(vets, cpf);
+		check = check_CPF(vets, cpf); // Checa se o CPF existe.
 		if(check){
 			cout << "CPF já cadastrado!" << endl;
 			break;
@@ -100,10 +100,10 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
 		getline(cin, nome); 
-		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiusculos.
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
-		check = check_CPF(tratadores, cpf);
+		check = check_CPF(tratadores, cpf); // Checa se o CPF existe.
 		if(check){
 			cout << "CPF já cadastrado!" << endl;
 			break;
@@ -143,7 +143,7 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 	}
 }
 
-// Função geral para cadastro dos animais.
+// Função geral que faz a chamada das funções específicas para o cadastro dos animais.
 void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	char tipo_func;
 	char continuar = 'n', resp;
@@ -176,8 +176,7 @@ void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 				cadastrar(aves_nat, aves_ex, vets, tratadores);
 			}
 		}
-	}while (continuar == 's');
-	
+	}while (continuar == 's');	
 }
 
 // Função especifica para cadastro dos anfíbios.
@@ -217,7 +216,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
-				cout << "Veterinario nao cadastrado!" << endl;
+				cout << "Veterinario não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome do tratador: " << endl;
@@ -225,7 +224,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
-				cout << "Tratador nao cadastrado!" << endl;
+				cout << "Tratador não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome de batismo: " << endl;
@@ -332,7 +331,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
-				cout << "Veterinario nao cadastrado!" << endl;
+				cout << "Veterinario não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome do tratador: " << endl;
@@ -340,7 +339,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
-				cout << "Tratador nao cadastrado!" << endl;
+				cout << "Tratador não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome de batismo: " << endl;
@@ -411,7 +410,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 	}	
 }
 
-//Função especifica para cadastro dos repteis
+// Função especifica para cadastro dos répteis.
 void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id;
 	bool venenoso, check;
@@ -447,7 +446,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
-				cout << "Veterinario nao cadastrado!" << endl;
+				cout << "Veterinario não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome do tratador: " << endl;
@@ -455,7 +454,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
-				cout << "Tratador nao cadastrado!" << endl;
+				cout << "Tratador não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome de batismo: " << endl;
@@ -568,7 +567,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
-				cout << "Veterinario nao cadastrado!" << endl;
+				cout << "Veterinario não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome do tratador: " << endl;
@@ -576,7 +575,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
-				cout << "Tratador nao cadastrado!" << endl;
+				cout << "Tratador não cadastrado!" << endl;
 				break;
 			}
 			cout << "Digite o nome de batismo: " << endl;
@@ -647,3 +646,4 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 		exoticos.close();
 	}
 }
+

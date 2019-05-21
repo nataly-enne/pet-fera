@@ -59,7 +59,7 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile.close();
 	}
 
-	//Carregando o arquivo "anfibios_ex.txt" para o seu map.
+	// Carregando o arquivo "anfibios_ex.txt" para o seu map.
 	ifstream appFile2("anfibios_ex.txt");
 		if(appFile2.is_open()){
 			while(getline(appFile2, line)){
