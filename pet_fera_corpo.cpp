@@ -67,14 +67,12 @@ string ANIMAL_NATIVO::getAutorizacao_IBAMA(){
 
 ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
 
-
 // Implementação da classe Anfíbio Nativo.
 ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a):ANIMAL_NATIVO(i, c, nome, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
 ANFIBIO_NATIVO::~ANFIBIO_NATIVO(){}
 int ANFIBIO_NATIVO::getId(){
 	return id;
 }
-
 
 // Implementação da classe Anfíbio Exótico.
 ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, nome, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
@@ -366,7 +364,6 @@ ofstream& operator << (ofstream &out, REPTIL_EXOTICO &r){
 
 REPTIL::~REPTIL(){}
 
-
 // Implementação da classe Ave.
 double AVE::getTamanho_bico(){
 	return tamanho_bico;
@@ -510,6 +507,7 @@ VETERINARIO::VETERINARIO(int i, string n, long int c, int ida, string t, char f,
 	especialidade = e;
 	crmv = cr;
 }
+
 // Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, VETERINARIO &v){
 	cout << endl;

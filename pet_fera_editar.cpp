@@ -55,7 +55,8 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 			if(resp == 's'){
 				break;
 			}	
-		}else{ 
+		}
+		else{ 
 			if(opcao == 'n'){
 				cout << "Insira o ID buscado: " << endl;
 				cin >> id_buscado;
@@ -98,7 +99,8 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 
 					(*result).second = ANFIBIO_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
-				}else{
+				}
+				else{
 					cout << "Animal não cadastrado!!" << endl;
 					sucesso = 'n';
 				}

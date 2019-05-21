@@ -50,6 +50,7 @@ class ANIMAL_SILVESTRE{
 		virtual string getAutorizacao_IBAMA() = 0;
 		// Construtor.
 		ANIMAL_SILVESTRE(string aut);
+		// Destrutor.
 		~ANIMAL_SILVESTRE();
 };
 
@@ -82,6 +83,7 @@ class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 		string getAutorizacao_IBAMA();
 		// Construtor.
 		ANIMAL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
+		// Destrutor.
 		~ANIMAL_EXOTICO();
 };
 
@@ -109,9 +111,11 @@ class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 		ANFIBIO_NATIVO();
 		// Destrutor.
 		~ANFIBIO_NATIVO();
+		int getId();
+
 		friend ostream& operator << (ostream &out, ANFIBIO_NATIVO &m);
 		friend ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &m);
-		int getId();
+		
 };
 
 // Declaração da classe Anfíbio Exótico.
@@ -124,10 +128,12 @@ class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 
 		// Destrutor.
 		~ANFIBIO_EXOTICO();
-		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
-		friend ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &m);
 		int getId();
 
+
+		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
+		friend ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &m);
+		
 };
 
 // Declaração da classe Mamífero.
@@ -143,7 +149,6 @@ class MAMIFERO{
 		// Destrutor.
 		~MAMIFERO();
 
-		//friend ostream& operator << (ostream &out, MAMIFERO &m);
 };
 
 // Declaração da classe Mamífero Nativo.
@@ -181,7 +186,6 @@ class REPTIL{
 		string tipo_veneno;
 	public:
 		// Getters.
-		//int getId();
 		bool getVenenoso();
 		string getTipo_veneno();
 		// Construtor.
@@ -245,6 +249,7 @@ class AVE_NATIVO: public ANIMAL_NATIVO, AVE{
 		// Destrutor.
 		~AVE_NATIVO();
 		int getId();
+		
 		friend ostream& operator << (ostream &out, AVE_NATIVO &a);
 		friend ofstream& operator << (ofstream &out, AVE_NATIVO &v);
 };

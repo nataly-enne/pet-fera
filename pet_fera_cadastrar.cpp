@@ -253,7 +253,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id, ANFIBIO_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 
 				if (anfibios_nat.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente." << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
@@ -270,7 +270,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO> (id, ANFIBIO_EXOTICO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 							
 				if (anfibios_ex.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}	
@@ -367,7 +367,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO> (id, MAMIFERO_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (mamiferos_nat.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
@@ -383,7 +383,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO> (id, MAMIFERO_EXOTICO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (mamiferos_ex.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
@@ -463,7 +463,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			cin >> sexo;
 			cout << "Digite o tamanho do animal: " << endl;
 			cin >> tamanho;
-			cout << "Digite 0-não venenoso / 1-venenoso: " << endl;
+			cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
 			cin >> venenoso;
 			if(venenoso){
 				cout << "Digite o tipo do veneno: " << endl;
@@ -488,7 +488,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				repteis_nat.insert(pair <int, REPTIL_NATIVO> (id, REPTIL_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (repteis_nat.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
@@ -504,7 +504,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				repteis_ex.insert(pair <int, REPTIL_EXOTICO> (id, REPTIL_EXOTICO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (repteis_ex.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
@@ -604,7 +604,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_nat.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
@@ -620,7 +620,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				aves_ex.insert(pair <int, AVE_EXOTICO> (id, AVE_EXOTICO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_ex.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
 				}
