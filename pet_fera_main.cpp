@@ -39,7 +39,6 @@ int main(){
 		cout << "|"<<"6" << "|" << " - Alterar dados de um funcionário" << endl;
 		cout << "|"<<"7" << "|" << " - Consultar dados através da classe" << endl;
 		cout << "|"<<"8" << "|" << " - Consultar dados de um animal sob responsabilidade de um veterinario ou tratador" << endl;
-		cout << "|"<<"9" << "|" << " - Todas as atividades de um determinado veterinario ou tratador" << endl;
 		cout << "|"<<"0" << "|" << " - Sair" << endl;
 		cin >> op;
 
@@ -72,7 +71,7 @@ int main(){
 				consulta_p_func(vets,tratadores,anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
 			default:
-				cout << "Opcao indisponível! Tente novamente." << endl;
+				cout << "Opçao indisponível! Tente novamente!" << endl;
 		}
 	}while(op != 0);
 
