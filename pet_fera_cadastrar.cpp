@@ -64,7 +64,7 @@ void cadastrar(map <int, VETERINARIO> &vets){
 		// Armazenando os valores recebidos pelo usuário no map.
 		vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
 		
-		cout << "Deseja cadastrar um novo funcionario ? s/n" << endl;
+		cout << "Deseja cadastrar um novo funcionario? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
 
@@ -124,7 +124,7 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 		// Armazenando os valores recebidos pelo usuário no map.
 		tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
 		
-		cout << "Deseja cadastrar um novo funcionario ? s/n" << endl;
+		cout << "Deseja cadastrar um novo funcionário? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
 
