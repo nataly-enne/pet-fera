@@ -26,8 +26,8 @@ void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 				sucesso = 's';
 				break;
 			default:
-				cout << "Opcao nao existe!! Tente novamente." << endl;
-				cout << "Deseja sair ? s/n" << endl;
+				cout << "Opcao não existe!! Tente novamente." << endl;
+				cout << "Deseja sair? s/n" << endl;
 				cin >> sucesso;	
 		}
 	}while(sucesso != 's');

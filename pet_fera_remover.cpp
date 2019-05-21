@@ -92,8 +92,8 @@ void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO>
 					cout << "ID existe!" << endl;
 					anfibios_ex.erase(result);
 
-					//A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
-					//Senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha
+					/* A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
+					senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha */
 					exoticos.open("anfibios_ex.txt");
 					for(auto it = anfibios_ex.begin(); it != anfibios_ex.end(); it++){
 						exoticos << (*it).second;
@@ -141,7 +141,7 @@ void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTI
 					cout << "ID existe!" << endl;
 					mamiferos_nat.erase(result);
 
-					/*A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
+					/* A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
 					senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha. */
 					nativos.open("mamiferos_nat.txt");
 					for(auto it = mamiferos_nat.begin(); it != mamiferos_nat.end(); it++){
@@ -167,8 +167,8 @@ void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTI
 					cout << "ID existe!" << endl;
 					mamiferos_ex.erase(result);
 
-					//A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
-					//Senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha
+					/* A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
+					senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha. */
 					exoticos.open("mamiferos_ex.txt");
 					for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end(); it++){
 						exoticos << (*it).second;
@@ -216,8 +216,8 @@ void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &r
 					cout << "ID existe!" << endl;
 					repteis_nat.erase(result);
 
-					//A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
-					//Senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha
+					/* A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
+					senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha. */
 					nativos.open("repteis_nat.txt");
 					for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
 						nativos << (*it).second;
@@ -292,8 +292,8 @@ void remover(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 					cout << "ID existe!" << endl;
 					aves_nat.erase(result);
 
-					//A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
-					//Senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha
+					/* A condição do map não ser vazio para escrever no arquivo foi removido, para que mesmo quando o map estiver vazio escreva no arquivo
+					senão, quando o arquivo só tiver uma linha e o usuário for apagar essa linha, mesmo assim o arquivo permacerá com essa linha. */
 					nativos.open("aves_nat.txt");
 					for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
 						nativos << (*it).second;
