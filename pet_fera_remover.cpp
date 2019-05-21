@@ -32,7 +32,6 @@ void remover_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 			}
 		
 		} // Primeiro else.
-
 	}while(op == 's');
 }
 
@@ -362,7 +361,6 @@ void remover_funcionario(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tra
 				remover(tratadores);
 			}
 		} // Primeiro else.
-
 	}while(op == 's');
 }
 
@@ -396,7 +394,6 @@ void remover(map <int, VETERINARIO> &vets){
 		}
 		cout << "Deseja remover outro? s/n" << endl;
 		cin >> op;
-
 	}while(op == 's');
 }
 
