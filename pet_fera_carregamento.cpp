@@ -1,6 +1,6 @@
 #include "pet_fera.h"
 
-//Carrega todos os arquivos pra seus respectivos maps, para assim ser utilizado de forma eficiente em todas as operações
+// Carrega todos os arquivos pra seus respectivos maps, para assim ser utilizado de forma eficiente em todas as operações.
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores){
 	int id, total_mudas, nivel_seg, idade;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao_IBAMA, origem, autorizacao,  ultima_muda, cor, tipo_veneno, crmv, nome, tipo_sang, especialidade;
@@ -17,14 +17,14 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	string line, tmp;
 	int cont = 0, j;
 
-	//Carregando o arquivo "anfibios_nat.txt" para o seu map
+	// Carregando o arquivo "anfibios_nat.txt" para o seu map.
 	ifstream appFile("anfibios_nat.txt");
 
 	if(appFile.is_open()){
 		while(getline(appFile, line)){ 
 			cont = 0;
 			j = 0;
-			for(int i=0; i<(int)line.length(); i++){
+			for(int i = 0; i < (int)line.length(); i++){
 				if(line[i]  == ';'){
 					vetor_anfibios[cont] = tmp;
 					tmp.erase();
@@ -59,14 +59,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile.close();
 	}
 
-
-	//Carregando o arquivo "anfibios_ex.txt" para o seu map
+	//Carregando o arquivo "anfibios_ex.txt" para o seu map.
 	ifstream appFile2("anfibios_ex.txt");
 		if(appFile2.is_open()){
 			while(getline(appFile2, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_anfibios[cont] = tmp;
 						tmp.erase();
@@ -101,13 +100,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 	}
 
 
-	//Carregando o arquivo "mamiferos_nat.txt" para o seu map
+	// Carregando o arquivo "mamiferos_nat.txt" para o seu map.
 	ifstream appFile3("mamiferos_nat.txt");
 	if(appFile3.is_open()){
 		while(getline(appFile3, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_mamiferos[cont] = tmp;
 						tmp.erase();
@@ -140,14 +139,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile3.close();
 	}
 
-	
-	//Carregando o arquivo "mamiferos_nat.txt" para o seu map
+	// Carregando o arquivo "mamiferos_nat.txt" para o seu map.
 	ifstream appFile4("mamiferos_ex.txt");
 	if(appFile4.is_open()){
 		while(getline(appFile4, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_mamiferos[cont] = tmp;
 						tmp.erase();
@@ -180,13 +178,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile4.close();
 	}
 
-	//Carregando o arquivo "repteis_nat.txt" para o seu map
+	// Carregando o arquivo "repteis_nat.txt" para o seu map.
 	ifstream appFile5("repteis_nat.txt");
 	if(appFile5.is_open()){
 		while(getline(appFile5, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_repteis[cont] = tmp;
 						tmp.erase();
@@ -221,13 +219,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile5.close();
 	}
 
-	//Carregando o arquivo "repteis_ex.txt" para o seu map
+	// Carregando o arquivo "repteis_ex.txt" para o seu map.
 	ifstream appFile6("repteis_ex.txt");
 	if(appFile6.is_open()){
 		while(getline(appFile6, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_repteis[cont] = tmp;
 						tmp.erase();
@@ -262,13 +260,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile6.close();
 	}
 
-	//Carregando o arquivo "anfibios_nat.txt" para o seu map
+	// Carregando o arquivo "anfibios_nat.txt" para o seu map.
 	ifstream appFile7("aves_nat.txt");
 	if(appFile7.is_open()){
 		while(getline(appFile7, line)){
 				cont = 0;;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_aves[cont] = tmp;
 						tmp.erase();
@@ -302,13 +300,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile7.close();
 	}
 
-	//Carregando o arquivo "aves_ex.txt" para o seu map
+	// Carregando o arquivo "aves_ex.txt" para o seu map.
 	ifstream appFile8("aves_ex.txt");
 	if(appFile8.is_open()){
 		while(getline(appFile8, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_aves[cont] = tmp;
 						tmp.erase();
@@ -341,13 +339,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		}
 		appFile8.close();
 	}
-	//carregando arquivo veterinarios.txt no map
+	// Carregando arquivo "veterinarios.txt" para o seu map.
 	ifstream appFile9("veterinarios.txt");
 	if(appFile9.is_open()){
 		while(getline(appFile9, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_veterinarios[cont] = tmp;
 						tmp.erase();
@@ -374,13 +372,13 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		appFile9.close();
 	}
 
-	//carregando arquivo "tratadores.txt"
+	// Carregando arquivo "tratadores.txt" para o seu map.
 	ifstream appFile10("tratadores.txt");
 	if(appFile10.is_open()){
 		while(getline(appFile10, line)){
 				cont = 0;
 				j = 0;
-				for(int i=0; i<(int)line.length(); i++){
+				for(int i = 0; i < (int)line.length(); i++){
 					if(line[i]  == ';'){
 						vetor_tratadores[cont] = tmp;
 						tmp.erase();
@@ -406,5 +404,4 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 		}
 		appFile10.close();
 	}
-
 }

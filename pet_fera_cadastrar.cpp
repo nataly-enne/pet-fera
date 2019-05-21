@@ -1,55 +1,6 @@
 #include "pet_fera.h"
 
-
-//Checagem dos CPF's
-bool check_CPF(map <int, VETERINARIO> &vets, long int cpf){
-	int cont = 0;
-
-	for(auto it = vets.begin(); it != vets.end();it++){
-		if(it->second.getCpf() == cpf){
-			cont ++;
-		}
-	}
-	return cont;
-}
-
-bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf){
-	int cont = 0;
-
-	for(auto it = tratadores.begin(); it != tratadores.end();it++){
-		if(it->second.getCpf() == cpf){
-			cont ++;
-		}
-	}
-	return cont;
-}
-
-//Checagem dos veterinarios e tratadores
-bool check_vet(map <int, VETERINARIO> &vets, string nome){
-	int cont = 0;
-
-	for(auto it = vets.begin(); it != vets.end();it++){
-		if(it->second.getNome() == nome){
-			cont ++;
-			break;
-		}
-	}
-	return cont;
-}
-bool check_tratador(map <int, TRATADOR> &tratadores, string nome){
-	int cont = 0;
-
-	for(auto it = tratadores.begin(); it != tratadores.end();it++){
-		if(it->second.getNome() == nome){
-			cont ++;
-			break;
-		}
-	}
-	return cont;
-
-}
-
-// Função geral cadastrar os funcionarios
+// Função geral cadastrar os funcionarios.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores){
 	char tipo_func;
 	char continuar = 'n';
@@ -70,11 +21,10 @@ void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratador
 				cadastrar(tratadores);
 			}
 		}
-	} while (continuar == 's'); 
-	
+	}while (continuar == 's'); 	
 }
 
-// Função especifica para cadastro dos veterinarios
+// Função específica para cadastro dos veterinarios.
 void cadastrar(map <int, VETERINARIO> &vets){ 
 	int id, idade;
 	unsigned int old_size;
@@ -91,7 +41,7 @@ void cadastrar(map <int, VETERINARIO> &vets){
 		cout << "Digite o nome: " << endl;
 		cin.ignore();
 		getline(cin, nome);
-		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); //Converte a string nome para caracteres maiusculos
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
 		cout << "Digite o cpf: " << endl;
 		cin >> cpf;
 		check = check_CPF(vets, cpf);
@@ -114,28 +64,26 @@ void cadastrar(map <int, VETERINARIO> &vets){
 		// Armazenando os valores recebidos pelo usuário no map.
 		vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
 		
-
 		cout << "Deseja cadastrar um novo funcionario ? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
 
-		if (vets.size() == old_size){ 
-			cout << "Falha no cadastro do funcionario!" << endl;
-		}
-		else{
-			if(!vets.empty()){
-				veterinarios.open("veterinarios.txt");
-				for(auto it = vets.begin(); it != vets.end(); it++){
-					veterinarios << (*it).second;
-				}
-				veterinarios.close();
+	if (vets.size() == old_size){ 
+		cout << "Falha no cadastro do funcionario!" << endl;
+	}
+	else{
+		if(!vets.empty()){
+			veterinarios.open("veterinarios.txt");
+			for(auto it = vets.begin(); it != vets.end(); it++){
+				veterinarios << (*it).second;
 			}
-				cout << "Cadastro efetuado com sucesso!!" << endl;
+			veterinarios.close();
 		}
+		cout << "Cadastro efetuado com sucesso!!" << endl;
+	}
 }
 
-
-// Função especifica para cadastro dos tratadores
+// Função específica para cadastro dos tratadores.
 void cadastrar(map <int, TRATADOR>  &tratadores){ 
 	int id, idade,nivel_seg;
 	unsigned int old_size;
@@ -180,22 +128,22 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 		cin >> continuar;
 	}while(continuar == 's');
 
-		if (tratadores.size() == old_size){ 
-			cout << "Falha no cadastro do funcionario!" << endl;
-		}else{
-
-			if(!tratadores.empty()){
-				tratador.open("tratadores.txt");
-				for(auto it = tratadores.begin(); it != tratadores.end(); it++){
-					tratador << (*it).second;
-				}
-				tratador.close();
+	if (tratadores.size() == old_size){ 
+		cout << "Falha no cadastro do funcionario!" << endl;
+	}
+	else{
+		if(!tratadores.empty()){
+			tratador.open("tratadores.txt");
+			for(auto it = tratadores.begin(); it != tratadores.end(); it++){
+				tratador << (*it).second;
 			}
-			cout << "Cadastro efetuado com sucesso!!" << endl;
+			tratador.close();
 		}
+		cout << "Cadastro efetuado com sucesso!!" << endl;
+	}
 }
 
-// Função geral para cadastro dos animais
+// Função geral para cadastro dos animais.
 void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	char tipo_func;
 	char continuar = 'n', resp;
@@ -228,11 +176,11 @@ void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 				cadastrar(aves_nat, aves_ex, vets, tratadores);
 			}
 		}
-	} while (continuar == 's');
+	}while (continuar == 's');
 	
 }
 
-// Função especifica para cadastro dos anfibios
+// Função especifica para cadastro dos anfíbios.
 void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id, total_mudas;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda, nome;
@@ -302,7 +250,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				// Armazenando valores no map para tipo anfíbio nativo passados pelo usuário
+				// Armazenando valores no map para tipo anfíbio nativo passados pelo usuário.
 				anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id, ANFIBIO_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 
 				if (anfibios_nat.size() == old_size){
@@ -319,7 +267,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				// Armazenando valores no map para tipo anfíbio exótico passados pelo usuário
+				// Armazenando valores no map para tipo anfíbio exótico passados pelo usuário.
 				anfibios_ex.insert(pair <int, ANFIBIO_EXOTICO> (id, ANFIBIO_EXOTICO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 							
 				if (anfibios_ex.size() == old_size){
@@ -331,25 +279,25 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 		}
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
-		}while(continuar == 's');
-						
-			if(!anfibios_nat.empty()){
-				nativos.open("anfibios_nat.txt");
-				for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
-					nativos << (*it).second;
-				}
-				nativos.close();
-			}
-			if(!anfibios_ex.empty()){
-				exoticos.open("anfibios_ex.txt");
-				for(auto it = anfibios_ex.begin(); it != anfibios_ex.end(); it++){
-					exoticos << (*it).second;
-				}
-				exoticos.close();
-			}
+	}while(continuar == 's');
+					
+	if(!anfibios_nat.empty()){
+		nativos.open("anfibios_nat.txt");
+		for(auto it = anfibios_nat.begin(); it != anfibios_nat.end(); it++){
+			nativos << (*it).second;
+		}
+		nativos.close();
+	}
+	if(!anfibios_ex.empty()){
+		exoticos.open("anfibios_ex.txt");
+		for(auto it = anfibios_ex.begin(); it != anfibios_ex.end(); it++){
+			exoticos << (*it).second;
+		}
+		exoticos.close();
+	}
 }
 
-//Função especifica para cadastro dos mamiferos
+// Função especifica para cadastro dos mamiferos.
 void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor, nome;
@@ -416,7 +364,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				// Armazenando no map dados do tipo mamífero nativo passados pelo usuário
+				// Armazenando no map dados do tipo mamífero nativo passados pelo usuário.
 				mamiferos_nat.insert(pair <int, MAMIFERO_NATIVO> (id, MAMIFERO_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (mamiferos_nat.size() == old_size){
@@ -432,7 +380,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 				
-				// Armazenando no map dados do tipo mamífero exótico passados pelo usuário
+				// Armazenando no map dados do tipo mamífero exótico passados pelo usuário.
 				mamiferos_ex.insert(pair <int, MAMIFERO_EXOTICO> (id, MAMIFERO_EXOTICO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta,veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (mamiferos_ex.size() == old_size){
@@ -441,31 +389,29 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 					continue;
 				}
 			}
-
 		}
 	
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
-		}while(continuar == 's');
+	}while(continuar == 's');
 
-			if(!mamiferos_nat.empty()){
-					nativos.open("mamiferos_nat.txt");
-					for(auto it = mamiferos_nat.begin(); it != mamiferos_nat.end(); it++){
-						nativos << (*it).second;
-					}
-					nativos.close();
-			}
-			if(!mamiferos_ex.empty()){
-					exoticos.open("mamiferos_ex.txt");
-					for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end(); it++){
-						exoticos << (*it).second;
-					}
-					exoticos.close();
-			}
-	
+	if(!mamiferos_nat.empty()){
+		nativos.open("mamiferos_nat.txt");
+		for(auto it = mamiferos_nat.begin(); it != mamiferos_nat.end(); it++){
+			nativos << (*it).second;
+		}
+		nativos.close();
+	}
+	if(!mamiferos_ex.empty()){
+		exoticos.open("mamiferos_ex.txt");
+		for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end(); it++){
+			exoticos << (*it).second;
+		}
+		exoticos.close();
+	}	
 }
 
-//Função especifica para cadastro dos reppteis
+//Função especifica para cadastro dos repteis
 void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id;
 	bool venenoso, check;
@@ -524,7 +470,8 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				cout << "Digite o tipo do veneno: " << endl;
 				cin.ignore();
 				getline(cin, tipo_veneno);
-			}else{
+			}
+			else{
 				cin.ignore();
 			}
 			cout << "Insira a autorizacao do IBAMA: " << endl;
@@ -567,25 +514,25 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 	
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
-		}while(continuar == 's');
-			if(!repteis_nat.empty()){
-						nativos.open("repteis_nat.txt");
-						for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
-							nativos << (*it).second;
-						}
-						nativos.close();
-				}
-				if(!repteis_ex.empty()){
-						exoticos.open("repteis_ex.txt");
-						for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
-							exoticos << (*it).second;
-						}
-						exoticos.close();
-				}
-	
+	}while(continuar == 's');
+		
+	if(!repteis_nat.empty()){
+		nativos.open("repteis_nat.txt");
+		for(auto it = repteis_nat.begin(); it != repteis_nat.end(); it++){
+			nativos << (*it).second;
+		}
+		nativos.close();
+	}
+	if(!repteis_ex.empty()){
+		exoticos.open("repteis_ex.txt");
+		for(auto it = repteis_ex.begin(); it != repteis_ex.end(); it++){
+			exoticos << (*it).second;
+		}
+		exoticos.close();
+	}	
 }
 
-//Função especifica para cadastro das aves
+// Função especifica para cadastro das aves.
 void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	int id;
 	bool check;
@@ -654,7 +601,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				// Armazenando valores do tipo ave nativa no map passado pelo usuário
+				// Armazenando valores do tipo ave nativa no map passado pelo usuário.
 				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_nat.size() == old_size){
@@ -670,7 +617,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				cout << "Insira a autorizacao do animal: " << endl;
 				getline(cin, autorizacao);
 
-				// Armazenando valores de ave exótica no map passada pelo usuário
+				// Armazenando valores de ave exótica no map passada pelo usuário.
 				aves_ex.insert(pair <int, AVE_EXOTICO> (id, AVE_EXOTICO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_ex.size() == old_size){
@@ -683,21 +630,20 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 	
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
-		}while(continuar == 's');
-		
-			if(!aves_nat.empty()){
-						nativos.open("aves_nat.txt");
-						for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
-							nativos << (*it).second;
-						}
-						nativos.close();
-				}
-				if(!aves_ex.empty()){
-						exoticos.open("aves_ex.txt");
-						for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
-							exoticos << (*it).second;
-						}
-						exoticos.close();
-				}
+	}while(continuar == 's');
 	
+	if(!aves_nat.empty()){
+		nativos.open("aves_nat.txt");
+		for(auto it = aves_nat.begin(); it != aves_nat.end(); it++){
+			nativos << (*it).second;
+		}
+		nativos.close();
+	}
+	if(!aves_ex.empty()){
+		exoticos.open("aves_ex.txt");
+		for(auto it = aves_ex.begin(); it != aves_ex.end(); it++){
+			exoticos << (*it).second;
+		}
+		exoticos.close();
+	}
 }

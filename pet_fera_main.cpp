@@ -4,7 +4,7 @@ int main(){
 	int op;
 	string especialidade, crmv;
 
-	// Declarando o map das classes
+	// Declarando o map das classes.
 	map <int, ANFIBIO_NATIVO> anfibios_nat;
 	map <int, ANFIBIO_EXOTICO> anfibios_ex;
 
@@ -22,7 +22,7 @@ int main(){
 
 	carregar_arquivos(anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex, vets, tratadores);
 
-	// Menu da tela inicial
+	// Menu da tela inicial.
 	cout << "" << endl;
 	cout << ">>> Bem-Vindo ao Sistema da Pet Fera! <<<" << endl;
 
@@ -72,12 +72,9 @@ int main(){
 				consulta_p_func(vets,tratadores,anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 				break;
 			default:
-				cout << "Opcao indisponivel! Tente novamente." << endl;
+				cout << "Opcao indisponível! Tente novamente." << endl;
 		}
-
-
 	}while(op != 0);
-	
 
 	return 0;
 }
