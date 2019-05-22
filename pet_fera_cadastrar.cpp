@@ -213,6 +213,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			getline(cin, dieta);
 			cout << "Digite o nome do veterinario: " << endl;
 			getline(cin, veterinario);
+			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
@@ -221,6 +222,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			}
 			cout << "Digite o nome do tratador: " << endl;
 			getline(cin, tratador);
+			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
@@ -328,6 +330,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 			getline(cin, dieta);
 			cout << "Digite o nome do veterinario: " << endl;
 			getline(cin, veterinario);
+			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
@@ -336,6 +339,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 			}
 			cout << "Digite o nome do tratador: " << endl;
 			getline(cin, tratador);
+			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
@@ -443,6 +447,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			getline(cin, dieta);
 			cout << "Digite o nome do veterinario: " << endl;
 			getline(cin, veterinario);
+			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
@@ -451,6 +456,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			}
 			cout << "Digite o nome do tratador: " << endl;
 			getline(cin, tratador);
+			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
@@ -564,6 +570,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 			getline(cin, dieta);
 			cout << "Digite o nome do veterinario: " << endl;
 			getline(cin, veterinario);
+			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
@@ -572,6 +579,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 			}
 			cout << "Digite o nome do tratador: " << endl;
 			getline(cin, tratador);
+			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
