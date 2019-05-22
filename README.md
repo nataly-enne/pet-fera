@@ -20,7 +20,7 @@ animais silvestres denominada "Pet Fera".
 #### Para compilar é necessário estar no diretório do projeto.
 #### Em seguida, no terminal, basta digitar:
  
- <pre><code> make</code></pre>
+ <pre><code>make</code></pre>
 
 #### Para executar o programa, escreva a seguinte linha de código:
 
