@@ -213,7 +213,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			getline(cin, dieta);
 			cout << "Digite o nome do veterinario: " << endl;
 			getline(cin, veterinario);
-			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
+			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte o nome do veterinário para caracteres maiúsculos.
 			check = check_vet(vets, veterinario);
 			if(!check){
 				cout << endl;
@@ -222,7 +222,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 			}
 			cout << "Digite o nome do tratador: " << endl;
 			getline(cin, tratador);
-			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
+			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte o nome do tratador para caracteres maiúsculos.
 			check = check_tratador(tratadores, tratador);
 			if(!check){
 				cout << endl;
