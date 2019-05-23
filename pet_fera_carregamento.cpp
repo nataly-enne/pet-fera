@@ -163,7 +163,7 @@ void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBI
 			nome = vetor_mamiferos[2];
 			nome_cientifico = vetor_mamiferos[3];
 			sexo = (char) vetor_mamiferos[4][0];
-			tamanho = stod(vetor_mamiferos[55]);
+			tamanho = stod(vetor_mamiferos[5]);
 			dieta = vetor_mamiferos[6];
 			veterinario = vetor_mamiferos[7];
 			tratador = vetor_mamiferos[8];

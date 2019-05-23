@@ -85,7 +85,7 @@ void cadastrar(map <int, VETERINARIO> &vets){
 
 // Função específica para cadastro dos tratadores.
 void cadastrar(map <int, TRATADOR>  &tratadores){ 
-	int id, idade,nivel_seg;
+	int id, idade, nivel_seg;
 	unsigned int old_size;
 	long int cpf;
 	string nome, especialidade, tipo_sang;
