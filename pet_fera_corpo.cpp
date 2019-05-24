@@ -1,8 +1,11 @@
 #include "pet_fera.h"
 
-//Animal
+// Implementação da classe Animal.
 string ANIMAL::getClasse(){
 	return classe;
+}
+string ANIMAL::getNome(){
+	return nome;
 }
 string ANIMAL::getNome_cientifico(){
 	return nome_cientifico;
@@ -25,9 +28,10 @@ string ANIMAL::getTratador(){
 string ANIMAL::getNome_batismo(){
 	return nome_batismo;
 }
-ANIMAL::ANIMAL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome){
+ANIMAL::ANIMAL(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome){
 	this->id = i;
 	this->classe = c;
+	this->nome = no;
 	this->nome_cientifico = n;
 	this->sexo = s;
 	this->tamanho = tam;
@@ -38,21 +42,13 @@ ANIMAL::ANIMAL(int i, string c, string n, char s, double tam, string die, string
 }
 ANIMAL::~ANIMAL(){}
 
-
-//Animal Silvestre
-// string ANIMAL_SILVESTRE::getAutorizacao_IBAMA(){
-// 	return autorizacao_IBAMA;
-// }
-
 ANIMAL_SILVESTRE::ANIMAL_SILVESTRE(string aut){
 	this->autorizacao_IBAMA = aut;
 }
 
 ANIMAL_SILVESTRE::~ANIMAL_SILVESTRE(){}
 
-
-
-//Animal Nativo
+// Implementação da classe Animal Nativo.
 string ANIMAL_NATIVO::getUf_origem(){
 	return uf_origem;
 }
@@ -60,82 +56,74 @@ string ANIMAL_NATIVO::getAutorizacao(){
 	return autorizacao;
 }
 		
-ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
+ANIMAL_NATIVO::ANIMAL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a):ANIMAL(i, c, no,  n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
 	this->uf_origem = u;
 	this->autorizacao = a;
 }
 
-// int ANIMAL_NATIVO::getId(){
-// 	return this->id;
-// }
 string ANIMAL_NATIVO::getAutorizacao_IBAMA(){
 	return this->autorizacao_IBAMA;
 }
 
 ANIMAL_NATIVO::~ANIMAL_NATIVO(){}
 
-
-
-//Anfibio Nativo
-ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
+// Implementação da classe Anfíbio Nativo.
+ANFIBIO_NATIVO::ANFIBIO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a):ANIMAL_NATIVO(i, c, nome, n, s, tam, die, vet, trat, nome, aut, u, a), ANFIBIO(mudas, data){}
 ANFIBIO_NATIVO::~ANFIBIO_NATIVO(){}
 int ANFIBIO_NATIVO::getId(){
 	return id;
 }
 
-
-//Anfibio Exotico
-ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
+// Implementação da classe Anfíbio Exótico.
+ANFIBIO_EXOTICO::ANFIBIO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, nome, n, s, tam, die, vet, trat, nome, aut, pais, a), ANFIBIO(mudas, data){}		
 ANFIBIO_EXOTICO::~ANFIBIO_EXOTICO(){}
 int ANFIBIO_EXOTICO::getId(){
 	return id;
 }
 
-//MAmifero Nativo
-MAMIFERO_NATIVO::MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), MAMIFERO(cor){}
+// Implementação da classe Mamífero Nativo.
+MAMIFERO_NATIVO::MAMIFERO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a):ANIMAL_NATIVO(i, c, no, n, s, tam, die, vet, trat, nome, aut, u, a), MAMIFERO(cor){}
 MAMIFERO_NATIVO::~MAMIFERO_NATIVO(){}
 int MAMIFERO_NATIVO::getId(){
 	return id;
 }
 
-//Mamifero Exotico
-MAMIFERO_EXOTICO::MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), MAMIFERO(cor){}
+// Implementação da classe Mamífero Exótico.
+MAMIFERO_EXOTICO::MAMIFERO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a):ANIMAL_EXOTICO(i, c, no, n, s, tam, die, vet, trat, nome, aut, pais, a), MAMIFERO(cor){}
 MAMIFERO_EXOTICO::~MAMIFERO_EXOTICO(){}
 int MAMIFERO_EXOTICO::getId(){
 	return id;
 }
 
-//Reptil Nativo
-REPTIL_NATIVO::REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), REPTIL(v, t){}
+// Implementação da classe Réptil Nativo.
+REPTIL_NATIVO::REPTIL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a):ANIMAL_NATIVO(i, c, no, n, s, tam, die, vet, trat, nome, aut, u, a), REPTIL(v, t){}
 REPTIL_NATIVO::~REPTIL_NATIVO(){}
 int REPTIL_NATIVO::getId(){
 	return id;
 }
 
-//Reptil Exotico
-REPTIL_EXOTICO::REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a): ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), REPTIL(v, t){}
+// Implementação da classe Réptil Exótico.
+REPTIL_EXOTICO::REPTIL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a): ANIMAL_EXOTICO(i, c, no, n, s, tam, die, vet, trat, nome, aut, pais, a), REPTIL(v, t){}
 REPTIL_EXOTICO::~REPTIL_EXOTICO(){}
 int REPTIL_EXOTICO::getId(){
 	return id;
 }
 
-//Ave Nativo
-AVE_NATIVO::AVE_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a):ANIMAL_NATIVO(i, c, n, s, tam, die, vet, trat, nome, aut, u, a), AVE(t, e){}
+// Implementação da classe Ave Nativa.
+AVE_NATIVO::AVE_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a):ANIMAL_NATIVO(i, c, no, n, s, tam, die, vet, trat, nome, aut, u, a), AVE(t, e){}
 AVE_NATIVO::~AVE_NATIVO(){}
 int AVE_NATIVO::getId(){
 	return id;
 }
 
-//Ave Exotico
-AVE_EXOTICO::AVE_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a): ANIMAL_EXOTICO(i, c, n, s, tam, die, vet, trat, nome, aut, pais, a), AVE(t, e){}
+// Implementação da classe Ave Exótica.
+AVE_EXOTICO::AVE_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a): ANIMAL_EXOTICO(i, c, no, n, s, tam, die, vet, trat, nome, aut, pais, a), AVE(t, e){}
 AVE_EXOTICO::~AVE_EXOTICO(){}
 int AVE_EXOTICO::getId(){
 	return id;
 }
 
-
-
-//Animal Exotico
+// Implementação da classe Animal Exótico.
 string ANIMAL_EXOTICO::getPais_origem(){
 	return pais_origem;
 }
@@ -143,42 +131,37 @@ string ANIMAL_EXOTICO::getAutorizacao(){
 	return autorizacao;
 }
 
-
-ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
+ANIMAL_EXOTICO::ANIMAL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a):ANIMAL(i, c, no, n, s, tam, die, vet, trat, nome),ANIMAL_SILVESTRE(aut){
 	this->pais_origem = p;
 	this->autorizacao = a;
 }
 
-// int ANIMAL_EXOTICO::getId(){
-// 	return this->id;
-// }
 string ANIMAL_EXOTICO::getAutorizacao_IBAMA(){
 	return this->autorizacao_IBAMA;
 }
 
 ANIMAL_EXOTICO::~ANIMAL_EXOTICO(){}
 
-
-//Anfibio
+// Implementação da classe Anfibio
 int ANFIBIO::getTotal_mudas(){
 	return total_mudas;
 }
 string ANFIBIO::getUltima_muda(){
 	return ultima_muda;
 }
-// int ANFIBIO::getId(){
-// 	return id;
-// }
 
 ANFIBIO::ANFIBIO(int mudas, string data){
 	total_mudas = mudas;
 	ultima_muda = data;
 }
+
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	cout << endl;
 	cout << "**ANFIBIO**" << endl << endl;
 	out << "Id: " << a.getId() << endl;
 	out << "Clase: " << a.getClasse() << endl;
+	out << "Nome: " << a.getNome() << endl;
 	out << "Nome Científico: " << a.getNome_cientifico() << endl;
 	out << "Sexo: " << a.getSexo() << endl;
 	out << "Tamanho: " << a.getTamanho() << endl;
@@ -194,17 +177,39 @@ ostream& operator << (ostream &out, ANFIBIO_NATIVO &a){
 	return out;	
 } 
 
-//Escrevendo no arquivo "anfibios_nat.txt"
+// Implementação da sobrecarga de operador.
+ostream& operator << (ostream &out, ANFIBIO_EXOTICO &a){
+	cout << endl;
+	cout << "**ANFIBIO**" << endl << endl;
+	out << "Id: " << a.getId() << endl;
+	out << "Clase: " << a.getClasse() << endl;
+	out << "Nome: " << a.getNome() << endl;
+	out << "Nome Científico: " << a.getNome_cientifico() << endl;
+	out << "Sexo: " << a.getSexo() << endl;
+	out << "Tamanho: " << a.getTamanho() << endl;
+	out << "Dieta: " << a.getDieta() << endl;
+	out << "Veterinário: " << a.getVeterinario() << endl;
+	out << "Nome de batismo: " << a.getTratador() << endl;
+	out << "Total de mudas: " << a.getTotal_mudas() << endl;
+	out << "Última muda: " << a.getUltima_muda() << endl;
+	out << "Autorização IBAMA: " << a.getAutorizacao_IBAMA() << endl;
+	out << "Pais de origem: " << a.getPais_origem() << endl;
+	out << "Autorização geral: " << a.getAutorizacao() << endl;
+	cout << endl;
+	return out;	
+} 
+
+// Escrevendo no arquivo "anfibios_nat.txt".
 ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &a){
-	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
+	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
 	a.getVeterinario() << ";" << a.getTratador() << ";" << a.getNome_batismo() << ";" << a.getTotal_mudas() << ";" << a.getUltima_muda() << ";" << a.getAutorizacao_IBAMA() << ";" << 
 	a.getUf_origem() << ";" << a.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
-//Escrevendo no arquivo "anfibios_ex.txt"
+// Escrevendo no arquivo "anfibios_ex.txt".
 ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &a){
-	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
+	out << a.getId() << ";" << a.getClasse() << ";" << a.getNome() << ";" << a.getNome_cientifico() << ";" << a.getSexo() << ";" << a.getTamanho() << ";" << a.getDieta() << ";" <<
 	a.getVeterinario() << ";" << a.getTratador() << ";" << a.getNome_batismo() << ";" << a.getTotal_mudas() << ";" << a.getUltima_muda() << ";" << a.getAutorizacao_IBAMA() << ";" << 
 	a.getPais_origem() << ";" << a.getAutorizacao() << ";" << '\n';
 	return out;
@@ -212,9 +217,7 @@ ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &a){
 
 ANFIBIO::~ANFIBIO(){}
 
-
-
-//Mamífero
+// Implementação da classe Mamífero.
 string MAMIFERO::getCor_pelo(){
 	return cor_pelo;
 }
@@ -222,15 +225,13 @@ MAMIFERO::MAMIFERO(string cor){
 	cor_pelo = cor;
 }
 
-// int MAMIFERO::getId(){
-// 	return id;
-// }
-
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, MAMIFERO_NATIVO &m){
 	cout << endl;
 	cout << "**MAMIFERO**" << endl << endl;
 	out << "Id: " << m.getId() << endl;
 	out << "Clase: " << m.getClasse() << endl;
+	out << "Nome: " << m.getNome() << endl;
 	out << "Nome Científico: " << m.getNome_cientifico() << endl;
 	out << "Sexo: " << m.getSexo() << endl;
 	out << "Tamanho: " << m.getTamanho() << endl;
@@ -246,25 +247,13 @@ ostream& operator << (ostream &out, MAMIFERO_NATIVO &m){
 	return out;
 }
 
-ofstream& operator << (ofstream &out, MAMIFERO_NATIVO &m){
-	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
-	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";"  << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
-	m.getUf_origem() << ";" << m.getAutorizacao() << ";" << '\n';
-	return out;
-}
-
-ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m){
-	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
-	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";"  << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
-	m.getPais_origem() << ";" << m.getAutorizacao() << ";" << '\n';
-	return out;
-}
-
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, MAMIFERO_EXOTICO &m){
 	cout << endl;
 	cout << "**MAMIFERO**" << endl << endl;
 	out << "Id: " << m.getId() << endl;
 	out << "Classe: " << m.getClasse() << endl;
+	out << "Nome: " << m.getNome() << endl;
 	out << "Nome Científico: " << m.getNome_cientifico() << endl;
 	out << "Sexo: " << m.getSexo() << endl;
 	out << "Tamanho: " << m.getTamanho() << endl;
@@ -280,31 +269,44 @@ ostream& operator << (ostream &out, MAMIFERO_EXOTICO &m){
 	return out;
 }
 
+// Escrevendo no arquivo "mamiferos_nat.txt".
+ofstream& operator << (ofstream &out, MAMIFERO_NATIVO &m){
+	out << m.getId() << ";" << m.getClasse() << ";"  << m.getNome() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
+	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";"  << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
+	m.getUf_origem() << ";" << m.getAutorizacao() << ";" << '\n';
+	return out;
+}
+
+// Escrevendo no arquivo "mamiferos_ex.txt".
+ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m){
+	out << m.getId() << ";" << m.getClasse() << ";" << m.getNome() << ";" << m.getNome_cientifico() << ";" << m.getSexo() << ";" << m.getTamanho() << ";" << m.getDieta() << ";" <<
+	m.getVeterinario() << ";" << m.getTratador() << ";" << m.getNome_batismo() << ";"  << m.getCor_pelo() << ";" << m.getAutorizacao_IBAMA() << ";" << 
+	m.getPais_origem() << ";" << m.getAutorizacao() << ";" << '\n';
+	return out;
+}
+
 MAMIFERO::~MAMIFERO(){}
 
-
-
-//Réptil
+// Implementação da classe Réptil.
 bool REPTIL::getVenenoso(){
 	return venenoso;
 }
 string REPTIL::getTipo_veneno(){
 	return tipo_veneno;
 }
-// int REPTIL::getId(){
-// 	return id;
-// }
 
 REPTIL::REPTIL(bool v, string t){
 	venenoso = v;
 	tipo_veneno = t;
 }
 
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, REPTIL_NATIVO &r){
 	cout << endl;
 	cout << "**REPTIL**" << endl << endl;
 	out << "Id: " << r.getId() << endl;
 	out << "Clase: " << r.getClasse() << endl;
+	out << "Nome: " << r.getNome() << endl;
 	out << "Nome Científico: " << r.getNome_cientifico() << endl;
 	out << "Sexo: " << r.getSexo() << endl;
 	out << "Tamanho: " << r.getTamanho() << endl;
@@ -319,14 +321,15 @@ ostream& operator << (ostream &out, REPTIL_NATIVO &r){
 	out << "Autorização geral: " << r.getAutorizacao() << endl;
 	cout << endl;
 	return out;
-
 }
 
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, REPTIL_EXOTICO &r){
 	cout << endl;
 	cout << "**REPTIL**" << endl << endl;
 	out << "Id: " << r.getId() << endl;
 	out << "Clase: " << r.getClasse() << endl;
+	out << "Nome: " << r.getNome() << endl;
 	out << "Nome Científico: " << r.getNome_cientifico() << endl;
 	out << "Sexo: " << r.getSexo() << endl;
 	out << "Tamanho: " << r.getTamanho() << endl;
@@ -343,16 +346,17 @@ ostream& operator << (ostream &out, REPTIL_EXOTICO &r){
 	return out;
 }
 
-
+// Escrevendo no arquivo "repteis_nat.txt".
 ofstream& operator << (ofstream &out, REPTIL_NATIVO &r){
-	out << r.getId() << ";" << r.getClasse() << ";" << r.getNome_cientifico() << ";" << r.getSexo() << ";" << r.getTamanho() << ";" << r.getDieta() << ";" <<
+	out << r.getId() << ";" << r.getClasse() << ";" << r.getNome() << ";" << r.getNome_cientifico() << ";" << r.getSexo() << ";" << r.getTamanho() << ";" << r.getDieta() << ";" <<
 	r.getVeterinario() << ";" << r.getTratador() << ";" << r.getNome_batismo() << ";"  << r.getVenenoso() <<  ";" << r.getTipo_veneno()  << ";" << r.getAutorizacao_IBAMA() << ";" << 
 	r.getUf_origem() << ";" << r.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
+// Escrevendo no arquivo "repteis_ex.txt".
 ofstream& operator << (ofstream &out, REPTIL_EXOTICO &r){
-	out << r.getId() << ";" << r.getClasse() << ";" << r.getNome_cientifico() << ";" << r.getSexo() << ";" << r.getTamanho() << ";" << r.getDieta() << ";" <<
+	out << r.getId() << ";" << r.getClasse() << ";" << r.getNome() << ";" << r.getNome_cientifico() << ";" << r.getSexo() << ";" << r.getTamanho() << ";" << r.getDieta() << ";" <<
 	r.getVeterinario() << ";" << r.getTratador() << ";" << r.getNome_batismo() << ";"  << r.getVenenoso() <<  ";" << r.getTipo_veneno()  << ";" << r.getAutorizacao_IBAMA() << ";" << 
 	r.getPais_origem() << ";" << r.getAutorizacao() << ";" << '\n';
 	return out;
@@ -360,11 +364,7 @@ ofstream& operator << (ofstream &out, REPTIL_EXOTICO &r){
 
 REPTIL::~REPTIL(){}
 
-
-
-
-
-// Ave
+// Implementação da classe Ave.
 double AVE::getTamanho_bico(){
 	return tamanho_bico;
 }
@@ -372,19 +372,18 @@ double AVE::getEnvergadura(){
 	return envergadura;
 }
 
-// int AVE::getId(){
-// 	return id;
-// }
 AVE::AVE(double t, double e){
 	tamanho_bico = t;
 	envergadura = e;
 }
 
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, AVE_NATIVO &a){
 	cout << endl;
 	cout << "**AVE**" << endl << endl;
 	out << "Id: " << a.getId() << endl;
 	out << "Clase: " << a.getClasse() << endl;
+	out << "Nome: " << a.getNome() << endl;
 	out << "Nome Científico: " << a.getNome_cientifico() << endl;
 	out << "Sexo: " << a.getSexo() << endl;
 	out << "Tamanho: " << a.getTamanho() << endl;
@@ -402,11 +401,13 @@ ostream& operator << (ostream &out, AVE_NATIVO &a){
 
 }
 
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, AVE_EXOTICO &a){
 	cout << endl;
 	cout << "**AVE**" << endl << endl;
 	out << "Id: " << a.getId() << endl;
 	out << "Clase: " << a.getClasse() << endl;
+	out << "Nome: " << a.getNome() << endl;
 	out << "Nome Científico: " << a.getNome_cientifico() << endl;
 	out << "Sexo: " << a.getSexo() << endl;
 	out << "Tamanho: " << a.getTamanho() << endl;
@@ -424,28 +425,25 @@ ostream& operator << (ostream &out, AVE_EXOTICO &a){
 
 }
 
+// Escrevendo no arquivo "aves_nat.txt".
 ofstream& operator << (ofstream &out, AVE_NATIVO &v){
-	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
+	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
 	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << v.getAutorizacao_IBAMA() << ";" << 
 	v.getUf_origem() << ";" << v.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
+// Escrevendo no arquivo "aves_ex.txt".
 ofstream& operator << (ofstream &out, AVE_EXOTICO &v){
-	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
+	out << v.getId() << ";" << v.getClasse() << ";" << v.getNome() << ";" << v.getNome_cientifico() << ";" << v.getSexo() << ";" << v.getTamanho() << ";" << v.getDieta() << ";" <<
 	v.getVeterinario() << ";" << v.getTratador() << ";" << v.getNome_batismo() << ";"  << v.getTamanho_bico() << ";" << v.getEnvergadura() << ";" << v.getAutorizacao_IBAMA() << ";" << 
 	v.getPais_origem() << ";" << v.getAutorizacao() << ";" << '\n';
 	return out;
 }
 
-
 AVE::~AVE(){}
 
-
-
-
-
-//Funcionário
+// Implementação da classe Funcionário.
 void FUNCIONARIO::setId(int i){
 	this->id = i;
 }
@@ -487,7 +485,7 @@ string FUNCIONARIO::getEspecialidade(){
 	return especialidade;
 }
 
-//Veterinário
+// Implementação da classe Veterinário.
 void VETERINARIO::setCrmv(string c){
 	this->crmv = c;
 }
@@ -509,6 +507,8 @@ VETERINARIO::VETERINARIO(int i, string n, long int c, int ida, string t, char f,
 	especialidade = e;
 	crmv = cr;
 }
+
+// Implementação da sobrecarga de operador.
 ostream& operator << (ostream &out, VETERINARIO &v){
 	cout << endl;
 	cout << "**Veterinário**" << endl << endl;;
@@ -525,15 +525,14 @@ ostream& operator << (ostream &out, VETERINARIO &v){
 	return out;
 }
 
-
+// Escrevendo no arquivo "veterinarios.txt".
 ofstream& operator << (ofstream &out, VETERINARIO &v){
 	out << v.getId() << ";" << v.getNome() << ";" << v.getCpf() << ";" << v.getIdade() << ";" << v.getTipo_sanguineo() << ";" << v.getFator_rh() << ";" <<
 	v.getEspecialidade() << ";" << v.getCrmv() << ";" << '\n';
 	return out;
 }
 
-
-//Tratador
+// Implementação da classe Tratador.
 int TRATADOR::getNivel_seguranca(){
 	return nivel_seguranca;
 }
@@ -541,8 +540,6 @@ int TRATADOR::getNivel_seguranca(){
 int TRATADOR::getId(){
 	return id;
 }
-
-
 
 TRATADOR::TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel){
 	id = i;
@@ -555,6 +552,7 @@ TRATADOR::TRATADOR(int i, string n, long int c, int ida, string t, char f, strin
 	nivel_seguranca = nivel;
 }
 
+// Implementação da sobrecarga de operador
 ostream& operator << (ostream &out, TRATADOR &t){
 	cout << endl;
 	cout << "**Tratador**" << endl << endl;
@@ -571,9 +569,11 @@ ostream& operator << (ostream &out, TRATADOR &t){
 	return out;
 }
 
+// Escrevendo no arquivo "tratadores.txt".
 ofstream& operator << (ofstream &out, TRATADOR &t){
 	out << t.getId() << ";" << t.getNome() << ";" << t.getCpf() << ";" << t.getIdade() << ";" << t.getTipo_sanguineo() << ";" << t.getFator_rh() << ";" <<
 	t.getEspecialidade() << ";" << t.getNivel_seguranca() << ";" << '\n';
 	return out;
 }
+
 

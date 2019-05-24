@@ -5,15 +5,19 @@
 #include <string>
 #include <map>
 #include <cstring>
-#include <sstream> //Converter cadeias de caracters em int
-#include <fstream> //Arquivo
+#include <cctype>
+#include <algorithm> // Para utilizar o std::transform e std::toupper
+#include <sstream> 	// Converter cadeias de caracters em int
+#include <fstream> // Arquivo
 
 using namespace std;
 
+// Declaração da classe abstrata Animal.
 class ANIMAL{
 	protected:
 		int id;
 		string classe;
+		string nome;
 		string nome_cientifico;
 		char sexo;
 		double tamanho;
@@ -24,6 +28,7 @@ class ANIMAL{
 	public:
 		virtual int getId() = 0;
 		string getClasse();
+		string getNome();
 		string getNome_cientifico();
 		char getSexo();
 		double getTamanho();
@@ -31,127 +36,143 @@ class ANIMAL{
 		string getVeterinario();
 		string getTratador();
 		string getNome_batismo();
-		//construtor
-		ANIMAL(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome);
-		//destrutor
+		// Construtor.
+		ANIMAL(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome);
+		// Destrutor.
 		~ANIMAL();
 };
 
+// Declaração da classe abstrata Animal Silvestre.
 class ANIMAL_SILVESTRE{
 	protected:
 		string autorizacao_IBAMA;
 	public:
-		//Getter
+		// Getter.
 		virtual string getAutorizacao_IBAMA() = 0;
-		//construtor
+		// Construtor.
 		ANIMAL_SILVESTRE(string aut);
+		// Destrutor.
 		~ANIMAL_SILVESTRE();
 };
 
+// Declaração da classe Animal Nativo.
 class ANIMAL_NATIVO: public ANIMAL, ANIMAL_SILVESTRE{
 	protected:
 		string uf_origem;
 		string autorizacao;
 	public:
-		//getters
+		// Getters.
 		string getUf_origem();
 		string getAutorizacao();
 		string getAutorizacao_IBAMA();
 		virtual int getId() = 0;
-		//construtor
-		ANIMAL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
-		//destrutor
+		// Construtor.
+		ANIMAL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string u, string a);
+		// Destrutor.
 		~ANIMAL_NATIVO();
 };
+
+// Declaração da classe Animal Exótico.
 class ANIMAL_EXOTICO: public ANIMAL, ANIMAL_SILVESTRE{
 	protected:
 		string pais_origem;
 		string autorizacao;
 	public:
-		//getters
+		// Getters.
 		string getPais_origem();
 		string getAutorizacao();
 		string getAutorizacao_IBAMA();
-		//virtual int getId() = 0;
-		//construtor
-		ANIMAL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
+		// Construtor.
+		ANIMAL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string aut, string p, string a);
+		// Destrutor.
 		~ANIMAL_EXOTICO();
 };
 
+// Declaração da classe Anfíbio.
 class ANFIBIO{
 	protected:
 		int total_mudas;
 		string ultima_muda;
 	public:
-		//gettters
-		// int getId();
+		// Gettters
 		int getTotal_mudas();
 		string getUltima_muda();
-		//construtor
+		// Construtor.
 		ANFIBIO(int mudas, string data); 
-		//destrutor
+		// Destrutor.
 		~ANFIBIO();
 
 };
+
+// Declaração da classe Anfíbio Nativo.
 class ANFIBIO_NATIVO: public ANIMAL_NATIVO, ANFIBIO{
 	public:
-		//construtor
-		ANFIBIO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
+		// Construtor.
+		ANFIBIO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string u, string a);
 		ANFIBIO_NATIVO();
-		//destrutor
+		// Destrutor.
 		~ANFIBIO_NATIVO();
+		int getId();
+
 		friend ostream& operator << (ostream &out, ANFIBIO_NATIVO &m);
 		friend ofstream& operator << (ofstream &out, ANFIBIO_NATIVO &m);
-		int getId();
+		
 };
+
+// Declaração da classe Anfíbio Exótico.
 class ANFIBIO_EXOTICO: public ANIMAL_EXOTICO, ANFIBIO{
 	public:
-		//construtor
+		// Construtor.
 		ANFIBIO_EXOTICO();
 
-		ANFIBIO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a);
+		ANFIBIO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, int mudas, string data, string aut, string pais, string a);
 
-		//destrutor
+		// Destrutor.
 		~ANFIBIO_EXOTICO();
-		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
-		friend ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &m);
 		int getId();
 
+
+		friend ostream& operator << (ostream &out, ANFIBIO_EXOTICO &m);
+		friend ofstream& operator << (ofstream &out, ANFIBIO_EXOTICO &m);
+		
 };
 
-
+// Declaração da classe Mamífero.
 class MAMIFERO{
 	protected:
 		string cor_pelo;
 	public:
-		//getters
+		// Getters.
 		//int getId();
 		string getCor_pelo();
-		//construtor
+		// Construtor.
 		MAMIFERO(string cor);
-		//destrutor
+		// Destrutor.
 		~MAMIFERO();
 
-		//friend ostream& operator << (ostream &out, MAMIFERO &m);
 };
+
+// Declaração da classe Mamífero Nativo.
 class MAMIFERO_NATIVO: public ANIMAL_NATIVO, MAMIFERO{
 	public:
-		//construtor
+		// Construtor.
 		MAMIFERO_NATIVO();
-		MAMIFERO_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
-		//destrutor
+		MAMIFERO_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string u, string a);
+		// Destrutor.
 		~MAMIFERO_NATIVO();
 		int getId();
 
 		friend ostream& operator << (ostream &out, MAMIFERO_NATIVO &m);
 		friend ofstream& operator << (ofstream &out, MAMIFERO_NATIVO &m);
 };
+
+// Declaração da classe Mamífero Exótico.
 class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 	public:
-		//construtor
+		// Construtor.
 		MAMIFERO_EXOTICO();
-		MAMIFERO_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a);
-		//destrutor
+		MAMIFERO_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, string cor, string aut, string pais, string a);
+		// Destrutor.
 		~MAMIFERO_EXOTICO();
 		int getId();
 
@@ -159,43 +180,44 @@ class MAMIFERO_EXOTICO: public ANIMAL_EXOTICO, MAMIFERO{
 		friend ofstream& operator << (ofstream &out, MAMIFERO_EXOTICO &m);
 };
 
-
-
-
+// Declaração da classe Réptil.
 class REPTIL{
 	protected:
 		bool venenoso;
 		string tipo_veneno;
 	public:
-		//getters
-		//int getId();
+		// Getters.
 		bool getVenenoso();
 		string getTipo_veneno();
-		//construtor
+		// Construtor.
 		REPTIL(bool v, string t);
-		//destrutor
+		// Destrutor.
 		~REPTIL();
 
 		friend ostream& operator << (ostream &out, REPTIL &r);
 };
+
+// Declaração da classe Réptil Nativo.
 class REPTIL_NATIVO: public ANIMAL_NATIVO, REPTIL{
 	public:
-		//construtor
+		// Construtor.
 		REPTIL_NATIVO();
-		REPTIL_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
-		//destrutor
+		REPTIL_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string u, string a);
+		// Destrutor.
 		~REPTIL_NATIVO();
 		int getId();
 
 		friend ostream& operator << (ostream &out, REPTIL_NATIVO &r);
 		friend ofstream& operator << (ofstream &out, REPTIL_NATIVO &r);
 };
+
+// Declaração da classe Réptil Exótico.
 class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
 	public:
-		//construtor
+		// Construtor.
 		REPTIL_EXOTICO();
-		REPTIL_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
-		//destrutor
+		REPTIL_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, bool v, string t, string aut, string pais, string a);
+		// Destrutor.
 		~REPTIL_EXOTICO();
 		int getId();
 
@@ -203,40 +225,43 @@ class REPTIL_EXOTICO: public ANIMAL_EXOTICO, REPTIL{
 		friend ofstream& operator << (ofstream &out, REPTIL_EXOTICO &r);
 };
 
-
+// Declaração da classe Ave.
 class AVE{
 	private:
 		double tamanho_bico;
 		double envergadura;
 	public:
-		//getters
-		//int getId();
+		// Getters.
 		double getTamanho_bico();
 		double getEnvergadura();
-		//construtor
+		// Construtor.
 		AVE(double t, double e);
-		//destrutor
+		// Destrutor.
 		~AVE();
 
 };
 
+// Declaração da classe Ave Nativa.
 class AVE_NATIVO: public ANIMAL_NATIVO, AVE{
 	public:
-		//construtor
+		// Construtor.
 		AVE_NATIVO();
-		AVE_NATIVO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a);
-		//destrutor
+		AVE_NATIVO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string u, string a);
+		// Destrutor.
 		~AVE_NATIVO();
 		int getId();
+		
 		friend ostream& operator << (ostream &out, AVE_NATIVO &a);
 		friend ofstream& operator << (ofstream &out, AVE_NATIVO &v);
 };
+
+// Declaração da classe Ave Exótica.
 class AVE_EXOTICO: public ANIMAL_EXOTICO, AVE{
 	public:
-		//construtor
+		// Construtor.
 		AVE_EXOTICO();
-		AVE_EXOTICO(int i, string c, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a);
-		//destrutor
+		AVE_EXOTICO(int i, string c, string no, string n, char s, double tam, string die, string vet, string trat, string nome, double t, double e, string aut, string pais, string a);
+		// Destrutor.
 		~AVE_EXOTICO();
 		int getId();
 
@@ -244,8 +269,7 @@ class AVE_EXOTICO: public ANIMAL_EXOTICO, AVE{
 		friend ofstream& operator << (ofstream &out, AVE_EXOTICO &v);
 };
 
-
-
+// Declaração da classe abstrata Funcionário.
 class FUNCIONARIO{
 	protected:
 		int id;
@@ -256,7 +280,7 @@ class FUNCIONARIO{
 		char fator_rh;
 		string especialidade;
 	public:
-		//setters
+		// Setters.
 		void setId(int i);
 		void setNome(string n);
 		void setCpf(long int c);
@@ -264,7 +288,7 @@ class FUNCIONARIO{
 		void setTipo_sanguineo(string t);
 		void setFator_rh(char f);
 		void setEspecialidade(string e);
-		//getters
+		// Getters.
 		virtual int getId() = 0;
 		string getNome();
 		long int getCpf();
@@ -275,16 +299,17 @@ class FUNCIONARIO{
 
 };
 
+// Declaração da classe Veterinário.
 class VETERINARIO: public FUNCIONARIO{
 	private:
 		string crmv;
 	public:
-		//Construtor
+		// Construtor..
 		VETERINARIO(int i, string n, long int c, int ida, string t, char f, string e, string cr);
 		VETERINARIO();
-		//setters
+		// Setters..
 		void setCrmv(string c);
-		//getters
+		// Getters..
 		string getCrmv();
 		int getId();
 
@@ -292,16 +317,18 @@ class VETERINARIO: public FUNCIONARIO{
 		friend ofstream& operator << (ofstream &out, VETERINARIO &v);
 
 };
+
+// Declaração da classe Tratador.
 class TRATADOR: public FUNCIONARIO{
 	private:
 		int nivel_seguranca;
 	public:
-		//Construtor
+		// Construtor.
 		TRATADOR(int i, string n, long int c, int ida, string t, char f, string e, int nivel);
 		TRATADOR();
-		//setters
+		// Setters.
 		void setNivel_seguranca(int nivel);
-		//getters
+		// Getters.
 		int getNivel_seguranca();
 		int getId();
 
@@ -310,28 +337,59 @@ class TRATADOR: public FUNCIONARIO{
 
 };
 
-//funções de cadastrar objetos
-
+// Função de carregamento de todos os arquivos.
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
 
+// Sobrecarga de função de checagem de condições.
+bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf);
+bool check_CPF(map <int, VETERINARIO> &vets, long int cpf);
+bool check_vet(map <int, VETERINARIO> &vets, string nome);
+bool check_tratador(map <int, TRATADOR> &tratadores, string nome);
 
+// Sobrecarga de função do cadastramento.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
-void cadastrar(map <int, VETERINARIO> &vets); //_vet(
-void cadastrar(map <int, TRATADOR>  &tratadores); //_trat
-void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex); 
-void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex);
-void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex);
-void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex);
-void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void cadastrar(map <int, VETERINARIO> &vets);
+void cadastrar(map <int, TRATADOR>  &tratadores);
+void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores); 
+void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
 
-void alterar_dados(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
-//funções de  consulta de objetos
-/*
-void listar_animal(vector <ANFIBIO> &list_a, vector <MAMIFERO> &list_m, vector <REPTIL> &list_r, vector <AVE> &list_v);
-void listar_anfibio(vector <ANFIBIO> &lista_a);
-void listar_mamifero(vector <MAMIFERO> &lista_m);
-void listar_reptil(vector <REPTIL> &lista_r);
-void listar_ave(vector <AVE> &lista_v);
-*/
+// Sobrecarga de função de edição.
+void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex);
+void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex);
+void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex);
+void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void editar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
+void editar(map <int, VETERINARIO> &vets);
+void editar(map <int, TRATADOR> &tratadores);
+
+// Sobrecarga de função de remoção.
+void remover_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex);
+void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex);
+void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex);
+void remover(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void remover_funcionario(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
+void remover(map <int, VETERINARIO> &vets);
+void remover(map <int, TRATADOR>  &tratadores);
+
+// Sobrecarga de função de pesquisa e impressão por classe.
+void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void imprimir_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex);
+void imprimir_classe(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex);
+void imprimir_classe(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex);
+void imprimir_classe(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex );
+
+// Funções de pesquisa e impressão por funcionario responsável.
+void consulta_p_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores, map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void consulta_p_veterinario(map <int, VETERINARIO> &vets, map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void imprime_animais(char tipo, string nome, map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
 
 #endif
+
+
+
