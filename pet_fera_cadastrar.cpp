@@ -29,37 +29,255 @@ void cadastrar(map <int, VETERINARIO> &vets){
 	int id, idade;
 	unsigned int old_size;
 	long int cpf;
-	string nome, especialidade, crmv, tipo_sang;
-	char fator_rh, continuar;
+	string nome, especialidade, crmv, tipo_sang, id_string, cpf_string, idade_string, tipo_sang_string, fator_rh_string;
+	char fator_rh, continuar, sucesso, c;
 	bool check;
 	old_size = vets.size();
 	ofstream veterinarios;
 	
 	do{
+		do{
 		cout << "Digite o id: " << endl;
-		cin >> id;
+		cin.ignore();
+		getline(cin, id_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)id_string.size(); i++){
+				c = id_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) id_string.size()){
+				sucesso = 's';
+				id = stoi(id_string);
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+		
+		do{
 		cout << "Digite o nome: " << endl;
-		cin.ignore();
 		getline(cin, nome);
+		int cont = 0, verificacao;
+		sucesso = 'n';
 		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+			for(int i=0; i < (int)nome.size(); i++){
+				c = nome[i];
+				verificacao = isalpha(c);
+				if(!verificacao && c != ' '){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) nome.size()){
+				sucesso = 's';
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+		do{
 		cout << "Digite o cpf: " << endl;
-		cin >> cpf;
-		check = check_CPF(vets, cpf); // Checa se o CPF existe.
-		if(check){
-			cout << "CPF já cadastrado!" << endl;
-			break;
-		}
+		getline(cin, cpf_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)cpf_string.size(); i++){
+				c = cpf_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) cpf_string.size()){
+				sucesso = 's';
+				cpf = stoll(cpf_string);
+			}else{
+				sucesso = 'n';
+			}
+			check = check_CPF(vets, cpf); // Checa se o CPF existe.
+			if(check){
+				cout << "CPF já cadastrado!" << endl;
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		
+		
+		do{
 		cout << "Digite a idade: " << endl;
-		cin >> idade;
+		getline(cin, idade_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)idade_string.size(); i++){
+				c = idade_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) idade_string.size()){
+				sucesso = 's';
+				idade = stoi(idade_string);
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+
+		do{
 		cout << "Insira o tipo sanguineo: " << endl;
-		cin >> tipo_sang;
+		getline(cin, tipo_sang_string);
+		int cont = 0, cont_sangue = 0, verificacao;
+		sucesso = 'n';
+		transform(tipo_sang_string.begin(), tipo_sang_string.end(), tipo_sang_string.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+			for(int i=0; i < (int)tipo_sang_string.size(); i++){
+				c = tipo_sang_string[i];
+				verificacao = isalpha(c);
+				cont_sangue++;
+				if(!verificacao || cont_sangue > 2 || (tipo_sang_string != "O" && tipo_sang_string != "AB" && tipo_sang_string != "B" && tipo_sang_string != "A")){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)tipo_sang_string.size()){
+				sucesso = 's';
+				tipo_sang = tipo_sang_string;
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		
+		do{
 		cout << "Insira o fator RH: " << endl;
-		cin >> fator_rh;
+		getline(cin, fator_rh_string);
+		int cont = 0, cont_carac = 0;// verificacao;
+		sucesso = 'n';
+
+			for(int i=0; i < (int) fator_rh_string.size(); i++){
+				c = fator_rh_string[i];
+				cont_carac++;
+				if((c != '-' && c != '+') || cont_carac > 1){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)fator_rh_string.size()){
+				sucesso = 's';
+				fator_rh = (char)fator_rh_string[0];
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+
+		do{
 		cout << "Digite a especialidade: " << endl;
-		cin.ignore();
 		getline(cin, especialidade);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+		transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::toupper);
+			for(int i=0; i < (int) especialidade.size(); i++){
+				c = especialidade[i];
+				verificacao = isalpha(c);
+				if(!verificacao && c != ' '){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)especialidade.size()){
+				sucesso = 's';
+				transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::tolower);
+				especialidade = especialidade;
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		
+		
+		do{
 		cout << "Digite o crmv: "<< endl;
 		getline(cin, crmv);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+		transform(crmv.begin(), crmv.end(), crmv.begin(), ::toupper);
+			for(int i=0; i < (int) crmv.size(); i++){
+				c = crmv[i];
+				verificacao = isalnum(c);
+				if(!verificacao && c != ' ' && c != '-'){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)crmv.size()){
+				sucesso = 's';
+				transform(crmv.begin(), crmv.end(), crmv.begin(), ::tolower);
+				crmv = crmv;
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
 
 		// Armazenando os valores recebidos pelo usuário no map.
 		vets.insert(pair <int, VETERINARIO> (id,VETERINARIO(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, crmv)));
@@ -88,38 +306,252 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 	int id, idade, nivel_seg;
 	unsigned int old_size;
 	long int cpf;
-	string nome, especialidade, tipo_sang;
-	char fator_rh, continuar;
+	string nome, especialidade, tipo_sang, id_string, idade_string, tipo_sang_string, nivel_seg_string, cpf_string, fator_rh_string;
+	char fator_rh, continuar, sucesso, c;
 	bool check;
 	old_size = tratadores.size();
 	ofstream tratador;
 	
 	do{
+		do{
 		cout << "Digite o id: " << endl;
-		cin >> id;
+		cin.ignore();
+		getline(cin, id_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)id_string.size(); i++){
+				c = id_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) id_string.size()){
+				sucesso = 's';
+				id = stoi(id_string);
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+		
+		do{
 		cout << "Digite o nome: " << endl;
-		cin.ignore();
-		getline(cin, nome); 
-		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiusculos.
+		getline(cin, nome);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+			for(int i=0; i < (int)nome.size(); i++){
+				c = nome[i];
+				verificacao = isalpha(c);
+				if(!verificacao && c != ' '){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) nome.size()){
+				sucesso = 's';
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n'); 
+		
+		do{
 		cout << "Digite o cpf: " << endl;
-		cin >> cpf;
-		check = check_CPF(tratadores, cpf); // Checa se o CPF existe.
-		if(check){
-			cout << "CPF já cadastrado!" << endl;
-			break;
-		}
+		getline(cin, cpf_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)cpf_string.size(); i++){
+				c = cpf_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) cpf_string.size()){
+				sucesso = 's';
+				cpf = stoll(cpf_string);
+			}else{
+				sucesso = 'n';
+			}
+			check = check_CPF(tratadores, cpf); // Checa se o CPF existe.
+			if(check){
+				cout << "CPF já cadastrado!" << endl;
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		
+
+		do{
 		cout << "Digite a idade: " << endl;
-		cin >> idade;
+		getline(cin, idade_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)idade_string.size(); i++){
+				c = idade_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) idade_string.size()){
+				sucesso = 's';
+				idade = stoi(idade_string);
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		do{
 		cout << "Insira o tipo sanguineo: " << endl;
-		cin.ignore();
-		getline(cin, tipo_sang);
+		getline(cin, tipo_sang_string);
+		int cont = 0, cont_sangue = 0, verificacao;
+		sucesso = 'n';
+		transform(tipo_sang_string.begin(), tipo_sang_string.end(), tipo_sang_string.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+			
+			for(int i=0; i < (int)tipo_sang_string.size(); i++){
+				c = tipo_sang_string[i];
+				verificacao = isalpha(c);
+				cont_sangue++;
+				if(!verificacao || cont_sangue > 2 || (tipo_sang_string != "O" && tipo_sang_string != "AB" && tipo_sang_string != "B" && tipo_sang_string != "A")){ //|| (c != 'A' && c != 'O') || (c != 'B' && c != 'O')
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)tipo_sang_string.size()){
+				sucesso = 's';
+				tipo_sang = tipo_sang_string;
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		do{
 		cout << "Insira o fator RH: " << endl;
-		cin >> fator_rh;
+		getline(cin, fator_rh_string);
+		int cont = 0, cont_carac = 0;// verificacao;
+		sucesso = 'n';
+
+			for(int i=0; i < (int) fator_rh_string.size(); i++){
+				c = fator_rh_string[i];
+				cont_carac++;
+				if((c != '-' && c != '+') || cont_carac > 1){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)fator_rh_string.size()){
+				sucesso = 's';
+				fator_rh = (char)fator_rh_string[0];
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+		do{
 		cout << "Digite a especialidade: " << endl;
-		cin.ignore();
 		getline(cin, especialidade);
-		cout << "Digite o nivel de seguranca: "<< endl;
-		cin >> nivel_seg;
+		int cont = 0, verificacao;
+		sucesso = 'n';
+		transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::toupper);
+			for(int i=0; i < (int) especialidade.size(); i++){
+				c = especialidade[i];
+				verificacao = isalpha(c);
+				if(!verificacao && c != ' '){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int)especialidade.size()){
+				sucesso = 's';
+				transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::tolower);
+				especialidade = especialidade;
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
+
+		do{
+		cout << "Digite o nivel de seguranca: 0 ou 1 ou 2"<< endl;
+		getline(cin, nivel_seg_string);
+		int cont = 0, verificacao;
+		sucesso = 'n';
+			for(int i=0; i < (int)nivel_seg_string.size(); i++){
+				c = nivel_seg_string[i];
+				verificacao = isdigit(c);
+				if(!verificacao || (c != '0' && c != '1' && c != '2')){
+					cont--;
+					sucesso = 'n';
+					cout << "Erro: caracter inválido!" << endl << endl;
+				}
+				else{
+					cont++;
+				}
+				
+			}
+
+			if(cont == (int) nivel_seg_string.size()){
+				sucesso = 's';
+				nivel_seg = stoi(nivel_seg_string);
+			}else{
+				sucesso = 'n';
+			}
+
+		}while(sucesso == 'n');
+
 		
 		// Armazenando os valores recebidos pelo usuário no map.
 		tratadores.insert(pair <int, TRATADOR> (id, TRATADOR(id, nome, cpf, idade, tipo_sang, fator_rh, especialidade, nivel_seg)));
