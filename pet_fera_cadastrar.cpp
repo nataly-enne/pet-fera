@@ -30,252 +30,112 @@ void cadastrar(map <int, VETERINARIO> &vets){
 	unsigned int old_size;
 	long int cpf;
 	string nome, especialidade, crmv, tipo_sang, id_string, cpf_string, idade_string, tipo_sang_string, fator_rh_string;
-	char fator_rh, continuar, sucesso, c;
+	char fator_rh, continuar, sucesso;
 	bool check;
 	old_size = vets.size();
 	ofstream veterinarios;
 	
 	do{
+		//Recebe o Id e verifica se é valido.
 		do{
-		cout << "Digite o id: " << endl;
-		cin.ignore();
-		getline(cin, id_string);
-		int cont = 0, verificacao;
-		sucesso = 'n';
-			for(int i=0; i < (int)id_string.size(); i++){
-				c = id_string[i];
-				verificacao = isdigit(c);
-				if(!verificacao){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
-
-			if(cont == (int) id_string.size()){
-				sucesso = 's';
+			cout << "Digite o id: " << endl;
+			cin.ignore();
+			cin >> id_string;
+			cin.ignore();
+			//getline(cin, id_string);
+			if(!verifica_ID(id_string,sucesso)){
+				cout << "O ID deve conter apenas inteiros!" << endl;
+			}else{
 				id = stoi(id_string);
-			}else{
-				sucesso = 'n';
 			}
-
 		}while(sucesso == 'n');
-		
-		do{
-		cout << "Digite o nome: " << endl;
-		getline(cin, nome);
-		int cont = 0, verificacao;
-		sucesso = 'n';
-		transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-			for(int i=0; i < (int)nome.size(); i++){
-				c = nome[i];
-				verificacao = isalpha(c);
-				if(!verificacao && c != ' '){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
+		//Recebe o nome e verifica se é valido.
+		do{	
 
-			if(cont == (int) nome.size()){
-				sucesso = 's';
-			}else{
-				sucesso = 'n';
+			cout << "Digite o nome: ";
+			getline(cin, nome);
+			cout << endl;
+			cin.ignore();
+			if(!verifica_Nome(nome, sucesso)){
+				cout << "O nome deve conter apenas letras!" << endl;
 			}
-
 		}while(sucesso == 'n');
+		//Recebe o CPF e verifica se é valido.
 		do{
-		cout << "Digite o cpf: " << endl;
-		getline(cin, cpf_string);
-		int cont = 0, verificacao;
-		sucesso = 'n';
-			for(int i=0; i < (int)cpf_string.size(); i++){
-				c = cpf_string[i];
-				verificacao = isdigit(c);
-				if(!verificacao){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
-
-			if(cont == (int) cpf_string.size()){
-				sucesso = 's';
+			cout << "Digite o CPF: " << endl;
+			cin >> cpf_string;
+			if(!verifica_Cpf(cpf_string, sucesso)){
+				cout << "CPF deve conter apenas numeros" << endl;
+			}else{
 				cpf = stoll(cpf_string);
-			}else{
-				sucesso = 'n';
-			}
-			check = check_CPF(vets, cpf); // Checa se o CPF existe.
-			if(check){
-				cout << "CPF já cadastrado!" << endl;
-				sucesso = 'n';
-			}
-
-		}while(sucesso == 'n');
-
-		
-		
-		do{
-		cout << "Digite a idade: " << endl;
-		getline(cin, idade_string);
-		int cont = 0, verificacao;
-		sucesso = 'n';
-			for(int i=0; i < (int)idade_string.size(); i++){
-				c = idade_string[i];
-				verificacao = isdigit(c);
-				if(!verificacao){
-					cont--;
+				check = check_CPF(vets, cpf); // Checa se o CPF existe.
+				if(check){
+					cout << "CPF já cadastrado!" << endl;
 					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
 				}
-				else{
-					cont++;
-				}
-				
 			}
-
-			if(cont == (int) idade_string.size()){
-				sucesso = 's';
+		}while(sucesso == 'n');
+		//Recebe a idade e verifica se é valida.
+		do{
+			cout << "Digite a idade: " << endl;
+			cin.ignore();
+			cin >> idade_string;
+			//getline(cin, idade_string);
+			if(!verifica_Idade(idade_string, sucesso)){
+				cout << "Idade deve conter apenas inteiros positivos!" << endl;
+			}else{
 				idade = stoi(idade_string);
-			}else{
-				sucesso = 'n';
 			}
-
 		}while(sucesso == 'n');
-
-
+		//Recebe o tipo sanguineo e verifica se é valido.
 		do{
-		cout << "Insira o tipo sanguineo: " << endl;
-		getline(cin, tipo_sang_string);
-		int cont = 0, cont_sangue = 0, verificacao;
-		sucesso = 'n';
-		transform(tipo_sang_string.begin(), tipo_sang_string.end(), tipo_sang_string.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-			for(int i=0; i < (int)tipo_sang_string.size(); i++){
-				c = tipo_sang_string[i];
-				verificacao = isalpha(c);
-				cont_sangue++;
-				if(!verificacao || cont_sangue > 2 || (tipo_sang_string != "O" && tipo_sang_string != "AB" && tipo_sang_string != "B" && tipo_sang_string != "A")){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
-
-			if(cont == (int)tipo_sang_string.size()){
-				sucesso = 's';
+			cout << "Insira o tipo sanguineo: " << endl;
+			cin.ignore();
+			getline(cin, tipo_sang_string);
+			if(!verifica_Tiposang(tipo_sang_string, sucesso)){
+				cout << "Tipo sanguineo deve ser: A, B, AB ou O!" << endl;
+			}else{
 				tipo_sang = tipo_sang_string;
-			}else{
-				sucesso = 'n';
 			}
-
 		}while(sucesso == 'n');
-
-		
+		//Recebe o fator RH e verifica se é valido.
 		do{
-		cout << "Insira o fator RH: " << endl;
-		getline(cin, fator_rh_string);
-		int cont = 0, cont_carac = 0;// verificacao;
-		sucesso = 'n';
-
-			for(int i=0; i < (int) fator_rh_string.size(); i++){
-				c = fator_rh_string[i];
-				cont_carac++;
-				if((c != '-' && c != '+') || cont_carac > 1){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
-
-			if(cont == (int)fator_rh_string.size()){
-				sucesso = 's';
+			cout << "Insira o fator RH: " << endl;
+			cin.ignore();
+			//cin >> fator_rh_string;
+			getline(cin, fator_rh_string);
+			if(!verifica_Fator(fator_rh_string, sucesso)){
+				cout << "O fator RH deve ser: + ou -" << endl;
+			}else{
 				fator_rh = (char)fator_rh_string[0];
-			}else{
-				sucesso = 'n';
 			}
 
 		}while(sucesso == 'n');
-
-
+		//Recebe a especialidade e verifica se é valida.
 		do{
-		cout << "Digite a especialidade: " << endl;
-		getline(cin, especialidade);
-		int cont = 0, verificacao;
-		sucesso = 'n';
-		transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::toupper);
-			for(int i=0; i < (int) especialidade.size(); i++){
-				c = especialidade[i];
-				verificacao = isalpha(c);
-				if(!verificacao && c != ' '){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
-
-			if(cont == (int)especialidade.size()){
-				sucesso = 's';
-				transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::tolower);
-				especialidade = especialidade;
+			cout << "Digite a especialidade: " << endl;
+			cin.ignore();
+			getline(cin, especialidade);
+			if(!verifica_Esp(especialidade, sucesso)){
+				cout << "Especialidade deve conter apenas letras!" << endl;
 			}else{
-				sucesso = 'n';
+				transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::tolower);
+				//especialidade = especialidade;
 			}
-
 		}while(sucesso == 'n');
 
 		
 		
 		do{
 		cout << "Digite o crmv: "<< endl;
+		cin.ignore();
 		getline(cin, crmv);
-		int cont = 0, verificacao;
-		sucesso = 'n';
-		transform(crmv.begin(), crmv.end(), crmv.begin(), ::toupper);
-			for(int i=0; i < (int) crmv.size(); i++){
-				c = crmv[i];
-				verificacao = isalnum(c);
-				if(!verificacao && c != ' ' && c != '-'){
-					cont--;
-					sucesso = 'n';
-					cout << "Erro: caracter inválido!" << endl << endl;
-				}
-				else{
-					cont++;
-				}
-				
-			}
-
-			if(cont == (int)crmv.size()){
-				sucesso = 's';
-				transform(crmv.begin(), crmv.end(), crmv.begin(), ::tolower);
-				crmv = crmv;
-			}else{
-				sucesso = 'n';
-			}
+		if(!verifica_Crmv(crmv, sucesso)){
+			cout << "Crmv deve conter pelo menos 1 -" << endl;
+		}else{
+			transform(crmv.begin(), crmv.end(), crmv.begin(), ::tolower);
+			//crmv = crmv;
+		}
 
 		}while(sucesso == 'n');
 
