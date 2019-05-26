@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <cstring>
+#include <sstream>
 #include <algorithm> // Para utilizar o std::transform e std::toupper
 #include <sstream> 	// Converter cadeias de caracters em int
 #include <fstream> // Arquivo
@@ -340,10 +341,20 @@ class TRATADOR: public FUNCIONARIO{
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
 
 // Sobrecarga de função de checagem de condições.
-bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf);
+bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf);//verifica se o cpf já está cadastrado.
 bool check_CPF(map <int, VETERINARIO> &vets, long int cpf);
 bool check_vet(map <int, VETERINARIO> &vets, string nome);
 bool check_tratador(map <int, TRATADOR> &tratadores, string nome);
+bool verifica_ID(map <int, TRATADOR> &tratadores, string id_string, char &sucesso); //verifica se o Id digitado é int positivo e único;
+bool verifica_seguranca(string nivel_seg_string, char &sucesso); //verifica se o nível de segurança é válido;
+bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso);//verifica se o Id digitado é int positivo e único;
+bool verifica_Nome(string &nome, char &sucesso);//verifica se o nome digitado possui somente letras;
+bool verifica_Cpf(string cpf_string, char &sucesso);//verifica se o cpf contêm apenas inteiros positivos;
+bool verifica_Idade(string idade_string, char &sucesso);//verifica se a idade contêm apenas inteiros positivos;
+bool verifica_Tiposang(string &tipo_sang_string, char &sucesso);//verifica se o tipo sanguineo está dentro das opções existentes;
+bool verifica_Fator(string fator_rh_string, char &sucesso);//verifica se o fator é + ou -;
+bool verifica_Esp(string especialidade, char &sucesso);//verifica se especialidade contêm apenas letras;
+bool verifica_Crmv(map <int, VETERINARIO> &vets, string crmv, char &sucesso);//verifica se o crmv foi inserido no formato correto;
 
 // Sobrecarga de função do cadastramento.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
