@@ -39,22 +39,60 @@ bool check_vet(map <int, VETERINARIO> &vets, string nome){
 }
 
 // Checagem do tratador a partir de seu nome.
-bool check_tratador(map <int, TRATADOR> &tratadores, string nome){
+bool check_tratador(bool venenoso, map <int, TRATADOR> &tratadores, string nome, char tipo){
 	int cont_nome = 0, cont_nivel = 0;
-	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para valores maiúsculos.
-	for(auto it = tratadores.begin(); it != tratadores.end();it++){
-		if(it->second.getNome() == nome){
-			cont_nome++;
+	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+	if(tipo == 'v'){
+		for(auto it = tratadores.begin(); it != tratadores.end();it++){
+			if(it->second.getNome() == nome){
+				cont_nome++;
+			}
+			if(it->second.getNivel_seguranca() == 0 || it->second.getNivel_seguranca() == 1){
+				cont_nivel++;
+				break;
+			}
 		}
-		if(it->second.getNivel_seguranca() == 1){
-			cont_nivel++;
-			break;
+		if(cont_nome >= 1 && cont_nivel == 1){
+			return 1;
+		}else{
+			return 0;
 		}
+
 	}
-	if(cont_nome >= 1 && cont_nivel == 1){
-		return 1;
+	else if(tipo == 'r' && venenoso == 1){
+		for(auto it = tratadores.begin(); it != tratadores.end();it++){
+			if(it->second.getNome() == nome){
+				cont_nome++;
+			}
+			if(it->second.getNivel_seguranca() == 2){
+				cont_nivel++;
+				break;
+			}
+		}
+		if(cont_nome >= 1 && cont_nivel == 1){
+			return 1;
+		}else{
+			return 0;
+		}
+
+	}else{
+		for(auto it = tratadores.begin(); it != tratadores.end();it++){
+			if(it->second.getNome() == nome){
+				cont_nome++;
+			}
+			if(it->second.getNivel_seguranca() >= 1){
+				cont_nivel++;
+				break;
+			}
+		}
+		if(cont_nome >= 1 && cont_nivel == 1){
+			return 1;
+		}else{
+			return 0;
+		}
+
 	}
-	else return 0;
+		
 }
 
 // Verifica se o valor 
@@ -192,6 +230,124 @@ bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOT
 			
 	}
 	else{
+		cout << "ERRO: valor inválido!" << endl << endl;
+		return 0;
+	}
+
+	sucesso = 's';
+	return 1;	
+
+}
+
+bool verifica_ID(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, char tipo, string id_string, char &sucesso){
+	int cont = 0, id, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)id_string.size(); i++){
+		c = id_string[i];
+		verificacao = isdigit(c);
+		if(!verificacao){
+			cout << "Erro: valor inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+	}
+
+	if(cont == (int) id_string.size()){
+		stringstream ss(id_string);
+		ss >> id;
+		if(tipo == 'n'){
+			if(mamiferos_nat.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = mamiferos_nat.begin(); it != mamiferos_nat.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}
+					
+			}
+		} // Mamifero_nat
+		else{
+			if(mamiferos_ex.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = mamiferos_ex.begin(); it != mamiferos_ex.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}	
+			}
+		} // Mamifero_ex 
+			
+	}else{
+		cout << "ERRO: valor inválido!" << endl << endl;
+		return 0;
+	}
+
+	sucesso = 's';
+	return 1;	
+
+}
+
+bool verifica_ID(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, char tipo, string id_string, char &sucesso){
+	int cont = 0, id, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)id_string.size(); i++){
+		c = id_string[i];
+		verificacao = isdigit(c);
+		if(!verificacao){
+			cout << "Erro: valor inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+	}
+
+	if(cont == (int) id_string.size()){
+		stringstream ss(id_string);
+		ss >> id;
+		if(tipo == 'n'){
+			if(repteis_nat.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = repteis_nat.begin(); it != repteis_nat.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}
+					
+			}
+		} // Reptil_nat
+		else{
+			if(repteis_ex.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = repteis_ex.begin(); it != repteis_ex.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}	
+			}
+		} // Reptil_ex 
+			
+	}else{
 		cout << "ERRO: valor inválido!" << endl << endl;
 		return 0;
 	}
@@ -576,4 +732,55 @@ bool verifica_origem(string &origem, char &sucesso){
 		return 1;
 	}
 	else return 0;
+}
+
+bool verifica_cor(string &cor, char &sucesso){
+	int cont = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	transform(cor.begin(), cor.end(), cor.begin(), ::toupper); // Converte a string cor para caracteres maiúsculos.
+	for(int i = 0; i < (int)cor.size(); i++){
+		c = cor[i];
+		verificacao = isalpha(c);
+		if(!verificacao && c != ' ' && c != '-'){
+			sucesso = 'n';
+			cout << "Erro: valor inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) cor.size()){
+		transform(cor.begin(), cor.end(), cor.begin(), ::tolower); // Converte a string cor paara caracteres minusculos.
+		sucesso = 's';
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+bool verifica_venenoso(string &venenoso, char &sucesso){
+	int cont = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i = 0; i < (int)venenoso.size(); i++){
+		c = venenoso[i];
+		verificacao = isdigit(c);
+		if(!verificacao || (venenoso != "0" && venenoso != "1")){
+			sucesso = 'n';
+			cout << "ERRO: valor inválido!" << endl << endl;
+			return 0;
+		}
+		else cont++;		
+	}
+	if(cont == (int) venenoso.size()){
+		sucesso = 's';
+		return 1;
+	}
+	else{
+		return 0;
+	}
 }
