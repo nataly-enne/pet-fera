@@ -36,13 +36,14 @@ void cadastrar(map <int, VETERINARIO> &vets){
 	ofstream veterinarios;
 	
 	do{
-		//Recebe o Id e verifica se é valido.
+		//Recebe o ID e verifica se é valido.
 		do{
 			cout << "Digite o id:" << endl;
 			cin >> id_string;
 			if(!verifica_ID(vets, id_string, sucesso)){
 				cout << "O ID deve conter apenas inteiros ou ID já cadastrado!" << endl << endl;
-			}else{
+			}
+			else{
 				stringstream ss(id_string); //converte string para int.
 				ss >> id;
 			}
@@ -65,7 +66,8 @@ void cadastrar(map <int, VETERINARIO> &vets){
 			getline(cin, cpf_string);
 			if(!verifica_CPF(cpf_string, sucesso)){
 				cout << "CPF deve conter apenas numeros" << endl << endl;
-			}else{
+			}
+			else{
 				cpf = stoll(cpf_string); //Transforma a string em long int.
 				check = check_CPF(vets, cpf); // Checa se o CPF existe.
 				if(check){
@@ -81,7 +83,8 @@ void cadastrar(map <int, VETERINARIO> &vets){
 			getline(cin, idade_string);
 			if(!verifica_idade(idade_string, sucesso)){
 				cout << "Idade deve conter apenas inteiros positivos!" << endl << endl;
-			}else{
+			}
+			else{
 				stringstream ss(idade_string);
 				ss >> idade;
 			}
@@ -93,7 +96,8 @@ void cadastrar(map <int, VETERINARIO> &vets){
 			getline(cin, tipo_sang_string);
 			if(!verifica_tipo_sang(tipo_sang_string, sucesso)){
 				cout << "ERRO: O tipo sanguineo deve ser: A, B, AB ou O!" << endl << endl;
-			}else{
+			}
+			else{
 				tipo_sang = tipo_sang_string;
 			}
 		}while(sucesso == 'n');
@@ -104,7 +108,8 @@ void cadastrar(map <int, VETERINARIO> &vets){
 			getline(cin, fator_rh_string);
 			if(!verifica_fator(fator_rh_string, sucesso)){
 				cout << "ERRO: O fator RH deve ser: + ou -" << endl << endl;
-			}else{
+			}
+			else{
 				fator_rh = (char)fator_rh_string[0];
 			}
 		}while(sucesso == 'n');
@@ -115,7 +120,8 @@ void cadastrar(map <int, VETERINARIO> &vets){
 			getline(cin, especialidade);
 			if(!verifica_especialidade(especialidade, sucesso)){
 				cout << "ERRO: A especialidade deve conter apenas letras!" << endl << endl;
-			}else{
+			}
+			else{
 				transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::tolower);
 				especialidade = especialidade;
 			}
@@ -128,7 +134,8 @@ void cadastrar(map <int, VETERINARIO> &vets){
 			getline(cin, crmv);
 			if(!verifica_CRMV(vets, crmv, sucesso)){
 				cout << "ERRO: Crmv deve conter pelo menos um '-' " << endl << endl;
-			}else{
+			}
+			else{
 				transform(crmv.begin(), crmv.end(), crmv.begin(), ::tolower);
 				crmv = crmv;
 			}
@@ -174,7 +181,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 			cin >> id_string;
 			if(!verifica_ID(tratadores, id_string, sucesso)){
 				cout << "O ID deve conter apenas inteiros ou ID já cadastrado!" << endl << endl;
-			}else{
+			}
+			else{
 				stringstream ss(id_string); //converte string para int.
 				ss >> id;
 			}
@@ -197,7 +205,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 			getline(cin, cpf_string);
 			if(!verifica_CPF(cpf_string, sucesso)){
 				cout << "CPF deve conter apenas numeros" << endl << endl;
-			}else{
+			}
+			else{
 				cpf = stoll(cpf_string); //Transforma a string em long int.
 				check = check_CPF(tratadores, cpf); // Checa se o CPF existe.
 				if(check){
@@ -214,7 +223,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 			getline(cin, idade_string);
 			if(!verifica_idade(idade_string, sucesso)){
 				cout << "Idade deve conter apenas inteiros positivos!" << endl << endl;
-			}else{
+			}
+			else{
 				stringstream ss(idade_string);
 				ss >> idade;
 			}
@@ -227,7 +237,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 			getline(cin, tipo_sang_string);
 			if(!verifica_tipo_sang(tipo_sang_string, sucesso)){
 				cout << "ERRO: O tipo sanguineo deve ser: A, B, AB ou O!" << endl << endl;
-			}else{
+			}
+			else{
 				tipo_sang = tipo_sang_string;
 			}
 
@@ -239,7 +250,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 			getline(cin, fator_rh_string);
 			if(!verifica_fator(fator_rh_string, sucesso)){
 				cout << "ERRO: O fator RH deve ser: + ou -" << endl << endl;
-			}else{
+			}
+			else{
 				fator_rh = (char)fator_rh_string[0];
 			}
 
@@ -251,7 +263,8 @@ void cadastrar(map <int, TRATADOR>  &tratadores){
 			getline(cin, especialidade);
 			if(!verifica_especialidade(especialidade, sucesso)){
 				cout << "ERRO: A especialidade deve conter apenas letras!" << endl << endl;
-			}else{
+			}
+			else{
 				transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::tolower);
 				especialidade = especialidade;
 			}
@@ -313,7 +326,8 @@ void cadastrar_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 			}
 			continuar = 's';
 			continue;
-		}else{
+		}
+		else{
 			if(tipo_func == 'a'){
 				cadastrar(anfibios_nat, anfibios_ex, vets, tratadores);
 			}
@@ -357,7 +371,8 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				cin >> id_string;
 				if(!verifica_ID(anfibios_nat, anfibios_ex, tipo_func, id_string, sucesso)){
 					cout << "O ID deve conter apenas inteiros ou ID já cadastrado!" << endl << endl;
-				}else{
+				}
+				else{
 					stringstream ss(id_string); //converte string para int.
 					ss >> id;
 				}
@@ -374,7 +389,8 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				getline(cin, nome);
 				if(!verifica_nome(nome, sucesso)){
 					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
-				}else{
+				}
+				else{
 					transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
 				}
 			}while(sucesso == 'n');
@@ -448,7 +464,8 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				if(sexo_string != "F" && sexo_string != "M" ){
 					sucesso = 'n';
 					cout << "ERRO: só são permitidos F ou M!" << endl << endl;
-				}else{
+				}
+				else{
 					sexo = (char)sexo_string[0];
 					sucesso = 's';
 				}
@@ -471,7 +488,8 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				getline(cin, total_mudas_string);
 				if(!verifica_inteiro(total_mudas_string, sucesso)){
 					cout << "ERRO: O total de mudas deve conter apenas inteiros positivos!" << endl << endl;
-				}else{
+				}
+				else{
 					stringstream ss(total_mudas_string);
 					ss >> total_mudas;
 				}
