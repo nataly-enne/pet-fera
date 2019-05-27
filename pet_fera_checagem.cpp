@@ -62,7 +62,7 @@ bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso){
 	int cont = 0, id, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)id_string.size(); i++){
+	for(int i = 0; i < (int)id_string.size(); i++){
 		c = id_string[i];
 		verificacao = isdigit(c);
 		if(!verificacao){
@@ -104,7 +104,7 @@ bool verifica_ID(map <int, TRATADOR> &tratadores, string id_string, char &sucess
 	int cont = 0, id, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)id_string.size(); i++){
+	for(int i = 0; i < (int)id_string.size(); i++){
 		c = id_string[i];
 		verificacao = isdigit(c);
 		if(!verificacao){
@@ -147,7 +147,7 @@ bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOT
 	int cont = 0, id, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)id_string.size(); i++){
+	for(int i = 0; i < (int)id_string.size(); i++){
 		c = id_string[i];
 		verificacao = isdigit(c);
 		if(!verificacao){
@@ -202,11 +202,11 @@ bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOT
 
 }
 
-bool verifica_Seguranca(string nivel_seg_string, char &sucesso){
+bool verifica_seguranca(string nivel_seg_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
-		for(int i=0; i < (int)nivel_seg_string.size(); i++){
+		for(int i = 0; i < (int)nivel_seg_string.size(); i++){
 			c = nivel_seg_string[i];
 			verificacao = isdigit(c);
 			if(!verificacao || (nivel_seg_string != "0" && nivel_seg_string != "1" && nivel_seg_string != "2")){
@@ -229,12 +229,12 @@ bool verifica_Seguranca(string nivel_seg_string, char &sucesso){
 		}
 }
 
-bool verifica_Nome(string &nome, char &sucesso){
+bool verifica_nome(string &nome, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-	for(int i=0; i < (int)nome.size(); i++){
+	for(int i = 0; i < (int)nome.size(); i++){
 		c = nome[i];
 		verificacao = isalpha(c);
 		if(!verificacao && c != ' '){
@@ -256,12 +256,12 @@ bool verifica_Nome(string &nome, char &sucesso){
 
 }
 
-bool verifica_Nome_cient(string &nome, char &sucesso){
+bool verifica_nome_cient(string &nome, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-	for(int i=0; i < (int)nome.size(); i++){
+	for(int i = 0; i < (int)nome.size(); i++){
 		c = nome[i];
 		verificacao = isalpha(c);
 		if(!verificacao && c != ' ' && c !='-'){
@@ -283,11 +283,11 @@ bool verifica_Nome_cient(string &nome, char &sucesso){
 	}
 
 }
-bool verifica_Cpf(string cpf_string, char &sucesso){
+bool verifica_CPF(string cpf_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)cpf_string.size(); i++){
+	for(int i = 0; i < (int)cpf_string.size(); i++){
 		c = cpf_string[i];
 		verificacao = isdigit(c);
 		if(!verificacao){
@@ -309,11 +309,11 @@ bool verifica_Cpf(string cpf_string, char &sucesso){
 	}
 }
 
-bool verifica_Idade(string idade_string, char &sucesso){
+bool verifica_idade(string idade_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)idade_string.size(); i++){
+	for(int i = 0; i < (int)idade_string.size(); i++){
 		c = idade_string[i];
 		verificacao = isdigit(c);
 		if(!verificacao){
@@ -336,11 +336,11 @@ bool verifica_Idade(string idade_string, char &sucesso){
 
 }
 
-bool verifica_Inteiro(string total_mudas_string, char &sucesso){
+bool verifica_inteiro(string total_mudas_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)total_mudas_string.size(); i++){
+	for(int i = 0; i < (int)total_mudas_string.size(); i++){
 		c = total_mudas_string[i];
 		verificacao = isdigit(c);
 		if(!verificacao){
@@ -362,12 +362,12 @@ bool verifica_Inteiro(string total_mudas_string, char &sucesso){
 	}
 }
 
-bool verifica_Tiposang(string &tipo_sang_string, char &sucesso){
+bool verifica_tipo_sang(string &tipo_sang_string, char &sucesso){
 	int cont = 0, cont_sangue = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(tipo_sang_string.begin(), tipo_sang_string.end(), tipo_sang_string.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-	for(int i=0; i < (int)tipo_sang_string.size(); i++){
+	for(int i = 0; i < (int)tipo_sang_string.size(); i++){
 		c = tipo_sang_string[i];
 		verificacao = isalpha(c);
 		cont_sangue++;
@@ -391,12 +391,12 @@ bool verifica_Tiposang(string &tipo_sang_string, char &sucesso){
 
 }
 
-bool verifica_Fator(string fator_rh_string, char &sucesso){
+bool verifica_fator(string fator_rh_string, char &sucesso){
 	int cont = 0, cont_carac = 0;
 	char c;
 	sucesso = 'n';
 
-	for(int i=0; i < (int) fator_rh_string.size(); i++){
+	for(int i = 0; i < (int) fator_rh_string.size(); i++){
 		c = fator_rh_string[i];
 		cont_carac++;
 		if((c != '-' && c != '+') || cont_carac > 1){
@@ -420,12 +420,12 @@ bool verifica_Fator(string fator_rh_string, char &sucesso){
 
 }
 
-bool verifica_Esp(string especialidade, char &sucesso){
+bool verifica_especialidade(string especialidade, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(especialidade.begin(), especialidade.end(), especialidade.begin(), ::toupper);
-	for(int i=0; i < (int) especialidade.size(); i++){
+	for(int i = 0; i < (int) especialidade.size(); i++){
 		c = especialidade[i];
 		verificacao = isalpha(c);
 		if(!verificacao && c != ' '){
@@ -448,12 +448,12 @@ bool verifica_Esp(string especialidade, char &sucesso){
 	}
 }
 
-bool verifica_Crmv(map <int, VETERINARIO> &vets, string crmv, char &sucesso){
+bool verifica_CRMV(map <int, VETERINARIO> &vets, string crmv, char &sucesso){
 	int cont = 0, verificacao, contador_de_traco = 0;
 	char c;
 	sucesso = 'n';
 	transform(crmv.begin(), crmv.end(), crmv.begin(), ::toupper);
-	for(int i=0; i < (int) crmv.size(); i++){
+	for(int i = 0; i < (int) crmv.size(); i++){
 		c = crmv[i];
 		verificacao = isalnum(c);
 		if(c == '-'){
@@ -492,12 +492,12 @@ bool verifica_Crmv(map <int, VETERINARIO> &vets, string crmv, char &sucesso){
 	return 1;
 }
 
-bool verifica_Dieta(string &dieta, char &sucesso){
+bool verifica_dieta(string &dieta, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(dieta.begin(), dieta.end(), dieta.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-	for(int i=0; i < (int)dieta.size(); i++){
+	for(int i = 0; i < (int)dieta.size(); i++){
 		c = dieta[i];
 		verificacao = isalpha(c);
 		if(!verificacao && c != ' ' && c != ','){
@@ -519,11 +519,11 @@ bool verifica_Dieta(string &dieta, char &sucesso){
 	}
 }
 
-bool verifica_Tam(string tamanho_string, char &sucesso){
+bool verifica_tamanho(string tamanho_string, char &sucesso){
 	int cont = 0, cont_ponto = 0, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)tamanho_string.size(); i++){
+	for(int i = 0; i < (int)tamanho_string.size(); i++){
 		c = tamanho_string[i];
 		verificacao = isdigit(c);
 		if(c == '.'){
@@ -548,11 +548,11 @@ bool verifica_Tam(string tamanho_string, char &sucesso){
 
 }
 
-bool verifica_Data(string ultima_muda, char &sucesso){
+bool verifica_data(string ultima_muda, char &sucesso){
 	int cont = 0, cont_traco = 0, verificacao;
 	char c;
 	sucesso = 'n';
-	for(int i=0; i < (int)ultima_muda.size(); i++){
+	for(int i = 0; i < (int)ultima_muda.size(); i++){
 		c = ultima_muda[i];
 		verificacao = isdigit(c);
 		if(c == '-'){
@@ -577,12 +577,12 @@ bool verifica_Data(string ultima_muda, char &sucesso){
 
 }
 
-bool verifica_Autorizacao(string autorizacao, char &sucesso){
+bool verifica_autorizacao(string autorizacao, char &sucesso){
 	int cont = 0, cont_traco = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(autorizacao.begin(), autorizacao.end(), autorizacao.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-	for(int i=0; i < (int)autorizacao.size(); i++){
+	for(int i = 0; i < (int)autorizacao.size(); i++){
 		c = autorizacao[i];
 		verificacao = isalnum(c);
 		if(c == '-'){
@@ -606,12 +606,12 @@ bool verifica_Autorizacao(string autorizacao, char &sucesso){
 	}
 }
 
-bool verifica_Origem(string &origem, char &sucesso){
+bool verifica_origem(string &origem, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
 	transform(origem.begin(), origem.end(), origem.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
-	for(int i=0; i < (int)origem.size(); i++){
+	for(int i = 0; i < (int)origem.size(); i++){
 		c = origem[i];
 		verificacao = isalpha(c);
 		if(!verificacao && c != ' '){
