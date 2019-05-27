@@ -40,15 +40,22 @@ bool check_vet(map <int, VETERINARIO> &vets, string nome){
 
 // Checagem do tratador a partir de seu nome.
 bool check_tratador(map <int, TRATADOR> &tratadores, string nome){
-	int cont = 0;
-
+	int cont_nome = 0, cont_nivel = 0;
+	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
 	for(auto it = tratadores.begin(); it != tratadores.end();it++){
 		if(it->second.getNome() == nome){
-			cont++;
+			cont_nome++;
+		}
+		if(it->second.getNivel_seguranca() == 1){
+			cont_nivel++;
 			break;
 		}
 	}
-	return cont;
+	if(cont_nome >= 1 && cont_nivel == 1){
+		return 1;
+	}else{
+		return 0;
+	}
 }
 
 bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso){
@@ -136,7 +143,66 @@ bool verifica_ID(map <int, TRATADOR> &tratadores, string id_string, char &sucess
 
 }
 
-bool verifica_seguranca(string nivel_seg_string, char &sucesso){
+bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, char tipo, string id_string, char &sucesso){
+	int cont = 0, id, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)id_string.size(); i++){
+		c = id_string[i];
+		verificacao = isdigit(c);
+		if(!verificacao){
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+	}
+
+	if(cont == (int) id_string.size()){
+		stringstream ss(id_string);
+		ss >> id;
+		if(tipo == 'n'){
+			if(anfibios_nat.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = anfibios_nat.begin(); it != anfibios_nat.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}
+					
+			}
+		} //Anfibios_nat
+		else{
+			if(anfibios_ex.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = anfibios_ex.begin(); it != anfibios_ex.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}	
+			}
+		}//Anfibios_ex
+			
+	}else{
+		cout << "ERRO: caracter inválido!" << endl << endl;
+		return 0;
+	}
+
+	sucesso = 's';
+	return 1;	
+
+}
+
+bool verifica_Seguranca(string nivel_seg_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';
@@ -172,7 +238,6 @@ bool verifica_Nome(string &nome, char &sucesso){
 		c = nome[i];
 		verificacao = isalpha(c);
 		if(!verificacao && c != ' '){
-			cont--;
 			sucesso = 'n';
 			cout << "Erro: caracter inválido!" << endl << endl;
 			return 0;
@@ -191,6 +256,33 @@ bool verifica_Nome(string &nome, char &sucesso){
 
 }
 
+bool verifica_Nome_cient(string &nome, char &sucesso){
+	int cont = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+	for(int i=0; i < (int)nome.size(); i++){
+		c = nome[i];
+		verificacao = isalpha(c);
+		if(!verificacao && c != ' ' && c !='-'){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) nome.size()){
+		transform(nome.begin(), nome.end(), nome.begin(), ::tolower);
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
+
+}
 bool verifica_Cpf(string cpf_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
@@ -242,6 +334,32 @@ bool verifica_Idade(string idade_string, char &sucesso){
 		return 0;
 	}
 
+}
+
+bool verifica_Inteiro(string total_mudas_string, char &sucesso){
+	int cont = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)total_mudas_string.size(); i++){
+		c = total_mudas_string[i];
+		verificacao = isdigit(c);
+		if(!verificacao){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+
+	if(cont == (int) total_mudas_string.size()){
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
 }
 
 bool verifica_Tiposang(string &tipo_sang_string, char &sucesso){
@@ -372,4 +490,145 @@ bool verifica_Crmv(map <int, VETERINARIO> &vets, string crmv, char &sucesso){
 	}
 	sucesso = 's';
 	return 1;
+}
+
+bool verifica_Dieta(string &dieta, char &sucesso){
+	int cont = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	transform(dieta.begin(), dieta.end(), dieta.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+	for(int i=0; i < (int)dieta.size(); i++){
+		c = dieta[i];
+		verificacao = isalpha(c);
+		if(!verificacao && c != ' ' && c != ','){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) dieta.size()){
+		transform(dieta.begin(), dieta.end(), dieta.begin(), ::tolower);
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+bool verifica_Tam(string tamanho_string, char &sucesso){
+	int cont = 0, cont_ponto = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)tamanho_string.size(); i++){
+		c = tamanho_string[i];
+		verificacao = isdigit(c);
+		if(c == '.'){
+			cont_ponto++;
+		}
+		if(!verificacao && c != '.'){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) tamanho_string.size() && cont_ponto == 1){
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
+
+}
+
+bool verifica_Data(string ultima_muda, char &sucesso){
+	int cont = 0, cont_traco = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)ultima_muda.size(); i++){
+		c = ultima_muda[i];
+		verificacao = isdigit(c);
+		if(c == '-'){
+			cont_traco++;
+		}
+		if(!verificacao && c != '-'){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) ultima_muda.size() && cont_traco == 2){
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
+
+}
+
+bool verifica_Autorizacao(string autorizacao, char &sucesso){
+	int cont = 0, cont_traco = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	transform(autorizacao.begin(), autorizacao.end(), autorizacao.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+	for(int i=0; i < (int)autorizacao.size(); i++){
+		c = autorizacao[i];
+		verificacao = isalnum(c);
+		if(c == '-'){
+			cont_traco++;
+		}
+		if(!verificacao && c != '-'){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) autorizacao.size() && cont_traco == 1){
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+bool verifica_Origem(string &origem, char &sucesso){
+	int cont = 0, verificacao;
+	char c;
+	sucesso = 'n';
+	transform(origem.begin(), origem.end(), origem.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+	for(int i=0; i < (int)origem.size(); i++){
+		c = origem[i];
+		verificacao = isalpha(c);
+		if(!verificacao && c != ' '){
+			sucesso = 'n';
+			cout << "Erro: caracter inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+		
+	}
+	if(cont == (int) origem.size()){
+		transform(origem.begin(), origem.end(), origem.begin(), ::tolower);
+		sucesso = 's';
+		return 1;
+	}else{
+		return 0;
+	}
 }

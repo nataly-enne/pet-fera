@@ -346,7 +346,7 @@ bool check_CPF(map <int, VETERINARIO> &vets, long int cpf);
 bool check_vet(map <int, VETERINARIO> &vets, string nome);
 bool check_tratador(map <int, TRATADOR> &tratadores, string nome);
 bool verifica_ID(map <int, TRATADOR> &tratadores, string id_string, char &sucesso); //verifica se o Id digitado é int positivo e único;
-bool verifica_seguranca(string nivel_seg_string, char &sucesso); //verifica se o nível de segurança é válido;
+bool verifica_Seguranca(string nivel_seg_string, char &sucesso); //verifica se o nível de segurança é válido;
 bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso);//verifica se o Id digitado é int positivo e único;
 bool verifica_Nome(string &nome, char &sucesso);//verifica se o nome digitado possui somente letras;
 bool verifica_Cpf(string cpf_string, char &sucesso);//verifica se o cpf contêm apenas inteiros positivos;
@@ -355,6 +355,14 @@ bool verifica_Tiposang(string &tipo_sang_string, char &sucesso);//verifica se o 
 bool verifica_Fator(string fator_rh_string, char &sucesso);//verifica se o fator é + ou -;
 bool verifica_Esp(string especialidade, char &sucesso);//verifica se especialidade contêm apenas letras;
 bool verifica_Crmv(map <int, VETERINARIO> &vets, string crmv, char &sucesso);//verifica se o crmv foi inserido no formato correto;
+bool verifica_Dieta(string &dieta, char &sucesso);//verifica se a dieta foi inserida no formato correto;
+bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, char tipo, string id_string, char &sucesso); //verifica id caso o anfibios seja nativo ou exótico;
+bool verifica_Tam(string tamanho_string, char &sucesso); //Verifica se o tamanho do animal é um double;
+bool verifica_Inteiro(string total_mudas_string, char &sucesso); //Verifica se a string passada só tem numeros inteiros;
+bool verifica_Data(string ultima_muda, char &sucesso); //Verifica se a data está no formato correto.
+bool verifica_Autorizacao(string autorizacao, char &sucesso); //Verifica se a autorizacao foi inserida corretamente;
+bool verifica_Origem(string &origem, char &sucesso); //Verifica se foi passado uma string.
+bool verifica_Nome_cient(string &nome, char &sucesso); //Verifica se o nome cientifico foi passado de forma correta, diferente do nome convencional o nome cientifico pode ter '-';
 
 // Sobrecarga de função do cadastramento.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
