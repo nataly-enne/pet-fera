@@ -40,36 +40,28 @@ bool check_vet(map <int, VETERINARIO> &vets, string nome){
 
 // Checagem do tratador a partir de seu nome.
 bool check_tratador(bool venenoso, map <int, TRATADOR> &tratadores, string nome, char tipo){
-	int cont_nome = 0, cont_nivel = 0;
+	int cont_nome = 0; //cont_nivel = 0;
 	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
 	if(tipo == 'v'){
 		for(auto it = tratadores.begin(); it != tratadores.end();it++){
-			if(it->second.getNome() == nome){
+			if(it->second.getNome() == nome && (it->second.getNivel_seguranca() == 0 || it->second.getNivel_seguranca() == 1 || it->second.getNivel_seguranca() == 2)){
 				cont_nome++;
 			}
-			if(it->second.getNivel_seguranca() == 0 || it->second.getNivel_seguranca() == 1){
-				cont_nivel++;
-				break;
-			}
 		}
-		if(cont_nome >= 1 && cont_nivel == 1){
+		if(cont_nome == 1){
 			return 1;
 		}else{
 			return 0;
 		}
 
 	}
-	else if(tipo == 'r' && venenoso == 1){
+	else if(tipo == 'r' && venenoso == 1){ 
 		for(auto it = tratadores.begin(); it != tratadores.end();it++){
-			if(it->second.getNome() == nome){
+			if(it->second.getNome() == nome && it->second.getNivel_seguranca() == 2){
 				cont_nome++;
 			}
-			if(it->second.getNivel_seguranca() == 2){
-				cont_nivel++;
-				break;
-			}
 		}
-		if(cont_nome >= 1 && cont_nivel == 1){
+		if(cont_nome == 1){
 			return 1;
 		}else{
 			return 0;
@@ -77,15 +69,11 @@ bool check_tratador(bool venenoso, map <int, TRATADOR> &tratadores, string nome,
 
 	}else{
 		for(auto it = tratadores.begin(); it != tratadores.end();it++){
-			if(it->second.getNome() == nome){
+			if(it->second.getNome() == nome &&(it->second.getNivel_seguranca() == 1 || it->second.getNivel_seguranca() == 2)){
 				cont_nome++;
 			}
-			if(it->second.getNivel_seguranca() >= 1){
-				cont_nivel++;
-				break;
-			}
 		}
-		if(cont_nome >= 1 && cont_nivel == 1){
+		if(cont_nome == 1 ){ 
 			return 1;
 		}else{
 			return 0;
@@ -684,7 +672,7 @@ bool verifica_data(string ultima_muda, char &sucesso){
 	else return 0;
 }
 
-bool verifica_autorizacao(string autorizacao, char &sucesso){
+bool verifica_autorizacao(string &autorizacao, char &sucesso){
 	int cont = 0, cont_traco = 0, verificacao;
 	char c;
 	sucesso = 'n';
@@ -704,6 +692,7 @@ bool verifica_autorizacao(string autorizacao, char &sucesso){
 		
 	}
 	if(cont == (int) autorizacao.size() && cont_traco == 1){
+		transform(autorizacao.begin(), autorizacao.end(), autorizacao.begin(), ::tolower); // Converte a string autorizacao para valores minusculos.
 		sucesso = 's';
 		return 1;
 	}
@@ -762,7 +751,7 @@ bool verifica_cor(string &cor, char &sucesso){
 	}
 }
 
-bool verifica_venenoso(string &venenoso, char &sucesso){
+bool verifica_venenoso(string venenoso, char &sucesso){
 	int cont = 0, verificacao;
 	char c;
 	sucesso = 'n';

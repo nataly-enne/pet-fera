@@ -573,10 +573,10 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 					continuar = 's';
 					continue;
 				}
+				cout << "Animal cadastrado com sucesso!" << endl << endl;
 					
 			}
 		}
-		cout << "Animal cadastrado com sucesso!" << endl << endl;
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
@@ -892,6 +892,25 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				}
 			}while(sucesso == 'n');
 
+
+			do{
+				cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
+				cin >> venenoso_string;
+				if(!verifica_venenoso(venenoso_string,sucesso)){
+					cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
+				}else{
+					stringstream ss(venenoso_string);
+					ss >> venenoso;
+					sucesso = 's';
+					if(venenoso){
+						cout << "Digite o tipo do veneno: " << endl;
+						cin.ignore();
+						getline(cin, tipo_veneno); 
+					}
+					//cin.ignore();
+				}
+			}while(sucesso == 'n');
+
 			// Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
 			do{
 				cout << "Digite o nome do veterinario: " << endl;
@@ -915,7 +934,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				if(!verifica_nome(tratador, sucesso)){
 					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
 				}
-				check = check_tratador(0, tratadores, tratador, tipo);
+				check = check_tratador(venenoso, tratadores, tratador, tipo);
 				if(!check){
 					cout << endl;
 					cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
@@ -958,24 +977,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				tamanho = stod(tamanho_string);
 			}while(sucesso == 'n');
 
-			do{
-				cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
-				cin >> venenoso_string;
-				if(!verifica_venenoso(venenoso_string,sucesso)){
-					cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
-				}else{
-					venenoso = (bool)venenoso_string == true;
-					sucesso = 's';
-					if(venenoso){
-						cout << "Digite o tipo do veneno: " << endl;
-						cin.ignore();
-						getline(cin, tipo_veneno);
-					}
-					else{
-						cin.ignore();
-					}
-				}
-			}while(sucesso == 'n');
+			
 			
 			// Verifica se a autorizacao está no formato correto.
 			do{

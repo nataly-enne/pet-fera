@@ -356,11 +356,11 @@ bool verifica_dieta(string &dieta, char &sucesso);// Verifica se a dieta foi ins
 bool verifica_tamanho(string tamanho_string, char &sucesso); // Verifica se o tamanho do animal é um double;
 bool verifica_inteiro(string total_mudas_string, char &sucesso); // Verifica se a string passada só tem numeros inteiros;
 bool verifica_data(string ultima_muda, char &sucesso); // Verifica se a data está no formato correto.
-bool verifica_autorizacao(string autorizacao, char &sucesso); // Verifica se a autorizacao foi inserida corretamente;
+bool verifica_autorizacao(string &autorizacao, char &sucesso); // Verifica se a autorizacao foi inserida corretamente;
 bool verifica_origem(string &origem, char &sucesso); // Verifica se foi passado uma string.
 bool verifica_nome_cient(string &nome, char &sucesso); // Verifica se o nome cientifico foi passado de forma correta, diferente do nome convencional o nome cientifico pode ter '-';
 bool verifica_cor(string &cor, char &sucesso);
-bool verifica_venenoso(string &venenoso, char &sucesso);
+bool verifica_venenoso(string venenoso, char &sucesso);
 
 // Sobrecarga de função de checagem de condições/exceções.
 bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf);// Verifica se o cpf já está cadastrado.
