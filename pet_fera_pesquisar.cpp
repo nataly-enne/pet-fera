@@ -16,7 +16,8 @@ void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO
 			getline(cin, classe_string);
 			if(classe_string != "1" && classe_string != "2" && classe_string != "3" && classe_string != "4"){
 				ok = 'n';
-			}else{
+			}
+			else{
 				ok = 's';
 				stringstream ss(classe_string);
 				ss >> classe;

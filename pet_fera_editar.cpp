@@ -535,7 +535,8 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 						if(sexo_string != "F" && sexo_string != "M" ){
 							sucesso = 'n';
 							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
-						}else{
+						}
+						else{
 							sexo = (char)sexo_string[0];
 							sucesso = 's';
 						}
@@ -694,7 +695,8 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 						if(sexo_string != "F" && sexo_string != "M" ){
 							sucesso = 'n';
 							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
-						}else{
+						}
+						else{
 							sexo = (char)sexo_string[0];
 							sucesso = 's';
 						}
@@ -835,7 +837,8 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 						cin >> venenoso_string;
 						if(!verifica_venenoso(venenoso_string,sucesso)){
 							cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
-						}else{
+						}
+						else{
 							stringstream ss(venenoso_string);
 							ss >> venenoso;
 							sucesso = 's';
@@ -1007,7 +1010,8 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 						cin >> venenoso_string;
 						if(!verifica_venenoso(venenoso_string,sucesso)){
 							cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
-						}else{
+						}
+						else{
 							stringstream ss(venenoso_string);
 							ss >> venenoso;
 							sucesso = 's';
@@ -1264,7 +1268,8 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, ma
 						if(!verifica_tamanho(tamanho_string, sucesso)){
 							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
 							continue;
-						}else{
+						}
+						else{
 							tamanho = stod(tamanho_string);
 						}
 					}while(sucesso == 'n');

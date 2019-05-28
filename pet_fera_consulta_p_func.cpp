@@ -38,7 +38,8 @@ void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATI
 		getline(cin, nome);
 		if(!verifica_nome(nome, sucesso)){
 			cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
-		}else{
+		}
+		else{
 			sucesso = 's';
 		}
 	}while(sucesso == 'n');
@@ -73,7 +74,8 @@ void consulta_p_veterinario(map <int, VETERINARIO> &vets, map <int, ANFIBIO_NATI
 		getline(cin, nome);
 		if(!verifica_nome(nome, sucesso)){
 			cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
-		}else{
+		}
+		else{
 			sucesso = 's';
 		}
 	}while(sucesso == 'n');
