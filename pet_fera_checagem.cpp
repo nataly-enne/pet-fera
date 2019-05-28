@@ -345,6 +345,66 @@ bool verifica_ID(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO
 
 }
 
+bool verifica_ID(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, char tipo, string id_string, char &sucesso){
+	int cont = 0, id, verificacao;
+	char c;
+	sucesso = 'n';
+	for(int i=0; i < (int)id_string.size(); i++){
+		c = id_string[i];
+		verificacao = isdigit(c);
+		if(!verificacao){
+			cout << "Erro: valor inválido!" << endl << endl;
+			return 0;
+		}
+		else{
+			cont++;
+		}
+	}
+
+	if(cont == (int) id_string.size()){
+		stringstream ss(id_string);
+		ss >> id;
+		if(tipo == 'n'){
+			if(aves_nat.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = aves_nat.begin(); it != aves_nat.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}
+					
+			}
+		} // Aves_nat
+		else{
+			if(aves_ex.empty()){
+				sucesso = 's';
+				return 1;
+			}else{
+				for(auto it = aves_ex.begin(); it != aves_ex.end();it++){
+					if(it->second.getId() == id){
+						sucesso = 'n';
+						cout << "ERRO: id já cadastrado!" << endl << endl;
+						return 0;				
+					}
+				}	
+			}
+		} // Aves_ex 
+			
+	}else{
+		cout << "ERRO: valor inválido!" << endl << endl;
+		return 0;
+	}
+
+	sucesso = 's';
+	return 1;	
+
+}
+
+
 bool verifica_seguranca(string nivel_seg_string, char &sucesso){
 	int cont = 0, verificacao;
 	char c;

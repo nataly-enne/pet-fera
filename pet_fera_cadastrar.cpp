@@ -349,7 +349,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 	int id, total_mudas;
 	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda, nome, id_string, tamanho_string, sexo_string, total_mudas_string;
 	bool check;
-	char sexo, tipo_func, continuar, sucesso, tipo = 'a';
+	char sexo, tipo_animal, continuar, sucesso, tipo = 'a';
 	double tamanho;
 	unsigned int old_size;
 	ofstream nativos;
@@ -357,19 +357,18 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 
 	do{
 		cout << "Deseja cadastrar um ANFIBIO NATIVO ou ANNFIBIO EXÓTICO? \n n - NATIVO\n e - EXÓTICO" << endl;
-		cin >> tipo_func;
-		if(tipo_func != 'n' && tipo_func != 'e'){
+		cin >> tipo_animal;
+		if(tipo_animal != 'n' && tipo_animal != 'e'){
 			cout << "Tipo invalido, tente novamente!" << endl;
 			continuar = 's';
 			continue;
 		}
 		else{
-			//continuar = 'n';
 			//Recebe o Id e verifica se é valido.
 			do{
 				cout << "Digite o id:" << endl;
 				cin >> id_string;
-				if(!verifica_ID(anfibios_nat, anfibios_ex, tipo_func, id_string, sucesso)){
+				if(!verifica_ID(anfibios_nat, anfibios_ex, tipo_animal, id_string, sucesso)){
 					cout << "O ID deve conter apenas inteiros ou ID já cadastrado!" << endl << endl;
 				}
 				else{
@@ -453,7 +452,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				if(!verifica_nome(nome_batismo, sucesso)){
 					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
 				}
-				transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+				transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome para caracteres minusculos.
 			}while(sucesso == 'n');
 
 			//Recebe o sexo do animal e verifica se é F ou M.
@@ -509,12 +508,12 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				cout << "Insira a autorizacao do IBAMA: " << endl;
 				getline(cin, autorizacao_IBAMA);
 				if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
-					cout << "ERRO: A ultima muda deve ser nesse formato ex.: 12-03-2019" << endl;
+					cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
 				}
 			}while(sucesso == 'n');
 			
 			
-			if(tipo_func == 'n'){
+			if(tipo_animal == 'n'){
 				old_size = anfibios_nat.size();
 				//Verifica se foi passado uma string.
 				do{
@@ -530,7 +529,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 					cout << "Insira a autorizacao do animal: " << endl;
 					getline(cin, autorizacao);
 					if(!verifica_autorizacao(autorizacao, sucesso)){
-						cout << "ERRO: A ultima muda deve ser nesse formato ex.: 12-03-2019" << endl;
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
 					}
 				}while(sucesso == 'n');
 				
@@ -539,7 +538,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 				anfibios_nat.insert(pair <int, ANFIBIO_NATIVO> (id, ANFIBIO_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao)));
 
 				if (anfibios_nat.size() == old_size){
-					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
+					cout << "Falha no cadastro do animal! Tente novamente!" << endl << endl;
 					continuar = 's';
 					continue;
 				}
@@ -561,7 +560,7 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 					cout << "Insira a autorizacao do animal: " << endl;
 					getline(cin, autorizacao);
 					if(!verifica_autorizacao(autorizacao, sucesso)){
-						cout << "ERRO: A ultima muda deve ser nesse formato ex.: 12-03-2019" << endl;
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl;
 					}
 				}while(sucesso == 'n');
 
@@ -572,11 +571,10 @@ void cadastrar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTIC
 					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
 					continuar = 's';
 					continue;
-				}
-				cout << "Animal cadastrado com sucesso!" << endl << endl;
-					
+				}		
 			}
 		}
+		cout << "\nAnimal cadastrado com sucesso!" << endl << endl;
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
@@ -617,7 +615,6 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 			continue;
 		}
 		else{
-			//continuar = 's';
 			// Recebe o ID e verifica se é valido.
 			do{
 				cout << "Digite o id:" << endl;
@@ -631,7 +628,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 
 			}while(sucesso == 'n');
 
-			classe = "Mammallia";
+			classe = "Mammalia";
 
 			//Recebe o nome e verifica se é valido.
 			do{
@@ -740,7 +737,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 				cout << "Insira a autorizacao do IBAMA: " << endl;
 				getline(cin, autorizacao_IBAMA);
 				if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
-					cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl;
+					cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
 				}
 			}while(sucesso == 'n');
 			
@@ -762,7 +759,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 					cout << "Insira a autorizacao do animal: " << endl;
 					getline(cin, autorizacao);
 					if(!verifica_autorizacao(autorizacao, sucesso)){
-						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl;
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
 					}
 				}while(sucesso == 'n');
 
@@ -792,7 +789,7 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 					cout << "Insira a autorizacao do animal: " << endl;
 					getline(cin, autorizacao);
 					if(!verifica_autorizacao(autorizacao, sucesso)){
-						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'"<< endl;
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'"<< endl << endl;
 					}
 				}while(sucesso == 'n');
 
@@ -804,10 +801,11 @@ void cadastrar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXO
 					continuar = 's';
 					continue;
 				}
-				cout << "Animal cadastrado com sucesso!" << endl << endl;
+			
 			}
+
 		}
-	
+		cout << "\nAnimal cadastrado com sucesso!" << endl << endl;
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
@@ -847,7 +845,6 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			continue;
 		}
 		else{
-			//continuar = 's';
 			// Recebe o ID e verifica se é valido.
 			do{
 				cout << "Digite o id:" << endl;
@@ -861,7 +858,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 
 			}while(sucesso == 'n');
 
-			classe = "Reptillia";
+			classe = "Reptilia";
 
 			// Recebe o nome e verifica se é valido.
 			do{
@@ -907,7 +904,6 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 						cin.ignore();
 						getline(cin, tipo_veneno); 
 					}
-					//cin.ignore();
 				}
 			}while(sucesso == 'n');
 
@@ -984,7 +980,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 				cout << "Insira a autorizacao do IBAMA: " << endl;
 				getline(cin, autorizacao_IBAMA);
 				if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
-					cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl;
+					cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
 				}
 			}while(sucesso == 'n');
 
@@ -1006,7 +1002,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 					cout << "Insira a autorizacao do animal: " << endl;
 					getline(cin, autorizacao);
 					if(!verifica_autorizacao(autorizacao, sucesso)){
-						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl;
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
 					}
 				}while(sucesso == 'n');
 
@@ -1036,7 +1032,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 					cout << "Insira a autorizacao do animal: " << endl;
 					getline(cin, autorizacao);
 					if(!verifica_autorizacao(autorizacao, sucesso)){
-						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'"<< endl;
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'"<< endl << endl;
 					}
 				}while(sucesso == 'n');
 
@@ -1048,10 +1044,9 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 					continuar = 's';
 					continue;
 				}
-				cout << "Animal cadastrado com sucesso!" << endl << endl;
 			}
 		}
-	
+		cout << "\nAnimal cadastrado com sucesso!" << endl << endl;
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');
@@ -1077,74 +1072,183 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 	int id;
 	bool check;
 	double tam_bico, envergadura, tamanho;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, nome;
-	char sexo, tipo_func, continuar = 's';
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, nome, id_string, sexo_string, tamanho_string, tam_bico_string, envergadura_string;
+	char sexo, tipo_animal, sucesso, continuar = 's', tipo = 'v';
 	unsigned int old_size;
 	ofstream nativos;
 	ofstream exoticos;
 
 	do{
 		cout << "Deseja cadastrar um AVE NATIVA ou AVE EXÓTICA? \n n - NATIVA\n e - EXÓTICA" << endl;
-		cin >> tipo_func;
-		if(tipo_func != 'n' && tipo_func != 'e'){
+		cin >> tipo_animal;
+		if(tipo_animal != 'n' && tipo_animal != 'e'){
 			continuar = 's';
 			continue;
 		}
 		else{
-			continuar = 'n';
-			cout << "Digite o id: " << endl;
-			cin >> id;
+			// Recebe o ID e verifica se é valido.
+			do{
+				cout << "Digite o id:" << endl;
+				cin >> id_string;
+				if(!verifica_ID(aves_nat, aves_ex, tipo_animal, id_string, sucesso)){
+					cout << "O ID deve conter apenas inteiros ou ID já cadastrado!" << endl << endl;
+				}else{
+					stringstream ss(id_string); //converte string para int.
+					ss >> id;
+				}
+
+			}while(sucesso == 'n');
 			
 			classe = "Aves";
 
-			cout << "Digite o nome: " << endl;
-			getline(cin, nome);
-			cout << "Digite o nome científico: " << endl;
-			getline(cin, nome_cientifico);
-			cout << "Digite a dieta: " << endl;
-			getline(cin, dieta);
-			cout << "Digite o nome do veterinario: " << endl;
-			getline(cin, veterinario);
-			transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
-			check = check_vet(vets, veterinario);
-			if(!check){
-				cout << endl;
-				cout << "Veterinario não cadastrado!" << endl;
-				break;
-			}
-			cout << "Digite o nome do tratador: " << endl;
-			getline(cin, tratador);
-			transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
-			/*check = check_tratador(tratadores, tratador);
-			if(!check){
-				cout << endl;
-				cout << "Tratador não cadastrado!" << endl;
-				break;
-			}*/
-			cout << "Digite o nome de batismo: " << endl;
-			getline(cin, nome_batismo);
-			cout << "Digite o sexo do animal: " << endl;
-			cin >> sexo;
-			cout << "Digite o tamanho do animal: " << endl;
-			cin >> tamanho;
-			cout << "Digite o tamanho do bico: " << endl;
-			cin >> tam_bico;
-			cout << "Digite a envergadura: " << endl;
-			cin >> envergadura;
-			cout << "Insira a autorizacao do IBAMA: " << endl;
-			cin.ignore();
-			getline(cin, autorizacao_IBAMA);
+			// Recebe o nome e verifica se é valido.
+			do{
+				cout << "Digite o nome:" << endl;
+				cin.ignore();
+				getline(cin, nome);
+				if(!verifica_nome(nome, sucesso)){
+					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+				}
+				transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+			}while(sucesso == 'n');
+
+
+			// Recebe o nome cientifico e verifica se é valido.
+			do{
+				cout << "Digite o nome científico:" << endl;
+				getline(cin, nome_cientifico);
+				if(!verifica_nome_cient(nome_cientifico, sucesso)){
+					cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+				}
+			}while(sucesso == 'n');
+
+			// Recebe a dieta e verifica se não possui caracteres proibidos.
+			do{
+				cout << "Digite a dieta: " << endl;
+				getline(cin, dieta);
+				if(!verifica_dieta(dieta, sucesso)){
+					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+				}
+			}while(sucesso == 'n');
+
+			// Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+			do{
+				cout << "Digite o nome do veterinario: " << endl;
+				getline(cin, veterinario);
+				
+				if(!verifica_nome(veterinario, sucesso)){
+					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+				}
+				check = check_vet(vets, veterinario);
+				if(!check){
+					cout << endl;
+					cout << "ERRO: Veterinario não cadastrado!" << endl;
+					sucesso = 'n';
+				}
+			}while(sucesso == 'n');
+
+			//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+			do{
+				cout << "Digite o nome do tratador: " << endl;
+				getline(cin, tratador);
+				if(!verifica_nome(tratador, sucesso)){
+					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+				}
+				check = check_tratador(0, tratadores, tratador, tipo);
+				if(!check){
+					cout << endl;
+					cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+					sucesso = 'n';
+				}
+			}while(sucesso == 'n');
+
+			// Recebe o nome e verifica se é valido.
+			do{
+				cout << "Digite o nome de batismo: " << endl;
+				getline(cin, nome_batismo);
+				if(!verifica_nome(nome_batismo, sucesso)){
+					cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+				}
+				transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+			}while(sucesso == 'n');
+
+			// Recebe o sexo do animal e verifica se é F ou M.
+			do{
+				cout << "Digite o sexo do animal: " << endl;
+				getline(cin, sexo_string);
+				transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+				if(sexo_string != "F" && sexo_string != "M" ){
+					sucesso = 'n';
+					cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+				}
+				else{
+					sexo = (char)sexo_string[0];
+					sucesso = 's';
+				}
+			}while(sucesso == 'n');
+
+			// Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+			do{
+				cout << "Digite o tamanho do animal: " << endl;
+				getline(cin, tamanho_string);
+				if(!verifica_tamanho(tamanho_string, sucesso)){
+					cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+				}
+				tamanho = stod(tamanho_string);
+			}while(sucesso == 'n');
+				
+			// Recebe o tamanho do bico do animal e verifica se não caracteres pproibidos.
+			do{
+				cout << "Digite o tamanho do bico: " << endl;
+				getline(cin, tam_bico_string);
+				if(!verifica_tamanho(tam_bico_string, sucesso)){
+					cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+				}
+				tam_bico = stod(tam_bico_string);
+			}while(sucesso == 'n');
+			
+			// Recebe a envergadura do animal e verifica se não caracteres pproibidos.
+			do{
+				cout << "Digite a envergadura: " << endl;
+				getline(cin, envergadura_string);
+				if(!verifica_tamanho(envergadura_string, sucesso)){
+					cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+				}
+				envergadura = stod(envergadura_string);
+			}while(sucesso == 'n');
+			
+			// Verifica se a autorizacao está no formato correto.
+			do{
+				cout << "Insira a autorizacao do IBAMA: " << endl;
+				getline(cin, autorizacao_IBAMA);
+				if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+					cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+				}
+			}while(sucesso == 'n');
 			
 
-			if(tipo_func == 'n'){
+			if(tipo_animal == 'n'){
 				old_size = aves_nat.size();
-				cout << "Digite a UF de origem: " << endl;
-				getline(cin, origem);
-				cout << "Insira a autorizacao do animal: " << endl;
-				getline(cin, autorizacao);
+				// Verifica se foi passado uma string.
+				do{
+					cout << "Digite a UF de origem: " << endl;
+					getline(cin, origem);
+					if(!verifica_origem(origem, sucesso)){
+						cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+					}
+				}while(sucesso == 'n');
+				
+				// Verifica se a autorizacao está no formato correto.
+				do{
+					cout << "Insira a autorizacao do animal: " << endl;
+					getline(cin, autorizacao);
+					if(!verifica_autorizacao(autorizacao, sucesso)){
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+					}
+				}while(sucesso == 'n');
 
 				// Armazenando valores do tipo ave nativa no map passado pelo usuário.
-				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id, classe, nome, nome_cientifico,sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
+				aves_nat.insert(pair <int, AVE_NATIVO> (id, AVE_NATIVO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
 				
 				if (aves_nat.size() == old_size){
 					cout << "Falha no cadastro do animal! Tente novamente!" << endl;
@@ -1152,12 +1256,24 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 					continue;
 				}
 			}
-			else if(tipo_func == 'e'){
-				old_size = aves_ex.size();
-				cout << "Digite o País de origem: " << endl;
-				getline(cin, origem);
-				cout << "Insira a autorizacao do animal: " << endl;
-				getline(cin, autorizacao);
+			else{
+				// Verifica se foi passado uma string.
+				do{
+					cout << "Digite o País de origem: " << endl;
+					getline(cin, origem);
+					if(!verifica_origem(origem, sucesso)){
+						cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+					}
+				}while(sucesso == 'n');
+
+				// Verifica se a autorizacao está no formato correto.
+				do{
+					cout << "Insira a autorizacao do animal: " << endl;
+					getline(cin, autorizacao);
+					if(!verifica_autorizacao(autorizacao, sucesso)){
+						cout << "ERRO: A autorizacao deve conter letras, numeros e '-'"<< endl << endl;
+					}
+				}while(sucesso == 'n');
 
 				// Armazenando valores de ave exótica no map passada pelo usuário.
 				aves_ex.insert(pair <int, AVE_EXOTICO> (id, AVE_EXOTICO(id, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao)));
@@ -1169,7 +1285,7 @@ void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex,
 				}
 			}
 		}
-	
+		cout << "\nAnimal cadastrado com sucesso!" << endl << endl;
 		cout << "Deseja cadastrar um novo animal? s/n" << endl;
 		cin >> continuar;
 	}while(continuar == 's');

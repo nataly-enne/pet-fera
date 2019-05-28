@@ -370,7 +370,7 @@ bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso);
 bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado no caso de anfibios nativos ou exoticos é int positivo e único;
 bool verifica_ID(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado no caso de mamiferos nativos ou exoticos é int positivo e único;
 bool verifica_ID(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado no caso de répteis nativos ou exoticos é int positivo e único;
-
+bool verifica_ID(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado do veterinario é int positivo e único;
 // Sobrecarga de função do cadastramento.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
 void cadastrar(map <int, VETERINARIO> &vets);
@@ -382,11 +382,11 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
 
 // Sobrecarga de função de edição.
-void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
-void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex);
-void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex);
-void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex);
-void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
 void editar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
 void editar(map <int, VETERINARIO> &vets);
 void editar(map <int, TRATADOR> &tratadores);

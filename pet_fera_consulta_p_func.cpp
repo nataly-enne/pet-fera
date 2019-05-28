@@ -26,24 +26,33 @@ void consulta_p_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratado
 // Função de consulta dos tratadores.
 void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){	int count = 0;
 	string nome;
-	char tipo = 't';
+	char tipo = 't', sucesso = 'n';
+	int cont = 0;
 
-	cout << "Digite o nome do tratador:" << endl;
-	cin.ignore();
-	getline(cin, nome);
-	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
-	cout << endl;
-	
+	do{
+		cout << "Digite o nome do tratador:" << endl;
+		if(!cont){
+			cin.ignore();
+			cont++;
+		}
+		getline(cin, nome);
+		if(!verifica_nome(nome, sucesso)){
+			cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+		}else{
+			sucesso = 's';
+		}
+	}while(sucesso == 'n');
+
 	for(auto it = tratadores.begin(); it != tratadores.end();it++){
 		if(it->second.getNome() == nome){
 			count ++;
 		}
 	}
 	if(count == 0){
-		cout << "Tratador não cadastrado!" << endl << endl;
+		cout << "\nTratador não cadastrado!" << endl << endl;
 	}
 	else{
-		cout << "Tratador cadastrado!" << endl << endl;
+		cout << "\nTratador cadastrado!" << endl << endl;
 		cout << "***" << "Animais atendidos pelo Tratador " << nome << "***" << endl;
 		imprime_animais(tipo,nome, anfibios_nat, anfibios_ex, mamiferos_nat, mamiferos_ex, repteis_nat, repteis_ex, aves_nat, aves_ex);
 	}
@@ -51,14 +60,23 @@ void consulta_p_tratador(map <int, TRATADOR> &tratadores, map <int, ANFIBIO_NATI
 
 // Função de consulta dos veterinários.
 void consulta_p_veterinario(map <int, VETERINARIO> &vets, map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
-	int count = 0;
+	int count = 0, cont = 0;
 	string nome;
-	char tipo = 'v';
-	cout << "Digite o nome do veterinario:" << endl;
-	cin.ignore();
-	getline(cin, nome);
-	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string "nome" para caracteres maiúsculos.
-	cout << endl;
+	char tipo = 'v', sucesso = 'n';
+
+	do{
+		cout << "Digite o nome do veterinario:" << endl;
+		if(!cont){
+			cin.ignore();
+			cont++;
+		}
+		getline(cin, nome);
+		if(!verifica_nome(nome, sucesso)){
+			cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+		}else{
+			sucesso = 's';
+		}
+	}while(sucesso == 'n');
 	
 	for(auto it = vets.begin(); it != vets.end();it++){
 		if(it->second.getNome() == nome){

@@ -2,12 +2,26 @@
 
 // Função que faz a chamada das impressões de cada classe de animais.
 void pesquisar_classe(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
-	int classe;
-	char sucesso = 'n';
+	int classe, cont = 0;
+	string classe_string;
+	char sucesso = 'n', ok = 'n';
 
 	do{
-		cout << "Digite a opção referente a classe que deseja pesquisar: \n  1-Amphibia\n  2-Mammalia\n  3-Reptilia\n  4-Aves" << endl;
-		cin >> classe;
+		do{
+			cout << "Digite a opção referente a classe que deseja pesquisar: \n  1-Amphibia\n  2-Mammalia\n  3-Reptilia\n  4-Aves" << endl;
+			if(!cont){
+				cin.ignore();
+				cont++;
+			}
+			getline(cin, classe_string);
+			if(classe_string != "1" && classe_string != "2" && classe_string != "3" && classe_string != "4"){
+				ok = 'n';
+			}else{
+				ok = 's';
+				stringstream ss(classe_string);
+				ss >> classe;
+			}
+		}while(ok == 'n');
 		switch (classe){
 			case 1:
 				imprimir_classe(anfibios_nat, anfibios_ex); // Chama função que imprime a classe anfíbio.

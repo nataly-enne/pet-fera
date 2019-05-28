@@ -37,8 +37,9 @@ void remover_animal(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 
 // Remover anfíbio.
 void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
-	char op, opcao, resp;
-	int id_buscado;
+	char op, opcao, resp, c, sucesso = 'n';
+	string id_buscado_string;
+	int id_buscado, verificacao, cont = 0;
 	ofstream nativos;
 	ofstream exoticos;
 			
@@ -56,8 +57,26 @@ void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO>
 		}
 		else{ 
 			if(opcao == 'n'){
-				cout << "Insira o ID buscado: " << endl;
-				cin >> id_buscado;
+				do{
+					cout << "Insira o ID buscado: " << endl;
+					if(!cont){
+						cin.ignore();
+						cont++;
+					}
+					getline(cin, id_buscado_string);
+					for(int i=0; i<(int)id_buscado_string.size(); i++){
+						c = id_buscado_string[i];
+						verificacao = isdigit(c);
+					}
+					if(!verificacao){
+						cout << "ERRO: apenas numeros inteiros positivos são permitidos!"<< endl << endl;
+						sucesso = 'n';
+					}else{
+						stringstream ss(id_buscado_string);
+						ss >> id_buscado;
+						sucesso = 's';
+					}
+				}while(sucesso == 'n');
 
 				auto result = anfibios_nat.find(id_buscado);
 					
@@ -112,8 +131,9 @@ void remover(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO>
 
 // Remover mamífero.
 void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
-	char op, opcao, resp;
-	int id_buscado;
+	char op, opcao, resp, c, sucesso = 'n';
+	string id_buscado_string;
+	int id_buscado, verificacao, cont = 0;
 	ofstream nativos;
 	ofstream exoticos;
 			
@@ -131,8 +151,26 @@ void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTI
 		}
 		else{ 
 			if(opcao == 'n'){
-				cout << "Insira o ID buscado: " << endl;
-				cin >> id_buscado;
+				do{
+					cout << "Insira o ID buscado: " << endl;
+					if(!cont){
+						cin.ignore();
+						cont++;
+					}
+					getline(cin, id_buscado_string);
+					for(int i=0; i<(int)id_buscado_string.size(); i++){
+						c = id_buscado_string[i];
+						verificacao = isdigit(c);
+					}
+					if(!verificacao){
+						cout << "ERRO: apenas numeros inteiros positivos são permitidos!"<< endl << endl;
+						sucesso = 'n';
+					}else{
+						stringstream ss(id_buscado_string);
+						ss >> id_buscado;
+						sucesso = 's';
+					}
+				}while(sucesso == 'n');
 
 				auto result = mamiferos_nat.find(id_buscado);
 					
@@ -187,8 +225,9 @@ void remover(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTI
 
 // Remover réptil.
 void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex){
-	char op, opcao, resp;
-	int id_buscado;
+	char op, opcao, resp, c, sucesso = 'n';
+	string id_buscado_string;
+	int id_buscado, verificacao, cont = 0;
 	ofstream nativos;
 	ofstream exoticos;	
 
@@ -206,8 +245,26 @@ void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &r
 		}
 		else{ 
 			if(opcao == 'n'){
-				cout << "Insira o ID buscado: " << endl;
-				cin >> id_buscado;
+				do{
+					cout << "Insira o ID buscado: " << endl;
+					if(!cont){
+						cin.ignore();
+						cont++;
+					}
+					getline(cin, id_buscado_string);
+					for(int i=0; i<(int)id_buscado_string.size(); i++){
+						c = id_buscado_string[i];
+						verificacao = isdigit(c);
+					}
+					if(!verificacao){
+						cout << "ERRO: apenas numeros inteiros positivos são permitidos!"<< endl << endl;
+						sucesso = 'n';
+					}else{
+						stringstream ss(id_buscado_string);
+						ss >> id_buscado;
+						sucesso = 's';
+					}
+				}while(sucesso == 'n');
 
 				auto result = repteis_nat.find(id_buscado);
 					
@@ -262,8 +319,9 @@ void remover(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &r
 
 // Remover ave.
 void remover(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
-	char op, opcao, resp;
-	int id_buscado;
+	char op, opcao, resp, c, sucesso = 'n';
+	string id_buscado_string;
+	int id_buscado, verificacao, cont = 0;
 	ofstream nativos;
 	ofstream exoticos;
 			
@@ -282,8 +340,26 @@ void remover(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 		}
 		else{ 
 			if(opcao == 'n'){
-				cout << "Insira o ID buscado: " << endl;
-				cin >> id_buscado;
+				do{
+					cout << "Insira o ID buscado: " << endl;
+					if(!cont){
+						cin.ignore();
+						cont++;
+					}
+					getline(cin, id_buscado_string);
+					for(int i=0; i<(int)id_buscado_string.size(); i++){
+						c = id_buscado_string[i];
+						verificacao = isdigit(c);
+					}
+					if(!verificacao){
+						cout << "ERRO: apenas numeros inteiros positivos são permitidos!"<< endl << endl;
+						sucesso = 'n';
+					}else{
+						stringstream ss(id_buscado_string);
+						ss >> id_buscado;
+						sucesso = 's';
+					}
+				}while(sucesso == 'n');
 
 				auto result = aves_nat.find(id_buscado);
 					
@@ -366,13 +442,32 @@ void remover_funcionario(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tra
 
 // Remover veterinário.
 void remover(map <int, VETERINARIO> &vets){
-	char op;
-	int id_buscado;
+	char  c, sucesso = 'n';
+	string id_buscado_string, op;
+	int id_buscado, verificacao, cont = 0;
 	ofstream veterinario;
 
 	do{
-		cout << "Insira o ID buscado: " << endl;
-		cin >> id_buscado;
+		do{
+			cout << "Insira o ID buscado: " << endl;
+			if(!cont){
+				cin.ignore();
+				cont++;
+			}
+			getline(cin, id_buscado_string);
+			for(int i=0; i<(int)id_buscado_string.size(); i++){
+				c = id_buscado_string[i];
+				verificacao = isdigit(c);
+			}
+			if(!verificacao){
+				cout << "ERRO: apenas numeros inteiros positivos são permitidos!"<< endl << endl;
+				sucesso = 'n';
+			}else{
+				stringstream ss(id_buscado_string);
+		 		ss >> id_buscado;
+				sucesso = 's';
+			}
+		}while(sucesso == 'n');
 
 		auto result = vets.find(id_buscado);
 					
@@ -393,19 +488,38 @@ void remover(map <int, VETERINARIO> &vets){
 			cout << "Funcionario não cadastrado!" << endl;
 		}
 		cout << "Deseja remover outro? s/n" << endl;
-		cin >> op;
-	}while(op == 's');
+		getline(cin, op);
+	}while(op == "s");
 }
 
 // Remover tratador.
 void remover(map <int, TRATADOR>  &tratadores){
-	char op;
-	int id_buscado;
+	char c, sucesso = 'n';
+	string id_buscado_string, op;
+	int id_buscado, verificacao, cont = 0;
 	ofstream tratador;
 
 	do{
-		cout << "Insira o ID buscado: " << endl;
-		cin >> id_buscado;
+		do{
+			cout << "Insira o ID buscado: " << endl;
+			if(!cont){
+				cin.ignore();
+				cont++;
+			}
+			getline(cin, id_buscado_string);
+			for(int i=0; i<(int)id_buscado_string.size(); i++){
+				c = id_buscado_string[i];
+				verificacao = isdigit(c);
+			}
+			if(!verificacao){
+				cout << "ERRO: apenas numeros inteiros positivos são permitidos!"<< endl << endl;
+				sucesso = 'n';
+			}else{
+				stringstream ss(id_buscado_string);
+		 		ss >> id_buscado;
+				sucesso = 's';
+			}
+		}while(sucesso == 'n');
 
 		auto result = tratadores.find(id_buscado);
 					
@@ -426,8 +540,8 @@ void remover(map <int, TRATADOR>  &tratadores){
 			cout << "Funcionario não cadastrado!" << endl;
 		}
 		cout << "Deseja remover outro? s/n" << endl;
-		cin >> op;
-	}while(op == 's');
+		getline(cin, op);
+	}while(op == "s");
 }
 
 
