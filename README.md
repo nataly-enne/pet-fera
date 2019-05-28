@@ -14,7 +14,9 @@ animais silvestres denominada "Pet Fera".
   <li>Alteração dos dados cadastrais de um animal;</li>
   <li>Consulta aos dados cadastrais de um determinado animal ou por uma classe de animais;</li>
   <li>Consulta de animais sob a responsabilidade de um determinado Veterinário ou Tratador;</li>
-  <li>Todas as atividades relacionadas ao cadastro de Veterinários e Tratadores.</li>
+  <li>Cadastrar um funcionário (Veterinário e/ou Tratador);</li>
+  <li>Remoção de um funcionário da lista;</li>
+  <li>Alteração dos dados cadastrais de um funcionário.</li>
 </ul>
 
 #### Para compilar é necessário estar no diretório do projeto.
