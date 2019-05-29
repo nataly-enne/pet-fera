@@ -44,7 +44,7 @@ bool check_tratador(bool venenoso, map <int, TRATADOR> &tratadores, string nome,
 	transform(nome.begin(), nome.end(), nome.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
 	if(tipo == 'v'){
 		for(auto it = tratadores.begin(); it != tratadores.end();it++){
-			if(it->second.getNome() == nome && (it->second.getNivel_seguranca() == 0 || it->second.getNivel_seguranca() == 1 || it->second.getNivel_seguranca() == 2)){
+			if(it->second.getNome() == nome && (it->second.getNivel_seguranca() == 0 || it->second.getNivel_seguranca() == 1)){
 				cont_nome++;
 			}
 		}
@@ -68,7 +68,7 @@ bool check_tratador(bool venenoso, map <int, TRATADOR> &tratadores, string nome,
 	}
 	else{
 		for(auto it = tratadores.begin(); it != tratadores.end();it++){
-			if(it->second.getNome() == nome &&(it->second.getNivel_seguranca() == 1 || it->second.getNivel_seguranca() == 2)){
+			if(it->second.getNome() == nome &&(it->second.getNivel_seguranca() == 1)){
 				cont_nome++;
 			}
 		}
