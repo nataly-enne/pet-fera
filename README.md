@@ -28,7 +28,7 @@ animais silvestres denominada "Pet Fera".
 #### Em seguida, copie o diretório na frente do comando abaixo e execute.
 <pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:[diretorio]</code></pre>
 
-#### Em seguida, no terminal, basta digitar:
+#### Em seguida, basta digitar:
  
  <pre><code>make</code></pre>
 
