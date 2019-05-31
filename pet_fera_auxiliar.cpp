@@ -1,20 +1,14 @@
 #include <iostream>
 #include "pet_fera.h"
 
+// Assinatura das funções.
 void exportacao_classe_vet_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string veterinario, string tratador, string saida);
-
 void exportacao_classe_vet(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string veterinario, string saida);
-
 void exportacao_classe_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string tratador, string saida);
-
 void exportacao_vet_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string veterinario, string tratador, string saida);
-
 void exportacao_vet(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string veterinario, string saida);
-
 void exportacao_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string tratador, string saida);
-
 void exportacao_classe(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string saida);
-
 void exportacao(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string saida);
 
 int main(int argc, char *argv[]){
@@ -463,7 +457,7 @@ void exportacao_classe_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, AN
 	}
 }
 
-// Exportacao através da classe e nome do arquivo de saida.
+// Exportação através da classe e nome do arquivo de saida.
 void exportacao_classe(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string saida){
 	ofstream anfibios;
 	ofstream mamiferos;
