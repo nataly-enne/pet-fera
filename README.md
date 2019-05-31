@@ -58,11 +58,3 @@ animais silvestres denominada "Pet Fera".
   <li>aves</li>
 </ul>
 
-
-
-##### Autores do projeto:
-<ul>
-  <li>Igor Silva Bento</li>
-  <li>Hilton Thallyson Vieira Machado</li>
-  <li>Nátaly Enne da Costa Gonçalo</li>
-</ul>
