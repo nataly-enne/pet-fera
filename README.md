@@ -50,11 +50,12 @@ animais silvestres denominada "Pet Fera".
   <li>[arquivo_saida]: este argumento obrigatório indica o nome do arquivo de saída, ou seja, do arquivo onde serão guardados os dados a serem exportados e é obrigatório que seja com a extensão <strong>.txt.</strong></li>
 <ul>
   
-#### As possíveis opções de entrada de classes para exportar são:
-<ul>
-  <li>amphibia</li>
-  <li>reptilia</li>
-  <li>mammalia</li>
-  <li>aves</li>
+  #### As possíveis opções de entrada de classes para exportar são:
+  <ul>
+    <li>amphibia</li>
+    <li>reptilia</li>
+    <li>mammalia</li>
+    <li>aves</li>
+  </ul>
 </ul>
 
