@@ -5,7 +5,7 @@
 #          Autores: Nátaly Enne da Costa Gonçalo               #
 #                   Hilton Thallyson Vieira Machado            #
 #                        Igor Silva Bento                      #
-#							       #
+#                                                              #
 ################################################################
 
 Sistema de atividades relacionadas a cadastro, edição e remoção
