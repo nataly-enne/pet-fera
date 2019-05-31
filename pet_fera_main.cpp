@@ -3,9 +3,9 @@
 ################################################################
 #                      PROJETO LPI 2019.1                      #
 #          Autores: Nátaly Enne da Costa Gonçalo               #
-# 			      Hilton Thallyson Vieira Machado			   #
-#            		  Igor Silva Bento                         #
-#															   #
+# 			      Hilton Thallyson Vieira Machado  #
+#            		  Igor Silva Bento                     #
+#							       #
 ################################################################
 
 Sistema de atividades relacionadas a cadastro, edição e remoção
