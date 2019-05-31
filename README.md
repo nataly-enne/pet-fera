@@ -7,6 +7,8 @@
 O objetivo deste trabalho é implementar um programa de cadastro de animais para a loja de
 animais silvestres denominada "Pet Fera".
 
+##### Há um arquivo .pdf com a proposta do projeto e todas as especificações.
+
 ## São atividades comuns na Pet Fera:
 <ul>
   <li>Cadastro de um novo animal a ser comercializado;</li>
@@ -58,6 +60,4 @@ animais silvestres denominada "Pet Fera".
     <li>aves</li>
   </ul>
 </ul>
-
-##### Há um arquivo .pdf com a proposta do projeto e todas as especificaçes.
 
