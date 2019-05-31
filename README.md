@@ -43,9 +43,9 @@ animais silvestres denominada "Pet Fera".
 <pre><code>./exportar -c [classe] -v [veterinario] -t [tratador] [arquivo_saida]</code></pre>
 
 #### Na sintaxe acima, o arquivo executável 'exportar' é invocado passando quatro possíveis argumentos via linha de comando:
-<ul>
-  <li>-c [classe]: este argumento indica a classe de animais a serem exportados. Deverá ser indicada apenas uma classe;</li>
+<strong><ul>
+  <li>*-c* [classe]: este argumento indica a classe de animais a serem exportados. Deverá ser indicada apenas uma classe;</li>
   <li>-v [veterinario]: este argumento indica que apenas animais sob a responsabilidade do veterinário informado devem ser exportados. Deverá ser indicado apenas um nome de veterinário;</li>
   <li>-t [tratador]: este argumento indica que apenas animais tratados pelo tratador informado devem ser exportados. Deverá ser indicado apenas um tratador;</li>
   <li>[arquivo_saida]: este argumento obrigatório indica o nome do arquivo de saída, ou seja, do arquivo onde serão guardados os dados a serem exportados</li>
-<ul>
+<ul></strong>
