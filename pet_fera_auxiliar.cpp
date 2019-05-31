@@ -223,6 +223,7 @@ int main(int argc, char *argv[]){
 	}
 	return 0;
 }
+// Exportação das informações dos animais.
 void exportacao(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string saida){
 	transform(saida.begin(), saida.end(), saida.begin(), ::tolower);
 
@@ -256,6 +257,7 @@ void exportacao(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTIC
 	animais.close();
 }
 
+// Exportação de veterinário e tratador por classe de animal.
 void exportacao_classe_vet_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string veterinario, string tratador, string saida){
 
 	transform(classe.begin(), classe.end(), classe.begin(), ::tolower);
@@ -325,6 +327,7 @@ void exportacao_classe_vet_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int
 	}
 }
 
+// Exportação de veterinário por classe de animal.
 void exportacao_classe_vet(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string classe, string veterinario, string saida){
 
 	transform(classe.begin(), classe.end(), classe.begin(), ::tolower);
@@ -511,6 +514,7 @@ void exportacao_classe(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO
 	}
 }
 
+// Exportação de veterinário e tratador por classe de animal.
 void exportacao_vet_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string veterinario, string tratador, string saida){
 	transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper);
 	transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper);
@@ -561,6 +565,7 @@ void exportacao_vet_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIB
 	animais.close();
 }
 
+// Exportação por veterinário do arquivo de saída.
 void exportacao_vet(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string veterinario, string saida){
 	transform(veterinario.begin(), veterinario.end(), veterinario.begin(), ::toupper);
 
@@ -610,6 +615,7 @@ void exportacao_vet(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EX
 	animais.close();
 }
 
+// Exportação por tratador do arquivo de saída.
 void exportacao_trat(map <int, ANFIBIO_NATIVO> anfibios_nat, map <int, ANFIBIO_EXOTICO> anfibios_ex, map <int, MAMIFERO_NATIVO> mamiferos_nat, map <int, MAMIFERO_EXOTICO> mamiferos_ex, map <int, REPTIL_NATIVO> repteis_nat, map <int, REPTIL_EXOTICO> repteis_ex, map <int, AVE_NATIVO> aves_nat, map <int, AVE_EXOTICO> aves_ex, string tratador, string saida){
 	transform(tratador.begin(), tratador.end(), tratador.begin(), ::toupper);
 
