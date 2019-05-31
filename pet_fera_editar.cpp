@@ -1,7 +1,7 @@
 #include "pet_fera.h"
 
 // Função que chama as funções de edição de cada tipo de animal.
-void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
+void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
 	char tipo_animal;
 	char resp, op = 'n';
 
@@ -19,16 +19,16 @@ void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 		}
 		else{
 			if(tipo_animal == 'a'){
-				editar(anfibios_nat, anfibios_ex);
+				editar(anfibios_nat, anfibios_ex, vets, tratadores);
 			}
 			else if(tipo_animal == 'm'){
-				editar(mamiferos_nat, mamiferos_ex);
+				editar(mamiferos_nat, mamiferos_ex, vets, tratadores);
 			}
 			else if(tipo_animal == 'r'){
-				editar(repteis_nat, repteis_ex);
+				editar(repteis_nat, repteis_ex, vets, tratadores);
 			}
 			else{
-				editar(aves_nat, aves_ex);
+				editar(aves_nat, aves_ex, vets, tratadores);
 			}	
 
 		} // Primeiro else.
@@ -36,10 +36,11 @@ void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_E
 }
 
 // Editar anfíbio.
-void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex){
-	char opcao, resp, op, sucesso, sexo;
+void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
+	char opcao, resp, op, sucesso, sexo, tipo = 'a';
 	int total_mudas, id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda, nome;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, ultima_muda, nome, id_string, tamanho_string, sexo_string, total_mudas_string;
+	bool check;
 	double tamanho;
 	ofstream nativos;
 	ofstream exoticos;
@@ -66,36 +67,158 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 				if(result != anfibios_nat.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Insira o total de mudas:" << endl;
-					cin >> total_mudas;
-					cout << "Insira a data da última muda(dd/mm/aaaa)" << endl;
-					cin.ignore();
-					getline(cin, ultima_muda);
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digite a UF de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					//Classe dos anfibios.
+					classe = "Amphibia";
+
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						else{
+							transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres minusculos.
+						}
+					}while(sucesso == 'n');
+
+			
+					//Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					//Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+					
+					//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(0, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+					//Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+
+					}while(sucesso == 'n');
+					
+					//Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+					
+					//Recebe o total de mudas e verifica se é um inteiro positivo.
+					do{
+						cout << "Insira o total de mudas:" << endl;
+						getline(cin, total_mudas_string);
+						if(!verifica_inteiro(total_mudas_string, sucesso)){
+							cout << "ERRO: O total de mudas deve conter apenas inteiros positivos!" << endl << endl;
+						}
+						else{
+							stringstream ss(total_mudas_string);
+							ss >> total_mudas;
+						}
+					}while(sucesso == 'n');
+					
+					//Recebe a ultima muda e verifica se está no formato correto.
+					do{
+						cout << "Insira a data da última muda(dd-mm-aaaa)" << endl;
+						getline(cin, ultima_muda);
+						if(!verifica_data(ultima_muda, sucesso)){
+							cout << "ERRO: A ultima muda deve ser nesse formato ex.: 12-03-2019" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'"<< endl << endl;
+						}
+					}while(sucesso == 'n');
+
+
+					//Verifica se foi passado uma string.
+					do{
+						cout << "Digite a UF de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = ANFIBIO_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -112,7 +235,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 					nativos.close();
 				}
 
-				cout << "Deseja editar outro? s/n" << endl;
+				cout << "\nDeseja editar outro? s/n" << endl;
 				cin >> op;
 				
 			}
@@ -125,36 +248,158 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 				if(result != anfibios_ex.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Insira o total de mudas:" << endl;
-					cin >> total_mudas;
-					cout << "Insira a data da última muda(D/M/A)" << endl;
-					cin.ignore();
-					getline(cin, ultima_muda);
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digiteo País de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					//Classe dos anfibios.
+					classe = "Amphibia";
+
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						else{
+							transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres minusculos.
+						}
+					}while(sucesso == 'n');
+
+			
+					//Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					//Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+					
+					//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(0, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+					//Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string nome para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+
+					}while(sucesso == 'n');
+					
+					//Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+					
+					//Recebe o total de mudas e verifica se é um inteiro positivo.
+					do{
+						cout << "Insira o total de mudas:" << endl;
+						getline(cin, total_mudas_string);
+						if(!verifica_inteiro(total_mudas_string, sucesso)){
+							cout << "ERRO: O total de mudas deve conter apenas inteiros positivos!" << endl << endl;
+						}
+						else{
+							stringstream ss(total_mudas_string);
+							ss >> total_mudas;
+						}
+					}while(sucesso == 'n');
+					
+					//Recebe a ultima muda e verifica se está no formato correto.
+					do{
+						cout << "Insira a data da última muda(dd-mm-aaaa)" << endl;
+						getline(cin, ultima_muda);
+						if(!verifica_data(ultima_muda, sucesso)){
+							cout << "ERRO: A ultima muda deve ser nesse formato ex.: 12-03-2019" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+
+					//Verifica se foi passado uma string.
+					do{
+						cout << "Digite o País de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = ANFIBIO_EXOTICO(id_buscado, classe,nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, total_mudas, ultima_muda, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -171,7 +416,7 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 					exoticos.close();
 				}
 
-				cout << "Deseja editar outro? s/n" << endl;
+				cout << "\nDeseja editar outro? s/n" << endl;
 				cin >> op;
 			}	
 		} // Primeiro else.
@@ -179,18 +424,19 @@ void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> 
 }
 
 // Editar mamífero.
-void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex){
-	char opcao, resp, op, sucesso, sexo;
-	int id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor, nome;
+void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
+	char resp, op, sucesso, sexo, tipo_animal, tipo = 'm';;
+	int id_buscado;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, cor, nome, id_string, sexo_string, tamanho_string;
 	double tamanho;
+	bool check;
 	ofstream nativos;
 	ofstream exoticos;
 			
 	do{
 		cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
-		cin >> opcao;
-		if(opcao != 'n' && opcao != 'e'){
+		cin >> tipo_animal;
+		if(tipo_animal != 'n' && tipo_animal != 'e'){
 			cout << "Opção inválida!! Tente novamente!\n" << endl;
 			cout << endl;
 			cout << "Deseja sair? s/n" << endl;
@@ -200,7 +446,7 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 			}	
 		}
 		else{ 
-			if(opcao == 'n'){
+			if(tipo_animal == 'n'){
 				cout << "Insira o ID buscado: " << endl;
 				cin >> id_buscado;
 
@@ -209,35 +455,138 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 				if(result != mamiferos_nat.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Digite a cor do pelo: " << endl;
-					cin.ignore();
-					getline(cin, cor);
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digite a UF de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					classe = "Mammalia";
 
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+					//Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do tratador e verifica se não possui caracter proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(0, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+					}while(sucesso == 'n');
+
+					//Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+
+					do{
+						cout << "Digite a cor do pelo: " << endl;
+						getline(cin, cor);
+						if(!verifica_cor(cor, sucesso)){
+							cout << "ERRO: a cor do animal deve conter letras, espaço ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+
+					//Verifica se foi passado uma string.
+					do{
+						cout << "Digite a UF de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = MAMIFERO_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -266,35 +615,137 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 				if(result != mamiferos_ex.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Digite a cor do pelo: " << endl;
-					cin.ignore();
-					getline(cin, cor);
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digiteo País de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					classe = "Mammallia";
 
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+					//Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do tratador e verifica se não possui caracter proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(0, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+					}while(sucesso == 'n');
+
+					//Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+
+					do{
+						cout << "Digite a cor do pelo: " << endl;
+						getline(cin, cor);
+						if(!verifica_cor(cor, sucesso)){
+							cout << "ERRO: a cor do animal deve conter letras, espaço ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					//Verifica se foi passado uma string.
+					do{
+						cout << "Digiteo País de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					//Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = MAMIFERO_EXOTICO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, cor, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -318,19 +769,19 @@ void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTIC
 }
 
 // Editar réptil.
-void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex){
-	char opcao, resp, op, sucesso, sexo;
-	int id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno, nome;
+void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
+	char resp, op, sucesso, sexo, tipo_animal, tipo = 'r';;
+	int id_buscado;
 	double tamanho;
-	bool venenoso;
+	bool venenoso, check;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, tipo_veneno, nome, id_string, sexo_string, tamanho_string, venenoso_string;
 	ofstream nativos;
 	ofstream exoticos;
 			
 	do{
 		cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
-		cin >> opcao;
-		if(opcao != 'n' && opcao != 'e'){
+		cin >> tipo_animal;
+		if(tipo_animal != 'n' && tipo_animal != 'e'){
 			cout << "Opção inválida!! Tente novamente!\n" << endl;
 			cout << endl;
 			cout << "Deseja sair? s/n" << endl;
@@ -340,7 +791,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 			}	
 		}
 		else{ 
-			if(opcao == 'n'){
+			if(tipo_animal == 'n'){
 				cout << "Insira o ID buscado: " << endl;
 				cin >> id_buscado;
 
@@ -349,41 +800,151 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 				if(result != repteis_nat.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
-					cin >> venenoso;
-					if(venenoso){
-						cout << "Digite o tipo do veneno: " << endl;
+					classe = "Reptilia";
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
 						cin.ignore();
-						getline(cin, tipo_veneno);
-					}
-					else{
-						cin.ignore();
-					}
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digite a UF de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+					// Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+
+					do{
+						cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
+						cin >> venenoso_string;
+						if(!verifica_venenoso(venenoso_string,sucesso)){
+							cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
+						}
+						else{
+							stringstream ss(venenoso_string);
+							ss >> venenoso;
+							sucesso = 's';
+							if(venenoso){
+								cout << "Digite o tipo do veneno: " << endl;
+								cin.ignore();
+								getline(cin, tipo_veneno); 
+							}
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(venenoso, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+					}while(sucesso == 'n');
+
+					// Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+
+					
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					
+					// Verifica se foi passado uma string.
+					do{
+						cout << "Digite a UF de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = REPTIL_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -412,42 +973,151 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 				if(result != repteis_ex.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Digite 0-não venenoso / 1-venenoso: " << endl;
-					cin >> venenoso;
-					if(venenoso){
-						cout << "Digite o tipo do veneno: " << endl;
-						cin.ignore();
-						getline(cin, tipo_veneno);
-					}
-					else{
-						cin.ignore();
-					}
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digite o País de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					classe = "Reptillia";
 
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+					// Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+
+					do{
+						cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
+						cin >> venenoso_string;
+						if(!verifica_venenoso(venenoso_string,sucesso)){
+							cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
+						}
+						else{
+							stringstream ss(venenoso_string);
+							ss >> venenoso;
+							sucesso = 's';
+							if(venenoso){
+								cout << "Digite o tipo do veneno: " << endl;
+								cin.ignore();
+								getline(cin, tipo_veneno); 
+							}
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(venenoso, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+					}while(sucesso == 'n');
+
+					// Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+
+					
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					
+					// Verifica se foi passado uma string.
+					do{
+						cout << "Digite o País de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = REPTIL_EXOTICO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, venenoso, tipo_veneno, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -463,7 +1133,7 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 					}
 					exoticos.close();
 				}
-				cout << "Deseja editar outro? s/n" << endl;
+				cout << "\nDeseja editar outro? s/n" << endl;
 				cin >> op;
 			}
 		} // Primeiro else.
@@ -471,19 +1141,20 @@ void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &re
 }
 
 // Editar ave.
-void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
-	char opcao, resp, op, sucesso, sexo;
+void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores){
+	char resp, op, sexo, tipo_animal, sucesso, tipo = 'v';
 	int id_buscado;;
-	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, nome;
 	double tamanho, envergadura, tam_bico;
+	bool check;
+	string classe, nome_cientifico, dieta, veterinario, tratador, nome_batismo, autorizacao, autorizacao_IBAMA, origem, nome, id_string, sexo_string, tamanho_string, tam_bico_string, envergadura_string;
 	ofstream nativos;
 	ofstream exoticos;
 			
 
 	do{
 		cout << "É nativo ou exotico? \n n - NATIVO\n e - EXOTICO" << endl;
-		cin >> opcao;
-		if(opcao != 'n' && opcao != 'e'){
+		cin >> tipo_animal;
+		if(tipo_animal != 'n' && tipo_animal != 'e'){
 			cout << "Opção inválida!! Tente novamente!\n" << endl;
 			cout << endl;
 			cout << "Deseja sair? s/n" << endl;
@@ -493,7 +1164,7 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 			}	
 		}
 		else{ 
-			if(opcao == 'n'){
+			if(tipo_animal == 'n'){
 				cout << "Insira o ID buscado: " << endl;
 				cin >> id_buscado;
 
@@ -502,36 +1173,153 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 				if(result != aves_nat.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Digite o tamanho do bico: " << endl;
-					cin >> tam_bico;
-					cout << "Digite a envergadura: " << endl;
-					cin >> envergadura;
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					cin.ignore();
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digite a UF de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					classe = "Aves";
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+
+					// Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(0, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+					}while(sucesso == 'n');
+
+					// Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+							continue;
+						}
+						else{
+							tamanho = stod(tamanho_string);
+						}
+					}while(sucesso == 'n');
+						
+					// Recebe o tamanho do bico do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do bico: " << endl;
+						getline(cin, tam_bico_string);
+						if(!verifica_tamanho(tam_bico_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tam_bico = stod(tam_bico_string);
+					}while(sucesso == 'n');
+					
+					// Recebe a envergadura do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite a envergadura: " << endl;
+						getline(cin, envergadura_string);
+						if(!verifica_tamanho(envergadura_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						envergadura = stod(envergadura_string);
+					}while(sucesso == 'n');
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Verifica se foi passado uma string.
+					do{
+						cout << "Digite a UF de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
 
 					(*result).second = AVE_NATIVO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -560,36 +1348,151 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 				if(result != aves_ex.end()){
 					cout << "ID existe!" << endl;
 
-					cout << "Digite a classe: " << endl;
-					cin.ignore();
-					getline(cin, classe);
-					cout << "Digite o nome: " << endl;
-					getline(cin, nome);
-					cout << "Digite o nome científico: " << endl;
-					getline(cin, nome_cientifico);
-					cout << "Digite a dieta: " << endl;
-					getline(cin, dieta);
-					cout << "Digite o nome do veterinario: " << endl;
-					getline(cin, veterinario);
-					cout << "Digite o nome do tratador: " << endl;
-					getline(cin, tratador);
-					cout << "Digite o nome de batismo: " << endl;
-					getline(cin, nome_batismo);
-					cout << "Digite o sexo do animal: " << endl;
-					cin >> sexo;
-					cout << "Digite o tamanho do animal: " << endl;
-					cin >> tamanho;
-					cout << "Digite o tamanho do bico: " << endl;
-					cin >> tam_bico;
-					cout << "Digite a envergadura: " << endl;
-					cin >> envergadura;
-					cout << "Insira a autorizacao do IBAMA: " << endl;
-					cin.ignore();
-					getline(cin, autorizacao_IBAMA);
-					cout << "Digite o País de origem: " << endl;
-					getline(cin, origem);
-					cout << "Insira a autorizacao do animal: " << endl;
-					getline(cin, autorizacao);
+					classe = "Aves";
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome:" << endl;
+						cin.ignore();
+						getline(cin, nome);
+						if(!verifica_nome(nome, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome.begin(), nome.end(), nome.begin(), ::tolower); // Converte a string nome para caracteres maiúsculos.
+					}while(sucesso == 'n');
+
+
+					// Recebe o nome cientifico e verifica se é valido.
+					do{
+						cout << "Digite o nome científico:" << endl;
+						getline(cin, nome_cientifico);
+						if(!verifica_nome_cient(nome_cientifico, sucesso)){
+							cout << "ERRO: só pode ser inserido letra, espaço ou traço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Recebe a dieta e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite a dieta: " << endl;
+						getline(cin, dieta);
+						if(!verifica_dieta(dieta, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome do veterinario e verifica se não possui caracteres proibidos.
+					do{
+						cout << "Digite o nome do veterinario: " << endl;
+						getline(cin, veterinario);
+						
+						if(!verifica_nome(veterinario, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_vet(vets, veterinario);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Veterinario não cadastrado!" << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					//Recebe o nome do tratador e verifica se não possui caracteres proibido, se já foi cadastrado ou se possui nivel de segurança adequado.
+					do{
+						cout << "Digite o nome do tratador: " << endl;
+						getline(cin, tratador);
+						if(!verifica_nome(tratador, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						check = check_tratador(0, tratadores, tratador, tipo);
+						if(!check){
+							cout << endl;
+							cout << "ERRO: Tratador não cadastrado ou não se adequa!" << endl << endl;
+							sucesso = 'n';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o nome e verifica se é valido.
+					do{
+						cout << "Digite o nome de batismo: " << endl;
+						getline(cin, nome_batismo);
+						if(!verifica_nome(nome_batismo, sucesso)){
+							cout << "ERRO: só pode ser inserido letra ou espaço!" << endl << endl;
+						}
+						transform(nome_batismo.begin(), nome_batismo.end(), nome_batismo.begin(), ::tolower); // Converte a string nome_batismo para caracteres minusculos.
+					}while(sucesso == 'n');
+
+					// Recebe o sexo do animal e verifica se é F ou M.
+					do{
+						cout << "Digite o sexo do animal: " << endl;
+						getline(cin, sexo_string);
+						transform(sexo_string.begin(), sexo_string.end(), sexo_string.begin(), ::toupper); // Converte a string sexo para caracteres maiúsculos.
+						if(sexo_string != "F" && sexo_string != "M" ){
+							sucesso = 'n';
+							cout << "ERRO: só são permitidos F ou M!" << endl << endl;
+						}
+						else{
+							sexo = (char)sexo_string[0];
+							sucesso = 's';
+						}
+					}while(sucesso == 'n');
+
+					// Recebe o tamanho do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do animal: " << endl;
+						getline(cin, tamanho_string);
+						if(!verifica_tamanho(tamanho_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tamanho = stod(tamanho_string);
+					}while(sucesso == 'n');
+						
+					// Recebe o tamanho do bico do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite o tamanho do bico: " << endl;
+						getline(cin, tam_bico_string);
+						if(!verifica_tamanho(tam_bico_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						tam_bico = stod(tam_bico_string);
+					}while(sucesso == 'n');
+					
+					// Recebe a envergadura do animal e verifica se não caracteres pproibidos.
+					do{
+						cout << "Digite a envergadura: " << endl;
+						getline(cin, envergadura_string);
+						if(!verifica_tamanho(envergadura_string, sucesso)){
+							cout << "ERRO: o tamanho do animal tem que ter apenas um '.' " << endl << endl;
+						}
+						envergadura = stod(envergadura_string);
+					}while(sucesso == 'n');
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do IBAMA: " << endl;
+						getline(cin, autorizacao_IBAMA);
+						if(!verifica_autorizacao(autorizacao_IBAMA, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros ou '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
+					// Verifica se foi passado uma string.
+					do{
+						cout << "Digite o País de origem: " << endl;
+						getline(cin, origem);
+						if(!verifica_origem(origem, sucesso)){
+							cout << "ERRO: Deve-se colocar apenas letras!" << endl << endl;
+						}
+					}while(sucesso == 'n');
+					
+					// Verifica se a autorizacao está no formato correto.
+					do{
+						cout << "Insira a autorizacao do animal: " << endl;
+						getline(cin, autorizacao);
+						if(!verifica_autorizacao(autorizacao, sucesso)){
+							cout << "ERRO: A autorizacao deve conter letras, numeros e '-'" << endl << endl;
+						}
+					}while(sucesso == 'n');
+
 
 					(*result).second = AVE_EXOTICO(id_buscado, classe, nome, nome_cientifico, sexo, tamanho, dieta, veterinario, tratador, nome_batismo, tam_bico, envergadura, autorizacao_IBAMA, origem, autorizacao);
 					sucesso = 's';
@@ -605,7 +1508,7 @@ void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex){
 					}
 					exoticos.close();
 				}
-				cout << "Deseja editar outro? s/n" << endl;
+				cout << "\nDeseja editar outro? s/n" << endl;
 				cin >> op;
 			} // Else exótico.
 		} // Primeiro else.

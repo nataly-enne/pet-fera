@@ -340,34 +340,37 @@ class TRATADOR: public FUNCIONARIO{
 // Função de carregamento de todos os arquivos.
 void carregar_arquivos(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
 
-// Sobrecarga de função de checagem de condições.
-bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf);//verifica se o cpf já está cadastrado.
-bool check_CPF(map <int, VETERINARIO> &vets, long int cpf);
+
+// Funções de checagem das exceções
 bool check_vet(map <int, VETERINARIO> &vets, string nome);
 bool check_tratador(bool venenoso, map <int, TRATADOR> &tratadores, string nome, char tipo);
-bool verifica_ID(map <int, TRATADOR> &tratadores, string id_string, char &sucesso); //verifica se o Id digitado é int positivo e único;
-bool verifica_Seguranca(string nivel_seg_string, char &sucesso); //verifica se o nível de segurança é válido;
-bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso);//verifica se o Id digitado é int positivo e único;
-bool verifica_Nome(string &nome, char &sucesso);//verifica se o nome digitado possui somente letras;
-bool verifica_Cpf(string cpf_string, char &sucesso);//verifica se o cpf contêm apenas inteiros positivos;
-bool verifica_Idade(string idade_string, char &sucesso);//verifica se a idade contêm apenas inteiros positivos;
-bool verifica_Tiposang(string &tipo_sang_string, char &sucesso);//verifica se o tipo sanguineo está dentro das opções existentes;
-bool verifica_Fator(string fator_rh_string, char &sucesso);//verifica se o fator é + ou -;
-bool verifica_Esp(string especialidade, char &sucesso);//verifica se especialidade contêm apenas letras;
-bool verifica_Crmv(map <int, VETERINARIO> &vets, string crmv, char &sucesso);//verifica se o crmv foi inserido no formato correto;
-bool verifica_Dieta(string &dieta, char &sucesso);//verifica se a dieta foi inserida no formato correto;
-bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, char tipo, string id_string, char &sucesso); //verifica id caso o anfibios seja nativo ou exótico;
-bool verifica_Tam(string tamanho_string, char &sucesso); //Verifica se o tamanho do animal é um double;
-bool verifica_Inteiro(string total_mudas_string, char &sucesso); //Verifica se a string passada só tem numeros inteiros;
-bool verifica_Data(string ultima_muda, char &sucesso); //Verifica se a data está no formato correto.
-bool verifica_Autorizacao(string &autorizacao, char &sucesso); //Verifica se a autorizacao foi inserida corretamente;
-bool verifica_Origem(string &origem, char &sucesso); //Verifica se foi passado uma string.
-bool verifica_Nome_cient(string &nome, char &sucesso); //Verifica se o nome cientifico foi passado de forma correta, diferente do nome convencional o nome cientifico pode ter '-';
-bool verifica_ID(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, char tipo, string id_string, char &sucesso); //verifica se o Id digitado é int positivo e único;
-bool verifica_Cor(string &cor, char &sucesso);
+bool verifica_seguranca(string nivel_seg_string, char &sucesso); // Verifica se o nível de segurança é válido;
+bool verifica_nome(string &nome, char &sucesso);// Verifica se o nome digitado possui somente letras;
+bool verifica_CPF(string cpf_string, char &sucesso);// Verifica se o cpf contêm apenas inteiros positivos;
+bool verifica_idade(string idade_string, char &sucesso);// Verifica se a idade contêm apenas inteiros positivos;
+bool verifica_tipo_sang(string &tipo_sang_string, char &sucesso);// Verifica se o tipo sanguineo está dentro das opções existentes;
+bool verifica_fator(string fator_rh_string, char &sucesso);// Verifica se o fator é + ou -;
+bool verifica_especialidade(string especialidade, char &sucesso);// Verifica se especialidade contêm apenas letras;
+bool verifica_CRMV(map <int, VETERINARIO> &vets, string crmv, char &sucesso);// Verifica se o crmv foi inserido no formato correto;
+bool verifica_dieta(string &dieta, char &sucesso);// Verifica se a dieta foi inserida no formato correto;
+bool verifica_tamanho(string tamanho_string, char &sucesso); // Verifica se o tamanho do animal é um double;
+bool verifica_inteiro(string total_mudas_string, char &sucesso); // Verifica se a string passada só tem numeros inteiros;
+bool verifica_data(string ultima_muda, char &sucesso); // Verifica se a data está no formato correto.
+bool verifica_autorizacao(string &autorizacao, char &sucesso); // Verifica se a autorizacao foi inserida corretamente;
+bool verifica_origem(string &origem, char &sucesso); // Verifica se foi passado uma string.
+bool verifica_nome_cient(string &nome, char &sucesso); // Verifica se o nome cientifico foi passado de forma correta, diferente do nome convencional o nome cientifico pode ter '-';
+bool verifica_cor(string &cor, char &sucesso);
+bool verifica_venenoso(string venenoso, char &sucesso);
 
-
-
+// Sobrecarga de função de checagem de condições/exceções.
+bool check_CPF(map <int, TRATADOR> &tratadores, long int cpf);// Verifica se o cpf já está cadastrado.
+bool check_CPF(map <int, VETERINARIO> &vets, long int cpf);
+bool verifica_ID(map <int, TRATADOR> &tratadores, string id_string, char &sucesso); // Verifica se o ID digitado do tratador é int positivo e único;
+bool verifica_ID(map <int, VETERINARIO> &vets, string id_string, char &sucesso);// Verifica se o ID digitado do veterinario é int positivo e único;
+bool verifica_ID(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado no caso de anfibios nativos ou exoticos é int positivo e único;
+bool verifica_ID(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado no caso de mamiferos nativos ou exoticos é int positivo e único;
+bool verifica_ID(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado no caso de répteis nativos ou exoticos é int positivo e único;
+bool verifica_ID(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, char tipo, string id_string, char &sucesso); // Verifica se o ID digitado do veterinario é int positivo e único;
 // Sobrecarga de função do cadastramento.
 void cadastrar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR>  &tratadores);
 void cadastrar(map <int, VETERINARIO> &vets);
@@ -379,11 +382,11 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 void cadastrar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
 
 // Sobrecarga de função de edição.
-void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
-void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex);
-void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex);
-void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex);
-void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex);
+void editar_animais(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, ANFIBIO_NATIVO> &anfibios_nat, map <int, ANFIBIO_EXOTICO> &anfibios_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, MAMIFERO_NATIVO> &mamiferos_nat, map <int, MAMIFERO_EXOTICO> &mamiferos_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> &repteis_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
+void editar(map <int, AVE_NATIVO> &aves_nat, map <int, AVE_EXOTICO> &aves_ex, map <int, VETERINARIO> vets, map <int, TRATADOR> tratadores);
 void editar_func(map <int, VETERINARIO> &vets, map <int, TRATADOR> &tratadores);
 void editar(map <int, VETERINARIO> &vets);
 void editar(map <int, TRATADOR> &tratadores);
