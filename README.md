@@ -1,6 +1,6 @@
 # PetFera
 
-É um projeto implementado para a unidade II e III da disciplina Linguagem de Programação I, ministrada pelo Professor Renan Cipriano Moioli no Instituto Metrópole Digital, na Universidade Federal do Rio Grande do Norte.
+É um projeto implementado por Igor Silva Bento, Hilton Thallyson Vieira Machado e Nátaly Enne da Costa Gonçalo para a unidade II e III da disciplina Linguagem de Programação I, ministrada pelo Professor Renan Cipriano Moioli no Instituto Metrópole Digital, na Universidade Federal do Rio Grande do Norte. 
 
 # What is it?
 
