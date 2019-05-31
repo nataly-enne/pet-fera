@@ -47,7 +47,7 @@ animais silvestres denominada "Pet Fera".
   <li>-c [classe]: este argumento indica a classe de animais a serem exportados. Deverá ser indicada apenas uma classe;</li>
   <li>-v [veterinario]: este argumento indica que apenas animais sob a responsabilidade do veterinário informado devem ser exportados. Deverá ser indicado apenas um nome de veterinário;</li>
   <li>-t [tratador]: este argumento indica que apenas animais tratados pelo tratador informado devem ser exportados. Deverá ser indicado apenas um tratador;</li>
-  <li>[arquivo_saida]: este argumento obrigatório indica o nome do arquivo de saída, ou seja, do arquivo onde serão guardados os dados a serem exportados e é obrigatório que seja com a extensão <strong>.txt</strong></li>
+  <li>[arquivo_saida]: este argumento obrigatório indica o nome do arquivo de saída, ou seja, do arquivo onde serão guardados os dados a serem exportados e é obrigatório que seja com a extensão <strong>.txt.</strong></li>
 <ul>
   
 #### As possíveis opções de entrada de classes para exportar são:
