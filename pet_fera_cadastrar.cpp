@@ -895,6 +895,7 @@ void cadastrar(map <int, REPTIL_NATIVO> &repteis_nat, map <int, REPTIL_EXOTICO> 
 			do{
 				cout << "Digite 0 - não venenoso / 1 - venenoso: " << endl;
 				cin >> venenoso_string;
+				cin.ignore();
 				if(!verifica_venenoso(venenoso_string,sucesso)){
 					cout << "ERRO: Digite apenas 0 para não venenoso OU 1 para venenoso!" << endl << endl;
 				}
