@@ -19,7 +19,15 @@ animais silvestres denominada "Pet Fera".
   <li>Alteração dos dados cadastrais de um funcionário.</li>
 </ul>
 
-#### Para compilar é necessário estar no diretório do projeto.
+### Para compilar é necessário estar no diretório do projeto e saber o diretório para utilizar a biblioteca dinâmica.
+
+#### Para ver o diretório digite:
+
+<pre><code>pwd</code></pre>
+
+#### Em seguida, copie o diretório na frente do comando abaixo e execute.
+<pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:[diretorio]</code></pre>
+
 #### Em seguida, no terminal, basta digitar:
  
  <pre><code>make</code></pre>
