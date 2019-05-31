@@ -39,7 +39,7 @@ animais silvestres denominada "Pet Fera".
 #### Para apagar os arquivos executáveis e objetos, basta executar o seguinte comando:
 <pre><code>make clear</code></pre>
 
-#### Para exportar apenas dados de animais satisfaçam a um determinado conjunto de critérios, basta digitar:
+#### Para exportar apenas dados de animais que satisfaçam a um determinado conjunto de critérios, basta digitar:
 <pre><code>./exportar -c [classe] -v [veterinario] -t [tratador] [arquivo_saida]</code></pre>
 
 #### Na sintaxe acima, o arquivo executável 'exportar' é invocado passando quatro possíveis argumentos via linha de comando:
