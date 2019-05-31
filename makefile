@@ -1,4 +1,4 @@
-#makefile - projeto pet fera
+# makefile - projeto pet fera
 
 all: exe exportar
 
