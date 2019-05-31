@@ -30,5 +30,8 @@ pet_fera_consulta_p_func.o:	pet_fera_consulta_p_func.cpp pet_fera.h
 pet_fera_checagem.o:	pet_fera_checagem.cpp pet_fera.h
 	g++	-Wall	-ansi	-pedantic	-g	-O0	-c	pet_fera_checagem.cpp -std=c++11
 
+exportar:	pet_fera_auxiliar.cpp	libpetfera.so pet_fera.h
+	g++	-Wall	-ansi	-pedantic -o	exportar	 pet_fera_auxiliar.cpp -L. -lpetfera -std=c++11
+	
 clear:
 	rm -rf *.o
