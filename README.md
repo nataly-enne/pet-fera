@@ -45,14 +45,14 @@ animais silvestres denominada "Pet Fera".
 <pre><code>./exportar -c [classe] -v [veterinario] -t [tratador] [arquivo_saida.txt]</code></pre>
 
 #### Na sintaxe acima, o arquivo executável 'exportar' é invocado passando quatro possíveis argumentos via linha de comando:
-<ul>
-  <li>-c [classe]: este argumento indica a classe de animais a serem exportados. Deverá ser indicada apenas uma classe;</li>
-  <li>-v [veterinario]: este argumento indica que apenas animais sob a responsabilidade do veterinário informado devem ser exportados. Deverá ser indicado apenas um nome de veterinário;</li>
-  <li>-t [tratador]: este argumento indica que apenas animais tratados pelo tratador informado devem ser exportados. Deverá ser indicado apenas um tratador;</li>
-  <li>[arquivo_saida]: este argumento obrigatório indica o nome do arquivo de saída, ou seja, do arquivo onde serão guardados os dados a serem exportados e é obrigatório que seja com a extensão <strong>.txt.</strong></li>
-<ul>
-  
-  #### As possíveis opções de entrada de classes para exportar são:
+  * -c [classe]: este argumento indica a classe de animais a serem exportados. Deverá ser indicada apenas uma classe;</li>
+  * -v [veterinario]: este argumento indica que apenas animais sob a responsabilidade do veterinário informado devem ser exportados. Deverá ser indicado apenas um nome de veterinário;</li>
+  * -t [tratador]: este argumento indica que apenas animais tratados pelo tratador informado devem ser exportados. Deverá ser indicado apenas um tratador;</li>
+  * [arquivo_saida]: este argumento obrigatório indica o nome do arquivo de saída, ou seja, do arquivo onde serão guardados os dados a serem exportados e é obrigatório que seja com a extensão <strong>.txt.</strong></li>
+
+<ul>  
+  <strong> As possíveis opções de entrada de classes para exportar são:</strong>
+
   <ul>
     <li>amphibia</li>
     <li>reptilia</li>
@@ -60,4 +60,34 @@ animais silvestres denominada "Pet Fera".
     <li>aves</li>
   </ul>
 </ul>
+
+## Colaboradores
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Igorsb3000">
+        <img src="https://avatars1.githubusercontent.com/u/23422424?s=400&v=4" width="100px;" alt="Igor Bento"/>
+        <br />
+        <sub><b>Igor Bento</b></sub>
+      </a><br />
+      <a href="https://github.com/SrtaEnne/pet-fera/commits?author=Igorsb3000" title="Code">💻</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/SrtaEnne">
+        <img src="https://avatars3.githubusercontent.com/u/26802307?s=400&v=4" width="100px;" alt="Nátaly Enne"/>
+        <br />
+        <sub><b>Nátaly Enne</b></sub>
+      </a><br />
+      <a href="https://github.com/SrtaEnne/pet-fera/commits?author=SrtaEnne" title="Code">💻</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/HiltonThallyson">
+        <img src="https://avatars1.githubusercontent.com/u/20178068?s=400&v=4" width="100px;" alt="Hilton Thallyson"/>
+        <br />
+        <sub><b>Hilton Thallyson</b></sub>
+      </a><br />
+      <a href="https://github.com/SrtaEnne/pet-fera/commits?author=HiltonThallyson" title="Code">💻</a>
+    </td>
+  </tr>
+</table>
 
