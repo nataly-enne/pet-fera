@@ -70,7 +70,7 @@ animais silvestres denominada "Pet Fera".
         <br />
         <sub><b>Igor Bento</b></sub>
       </a><br />
-      <a href="https://github.com/SrtaEnne/pet-fera/commits?author=Igorsb3000" title="Code">💻</a>
+      <a href="https://github.com/nataly-enne/pet-fera/commits?author=Igorsb3000" title="Code">💻</a>
     </td>
     <td align="center">
       <a href="https://github.com/SrtaEnne">
@@ -78,7 +78,7 @@ animais silvestres denominada "Pet Fera".
         <br />
         <sub><b>Nátaly Enne</b></sub>
       </a><br />
-      <a href="https://github.com/SrtaEnne/pet-fera/commits?author=SrtaEnne" title="Code">💻</a>
+      <a href="https://github.com/nataly-enne/pet-fera/commits?author=SrtaEnne" title="Code">💻</a>
     </td>
     <td align="center">
       <a href="https://github.com/HiltonThallyson">
@@ -86,7 +86,7 @@ animais silvestres denominada "Pet Fera".
         <br />
         <sub><b>Hilton Thallyson</b></sub>
       </a><br />
-      <a href="https://github.com/SrtaEnne/pet-fera/commits?author=HiltonThallyson" title="Code">💻</a>
+      <a href="https://github.com/nataly-enne/pet-fera/commits?author=HiltonThallyson" title="Code">💻</a>
     </td>
   </tr>
 </table>
